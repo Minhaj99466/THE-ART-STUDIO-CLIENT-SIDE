@@ -22,3 +22,12 @@ export async function manageAction(userId){
         console.log(error);
     }
 }
+export async function manageArtistAction(userId){
+    try {
+        console.log(userId);
+       const data=adminApi.patch('/admin/manageartist',userId)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

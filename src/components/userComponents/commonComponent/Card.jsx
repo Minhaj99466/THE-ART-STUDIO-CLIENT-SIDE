@@ -76,9 +76,9 @@
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
+    // CardFooter,
     Typography,
-    Button,
+    // Button,
   } from "@material-tailwind/react";
    
   export default function CardDefault() {
@@ -100,7 +100,7 @@
     }]
 
     return (
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5  bg-[#F2EEE3]">
       {contents.map((data,index)=>(
           
           
@@ -125,9 +125,7 @@
           </Typography>
          
         </CardBody>
-        <CardFooter className="pt-0">
-          <Button>Read More</Button>
-        </CardFooter>
+        
       </Card>
 
     

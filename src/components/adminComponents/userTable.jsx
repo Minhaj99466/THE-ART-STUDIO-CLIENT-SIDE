@@ -177,11 +177,7 @@ export default function Table() {
                       ) : (
 
                         <Dialog  buttonText="Block" headerText="User Blocking Confirmation" bodyText={`Do You Need To Block ${name} ?`} onConfirm={()=>handleAction(_id)} />
-                       
-                       
-                      )}
-
-                            
+                      )}    
                       </td>
                     </tr>
                   );

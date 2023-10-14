@@ -1,4 +1,5 @@
 import Fuana from "../../../HomeImg/FAÜNA.jpeg";
+// import Face from "../../../assets/userAssets/download (2).jpeg";
 import { Button } from "@material-tailwind/react";
 import Card from '../commonComponent/Card'
 import { useNavigate } from "react-router-dom";
@@ -30,24 +31,46 @@ export default function MainContent() {
           </div>
         </div>
 
-        {/* explore eith us starts*/}
+       
 
-        <div className="w-screen bg-[#f3f2f1]">
+         {/* <div className="linear-gradient(to right, #4880EC, #019CAD) grid grid-cols-2  place-items-center gap-4">
+         <div className="hidden sm:block">
+            <div >
+              <img className="h-screen" src={Face} alt="" />
+            </div>
+          </div>
+          <div>
+            <div><h1 className="  font-sans">THE BEST PART ? <br /> IS EVERYTHING</h1></div>
+            <div className="py-5">
+              <h1>Get Quali</h1>
+                <ul> 
+                  <li>hjghhj</li>
+                  <li>hjghhj</li>
+                  <li>hjghhj</li>
+                  <li>hjghhj</li>
+                </ul>
+            </div>
+            <div className="pt-5">
+            <Button className="mr-5 " variant="gradient">Hire Artist</Button>
+            <Button onClick={()=>navigate('/artist/')}  variant="outlined">Are you An ARTISt</Button>
+            </div>
+          </div>
+          
+        </div> */}
+
+         {/* explore eith us starts*/}
+
+         <div className="w-screen bg-[#ffffff]">
             <div className="flex justify-center py-7">
                     <h1 className="text-4xl   font-serif font-semibold ">Explore With Us</h1>
             </div>
-
         <div>
             <div className="flex justify-around">
-
                 <Card />
             </div>
         </div> 
-
-       
-
          </div>
-        
+
       </div>
     </>
   );

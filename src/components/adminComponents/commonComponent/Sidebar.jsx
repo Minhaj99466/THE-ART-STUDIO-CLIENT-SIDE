@@ -37,16 +37,17 @@ import { useNavigate } from "react-router-dom";
             <ListItemPrefix>
               <ShoppingBagIcon className="h-7 w-5" />
             </ListItemPrefix>
-            E-Commerce
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <InboxIcon className="h-7 w-5" />
-            </ListItemPrefix>
-            Inbox
+            Notifications
             <ListItemSuffix>
               <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
             </ListItemSuffix>
+          </ListItem>
+          <ListItem onClick={()=>navigate('/admin/artist')}>
+            <ListItemPrefix>
+              <InboxIcon className="h-7 w-5" />
+            </ListItemPrefix>
+            ArtistList
+            
           </ListItem>
           <ListItem onClick={()=>navigate('/admin/user')}>
             <ListItemPrefix>
