@@ -15,54 +15,44 @@ import {
   InboxIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
  
 
 
 
 export default function Sidebar() {
+  const navigate=useNavigate()
   return (
       <>
-    <Card className="h-[calc(100vh-2rem)]  w-full max-w-[20rem] p-4 shadow-sm shadow-blue-gray-100  bg-[#d7bf9d]  rounded-none fixed">
+    <Card className="h-screen  max-w-[20rem] p-4 shadow-sm shadow-[#000000]  bg-[#d8e1d3]  rounded-none fixed ">
      
       <List className="mb-2 p-4">
-        <ListItem>
+        <ListItem >
           <ListItemPrefix>
             <PresentationChartBarIcon className="h-7 w-5" />
           </ListItemPrefix>
-          Dashboard
+          Bookings
         </ListItem>
         <ListItem>
           <ListItemPrefix>
             <ShoppingBagIcon className="h-7 w-5" />
           </ListItemPrefix>
-          E-Commerce
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-7 w-5" />
-          </ListItemPrefix>
-          Inbox
+          Clients
           <ListItemSuffix>
             <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
           </ListItemSuffix>
         </ListItem>
-        <ListItem>
+        <ListItem >
           <ListItemPrefix>
-            <UserCircleIcon className="h-7 w-5" />
+            <InboxIcon className="h-7 w-5" />
           </ListItemPrefix>
-          Profile
+          Messages
         </ListItem>
         <ListItem>
           <ListItemPrefix>
             <Cog6ToothIcon className="h-7 w-5" />
           </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-7 w-5" />
-          </ListItemPrefix>
-          Log Out
+          Posts
         </ListItem>
       </List>
     </Card>

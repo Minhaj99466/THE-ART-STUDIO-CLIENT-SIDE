@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 function Layout() {
   return (
     <>
-      <div className='h-screen grid grid-rows-[4rem] '>
+      <div className='h-screen grid grid-rows-[5rem] '>
         <div className="sticky top-0 z-50"> 
           <Navbar/> 
         </div>
@@ -16,7 +16,7 @@ function Layout() {
 
           <div>
 
-            <div className="">
+            <div className="me-4 my-3">
              <Outlet/>
             </div>
 

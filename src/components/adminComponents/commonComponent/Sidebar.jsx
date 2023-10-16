@@ -47,7 +47,6 @@ import { useNavigate } from "react-router-dom";
               <InboxIcon className="h-7 w-5" />
             </ListItemPrefix>
             ArtistList
-            
           </ListItem>
           <ListItem onClick={()=>navigate('/admin/user')}>
             <ListItemPrefix>

@@ -66,8 +66,7 @@ import {
           await manageArtistAction({id:artistId})
             queryclient.invalidateQueries("artist")
     }
-  
-  
+    
     return (
       <>
         <Card className="h-full w-full ">

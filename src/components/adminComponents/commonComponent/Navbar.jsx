@@ -1,38 +1,37 @@
 import React from "react";
 import {
-//   Navbar,
-  MobileNav,
+  //   Navbar,
+  // MobileNav,
   Typography,
+  Drawer,
   Button,
   Menu,
   MenuHandler,
   MenuList,
   MenuItem,
   Avatar,
-//   Card,
-
+  //   Card,
   IconButton,
 } from "@material-tailwind/react";
 import {
+  // UserCircleIcon,
   ChevronDownIcon,
-  Bars2Icon,
-ArrowLeftOnRectangleIcon
+  // PowerIcon,
+  ArrowLeftOnRectangleIcon,
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { Logoutdetails } from "../../../redux/adminSlice/adminSlice";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../../../components/adminComponents/commonComponent/Sidebar";
+import img from "../../../HomeImg/FAÜNA.jpeg";
 
-
- 
-
- 
-function  ProfileMenu() {
-  const dispatch=useDispatch()
-  const navigate = useNavigate()
-
+function ProfileMenu() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
- 
+
   const closeMenu = () => setIsMenuOpen(false);
 
   const handleLogout = async () => {
@@ -44,7 +43,7 @@ function  ProfileMenu() {
     );
     navigate("/admin/login");
   };
- 
+
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -69,80 +68,98 @@ function  ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-       
-          return (
-            <MenuItem
-              
-              onClick={closeMenu}
-              className={`flex items-center   ${
-                 "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  
-              }`}
-            >
-              
-              <Typography
-               type="button"
-                variant="small"
-                className="font-normal"
-                color="red"  
-              >
-                 <button onClick={handleLogout}> <ArrowLeftOnRectangleIcon className="w-5 h-5"/> SignOut</button>
-                 
-              </Typography>
-            </MenuItem>
-          );
-      
+        return (
+        <MenuItem
+          onClick={closeMenu}
+          className={`flex items-center   ${"hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"}`}
+        >
+          <Typography
+            type="button"
+            variant="small"
+            className="font-normal"
+            color="red"
+          >
+            <button onClick={handleLogout}>
+              {" "}
+              <ArrowLeftOnRectangleIcon className="w-5 h-5" /> SignOut
+            </button>
+          </Typography>
+        </MenuItem>
+        );
       </MenuList>
     </Menu>
   );
 }
- 
 
-
- 
-
- 
 export default function ComplexNavbar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
- 
+
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setIsNavOpen(false),
+      () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
   }, []);
- 
+
+  const [open, setOpen] = React.useState(false);
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
   return (
     // <navbar className="w-screen    bg-green-400">
     <>
-    <div >
-      <div className="relative h-16 px-6  mx-auto flex items-center text-blue-gray-800 shadow-sm shadow-blue-gray-100 bg-blue-gray-200 ">
-        <Typography
-          as="a"
-          href="#"
-          className="mr-4 ml-5 font-extrabold text-black font-serif"
-        >
-          THE ART STUDIO
-        </Typography>
-        
-        <IconButton
-          size="sm"
-          color="blue-gray"
-          variant="text"
-          onClick={toggleIsNavOpen}
-          className="ml-auto mr-2 lg:hidden"
-        >
-          <Bars2Icon className="h-6 w-6" />
-        </IconButton>
-        <ProfileMenu />
-      </div>
-      <MobileNav open={isNavOpen} className="overflow-scroll">
-        
-      </MobileNav>
-    {/* // </navbar> */}
-    </div>
+      <navbar className="  lg:rounded-none   fixed top-0 left-0 right-0 bg-[#023E8A] z-50 ">
+        <div className="relative mx-auto flex items-center text-blue-gray-900 py-3 bg-[#5d7582] ">
+          <Drawer
+            open={open}
+            onClose={closeDrawer}
+            className="bg-[#5d7582] md:invisible"
+          >
+            <div className="mb-2 flex items-center justify-between p-4 md:h-full">
+              <Typography variant="h5" color="white">
+                THE ART STUDIO
+              </Typography>
+              <IconButton variant="text" color="white" onClick={closeDrawer}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </IconButton>
+            </div>
+            <Sidebar />
+          </Drawer>
+          <Bars3Icon
+            onClick={openDrawer}
+            className="h-8 w-8 ms-5 cursor-pointer text-white"
+          />
+          <img src={img} alt="" className="h-14 ps-7 py-1" />
+          <h1>THE ART STUDIO</h1>
+
+          {/* <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
+   
+  </div> */}
+          <IconButton
+            size="sm"
+            color="blue-gray"
+            variant="text"
+            onClick={toggleIsNavOpen}
+            className="ml-auto mr-2 lg:hidden"
+          ></IconButton>
+          <ProfileMenu />
+        </div>
+      </navbar>
     </>
   );
 }

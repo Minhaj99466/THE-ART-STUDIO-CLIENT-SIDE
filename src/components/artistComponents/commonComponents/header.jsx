@@ -1,60 +1,50 @@
 import React from "react";
 import {
-//   Navbar,
-  MobileNav,
+  //   Navbar,
+  // MobileNav,
   Typography,
+  Drawer,
   Button,
   Menu,
   MenuHandler,
   MenuList,
   MenuItem,
   Avatar,
-//   Card,
+  //   Card,
   IconButton,
 } from "@material-tailwind/react";
 import {
-//   CubeTransparentIcon,
-  UserCircleIcon,
-//   CodeBracketSquareIcon,
-//   Square3Stack3DIcon,
+  // UserCircleIcon,
   ChevronDownIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
-  PowerIcon,
-//   RocketLaunchIcon,
-  Bars2Icon,
+  // PowerIcon,
+  ArrowLeftOnRectangleIcon,
+  Bars3Icon,
+  UserCircleIcon
 } from "@heroicons/react/24/outline";
- 
-// profile menu component
-const profileMenuItems = [
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-  },
-  {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-  },
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-  },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
-];
- 
-function  ProfileMenu() {
+import { useDispatch } from "react-redux";
+import { Logoutdetails } from "../../../redux/artistSlice/artistSlice";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../../../components/artistComponents/commonComponents/sidebar";
+import img from "../../../HomeImg/FAÜNA.jpeg";
+
+function ProfileMenu() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
- 
+
   const closeMenu = () => setIsMenuOpen(false);
- 
+
+  const handleLogout = async () => {
+    localStorage.removeItem("ArtistToken");
+    dispatch(
+      Logoutdetails({
+        artistInfo: {},
+      })
+    );
+    navigate("/artist/login");
+  };
+
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -79,82 +69,109 @@ function  ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
-          return (
-            <MenuItem
-              key={label}
+        return (
+          <MenuItem
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
             >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
               <Typography
                 as="span"
                 variant="small"
                 className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
+                onClick={()=>navigate('/artist/profile')}
               >
-                {label}
+                <UserCircleIcon className="h-5"/>
+                  Profile
               </Typography>
             </MenuItem>
-          );
-        })}
+          <MenuItem
+              onClick={closeMenu}
+            >
+              <Typography
+                as="span"
+                variant="small"
+                className="font-normal"
+                color={  "red"}
+                onClick={handleLogout}
+              >
+                <ArrowLeftOnRectangleIcon className="h-5"/>
+                SignOut
+              </Typography>
+            </MenuItem>
+        );
       </MenuList>
     </Menu>
   );
 }
- 
 
-
- 
-
- 
 export default function ComplexNavbar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
- 
+
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setIsNavOpen(false),
+      () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
   }, []);
- 
+
+  const [open, setOpen] = React.useState(false);
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
   return (
     // <navbar className="w-screen    bg-green-400">
     <>
-      <div className="relative h-16 px-6  mx-auto flex items-center  text-blue-gray-800 shadow-sm shadow-blue-gray-100 bg-[#d7bf9d]">
-        <Typography
-          as="a"
-          href="#"
-          className="mr-4 ml-5 shadow-md text-Black font-bold"
-        >
-          THE ART STUDIO
-        </Typography>
-        
-        <IconButton
-          size="sm"
-          color="blue-gray"
-          variant="text"
-          onClick={toggleIsNavOpen}
-          className="ml-auto mr-2 lg:hidden"
-        >
-          <Bars2Icon className="h-6 w-6" />
-        </IconButton>
-        <ProfileMenu />
-      </div>
-      <MobileNav open={isNavOpen} className="overflow-scroll">
-        
-      </MobileNav>
-    {/* // </navbar> */}
+      <navbar className="  lg:rounded-none   fixed top-0 left-0 right-0  z-50 ">
+        <div className="relative mx-auto flex items-center text-blue-gray-900 py-3 bg-[#acb5a0] ">
+          <Drawer
+            open={open}
+            onClose={closeDrawer}
+            className="bg-[#5d7582] md:invisible"
+          >
+            <div className="mb-2 flex items-center justify-between p-4 md:h-full">
+              <Typography variant="h5" color="white">
+                THE ART STUDIO
+              </Typography>
+              <IconButton variant="text" color="white" onClick={closeDrawer}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </IconButton>
+            </div>
+            <Sidebar />
+          </Drawer>
+          <Bars3Icon
+            onClick={openDrawer}
+            className="h-8 w-8 ms-5 cursor-pointer text-white"
+          />
+          <img src={img} alt="" className="h-14 ps-7 py-1" />
+          <h1>THE ART STUDIO</h1>
+
+          {/* <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
+   
+  </div> */}
+          <IconButton
+            size="sm"
+            color="blue-gray"
+            variant="text"
+            onClick={toggleIsNavOpen}
+            className="ml-auto mr-2 lg:hidden"
+          ></IconButton>
+          <ProfileMenu />
+        </div>
+      </navbar>
     </>
   );
 }

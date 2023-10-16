@@ -8,6 +8,7 @@ import ArtistPublic from "../../Protected/artistPublic"
 import Layout from "../../pages/artistPage/Layout/Layout"
 import ArtistProtect from "../../Protected/artistProtect"
 import EmailVerify from "../../components/artistComponents/ArtistVerify"
+import Profile from "../../pages/artistPage/Profile/Profile"
 
 function ArtistRoute() {
   return (
@@ -16,10 +17,13 @@ function ArtistRoute() {
         <Route exact path="/login" element = {<LoginPage/>} />
         <Route exact path="/signup" element = {<SignUpPage/>} />
         </Route>
+
+
         <Route element={<ArtistProtect/>}>
         <Route path="/"  element={<Layout></Layout>}>
         <Route exact path='/' element={<ArtistHome/>}/> 
         <Route exact path='/home' element={<ArtistHome/>}/> 
+        <Route exact path='/profile' element={<Profile/>}/> 
         
         </Route>
         </Route>

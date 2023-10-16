@@ -5,23 +5,23 @@ function Layout() {
   return (
     <>
      
-      <div className='h-screen grid grid-rows-[4rem] '>
-        <div className="sticky top-0 z-50"> 
+     <div className='h-screen grid grid-rows-[5rem] '>
+        <div> 
           <Navbar/> 
         </div>
-        <div className='md:grid md:grid-cols-[18rem,1fr]'>
+        <div className='md:grid md:grid-cols-[18.7rem,1fr]'>
           
-          <div className='invisible md:visible  '>
+          <div className='invisible md:visible'>
             <Sidebar/>
           </div>
 
           <div>
 
-            <div className="">
+            <div className='h-full '>
              <Outlet/>
             </div>
 
-           
+            
 
           </div>
         </div>
