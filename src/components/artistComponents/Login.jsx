@@ -165,6 +165,16 @@ import {
                     <div className="text-red-500 text-xs ">{errors.password}</div>
                   )}
                 </div>
+                <div className="pl-60">
+                
+                <button
+                  onClick={() => navigate("/artist/forget")}
+                  className="text-gray-500"
+                >
+                  <span>Forgot Password ?</span>
+                </button>
+             
+            </div>
   
                 <Button type="submit" className="mt-6" fullWidth>
                   Register

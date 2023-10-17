@@ -26,8 +26,13 @@ import { Logoutdetails } from "../../../redux/artistSlice/artistSlice";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../components/artistComponents/commonComponents/sidebar";
 import img from "../../../HomeImg/FAÜNA.jpeg";
+import { useSelector } from "react-redux";
 
 function ProfileMenu() {
+  const {artistInfo} =useSelector(state=>state.artist)
+  const id =artistInfo.email
+  console.log(id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -77,7 +82,7 @@ function ProfileMenu() {
                 as="span"
                 variant="small"
                 className="font-normal"
-                onClick={()=>navigate('/artist/profile')}
+                onClick={()=>navigate('/artist/profile',{state:{id}})}
               >
                 <UserCircleIcon className="h-5"/>
                   Profile

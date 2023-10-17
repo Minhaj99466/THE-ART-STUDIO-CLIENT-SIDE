@@ -38,3 +38,24 @@ export async function Verify(id,token){
         console.log(error);
     }
 }
+
+
+export async function sendMail(email){
+    try {
+        console.log(email);
+        const data=await artistApi.post('/passwordMail',{email})
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export async function CheckPassword(password){
+    try {
+        const data=await artistApi.post('/checkpassword',{password})
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

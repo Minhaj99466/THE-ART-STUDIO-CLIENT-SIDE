@@ -9,6 +9,9 @@ import Layout from "../../pages/artistPage/Layout/Layout"
 import ArtistProtect from "../../Protected/artistProtect"
 import EmailVerify from "../../components/artistComponents/ArtistVerify"
 import Profile from "../../pages/artistPage/Profile/Profile"
+import Forget from '../../components/artistComponents/Forget'
+import PasswordConfirm from '../../components/artistComponents/PasswordConfirmation'
+import AddProfile from '../../components/artistComponents/AddProfile'
 
 function ArtistRoute() {
   return (
@@ -16,6 +19,9 @@ function ArtistRoute() {
       <Route element={<ArtistPublic/>} >
         <Route exact path="/login" element = {<LoginPage/>} />
         <Route exact path="/signup" element = {<SignUpPage/>} />
+        <Route exact path='/forget' element={<Forget/>}/> 
+        <Route path="/:id/password/:token" element={<PasswordConfirm/>}/>
+
         </Route>
 
 
@@ -24,7 +30,7 @@ function ArtistRoute() {
         <Route exact path='/' element={<ArtistHome/>}/> 
         <Route exact path='/home' element={<ArtistHome/>}/> 
         <Route exact path='/profile' element={<Profile/>}/> 
-        
+        <Route exact path='/addProfile' element={<AddProfile/>}/> 
         </Route>
         </Route>
         <Route path="/:id/verify/:token" element={<EmailVerify/>}/>
