@@ -14,15 +14,17 @@ import { Textarea } from "@material-tailwind/react";
 import { ToastContainer } from "react-toastify";
 import { useFormik } from "formik";
 import { GenerateError, GenerateSuccess } from "../../toast/toast";
+import { ProfileUpdateSchema } from "../../yup/validation";
 
 export default function DialogWithForm() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
   const initialValues = {
-    name: "",
-    email: "",
-    password: "",
+    category: "",
+    experience: "",
+    place: "",
+    description: "",
   };
   const {
     values,
@@ -35,7 +37,7 @@ export default function DialogWithForm() {
     setValues,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: SignupSchema,
+    validationSchema: ProfileUpdateSchema,
     onSubmit: async (values) => {
       const response = await ArtistSignup(values);
       console.log(response);
@@ -46,6 +48,7 @@ export default function DialogWithForm() {
       }
     },
   });
+  
 
   return (
     <>
@@ -73,7 +76,7 @@ export default function DialogWithForm() {
               <Input
                 label="Category"
                 name="category"
-                value="cATEGORY"
+                value={values.category}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 size="lg"
@@ -85,7 +88,7 @@ export default function DialogWithForm() {
                 label="Place"
                 size="lg"
                 name="place"
-                value="place"
+                value={values.place}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -100,9 +103,20 @@ export default function DialogWithForm() {
                 onBlur={handleBlur}
                 size="lg"
               />
-
+                 {touched.experience && errors.experience && (
+                <div className="text-red-500 text-xs ">{errors.experience}</div>
+              )}
               <div>
-                <Textarea label="Description" />
+                <Input
+                  label="description"
+                  name="description"
+                  value={values.description}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {touched.description && errors.description && (
+                <div className="text-red-500 text-xs ">{errors.description}</div>
+              )}
               </div>
             </CardBody>
             <CardFooter className="pt-0">
