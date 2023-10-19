@@ -18,6 +18,7 @@ import ArtistRequest from "../../utils/artistRequest";
 // import { GenerateError, GenerateSuccess } from "../../toast/toast";
 import { useLocation } from "react-router-dom";
 import DialogWithForm from "./AddProfile";
+
 export default function ProfileCard() {
   // const navigate=useNavigate()
   const location=useLocation()

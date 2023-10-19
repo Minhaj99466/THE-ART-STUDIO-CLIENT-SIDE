@@ -8,16 +8,23 @@ import {
   CardFooter,
   Typography,
   Input,
+  Select,
   Checkbox,
 } from "@material-tailwind/react";
+import { useState } from "react";
 import { Textarea } from "@material-tailwind/react";
 import { ToastContainer } from "react-toastify";
 import { useFormik } from "formik";
 import { GenerateError, GenerateSuccess } from "../../toast/toast";
 import { ProfileUpdateSchema } from "../../yup/validation";
+import { addProfile } from "../../api/artistApi";
+import CountriesSelect from "./Select Country";
+import { Badge, IconButton, Avatar } from "@material-tailwind/react";
+import { PlusCircleIcon } from "@heroicons/react/20/solid";
 
 export default function DialogWithForm() {
   const [open, setOpen] = React.useState(false);
+  const [dp, setDp] = useState('');
   const handleOpen = () => setOpen((cur) => !cur);
 
   const initialValues = {
@@ -25,6 +32,8 @@ export default function DialogWithForm() {
     experience: "",
     place: "",
     description: "",
+    number: "",
+    image: "",
   };
   const {
     values,
@@ -39,8 +48,8 @@ export default function DialogWithForm() {
     initialValues: initialValues,
     validationSchema: ProfileUpdateSchema,
     onSubmit: async (values) => {
-      const response = await ArtistSignup(values);
-      console.log(response);
+      
+      const response = await addProfile(values,dp);
       if (response.data.created) {
         GenerateSuccess(response.data.message);
       } else {
@@ -48,7 +57,21 @@ export default function DialogWithForm() {
       }
     },
   });
-  
+
+  const handleCityClick = (selectedCity) => {
+    setFieldValue("place", selectedCity);
+  };
+
+  const handleImageClick = () => {
+    document.getElementById("imageInput").click();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const url = URL.createObjectURL(file);
+      setDp(url)
+    setFieldValue("image", file);
+  };
 
   return (
     <>
@@ -65,14 +88,36 @@ export default function DialogWithForm() {
         <form onSubmit={handleSubmit}>
           <Card className="mx-auto w-full max-w-[24rem]">
             <CardBody className="flex flex-col gap-4">
-              <div className="flex justify-center">
-                <img
-                  className="w-28 h-28 rounded-full"
-                  src="https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"
-                  alt="nghhjgjh"
-                />
+              <div className="flex justify-center" onClick={handleImageClick}>
+                <Badge
+                  className="bg-[#4eaa5b]"
+                  content={<PlusCircleIcon />}
+                  overlap="circular"
+                  placement="bottom-end"
+                >
+                  <img
+                    className="w-28 h-28 rounded-full"
+                    src={
+                      dp
+                        ? values.image
+                        : "https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"
+                    }
+                    alt="nghhjgjh"
+                  />
+                </Badge>
               </div>
-              {/* <Input type="file" /> */}
+              <input
+                id="imageInput"
+                name="image"
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+                {touched.image && errors.image && (
+                <div className="text-red-500 text-xs ">{errors.image}</div>
+              )}
+
               <Input
                 label="Category"
                 name="category"
@@ -84,16 +129,23 @@ export default function DialogWithForm() {
               {touched.category && errors.category && (
                 <div className="text-red-500 text-xs ">{errors.category}</div>
               )}
+              <div className=" flex items-center gap-4">
+                <CountriesSelect onCityClick={handleCityClick} />
+                {touched.place && errors.place && (
+                  <div className="text-red-500 text-xs ">{errors.place}</div>
+                )}
+              </div>
               <Input
-                label="Place"
+                label="Mobile"
                 size="lg"
-                name="place"
-                value={values.place}
+                name="number"
+                type="number"
+                value={values.number}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {touched.place && errors.place && (
-                <div className="text-red-500 text-xs ">{errors.place}</div>
+              {touched.number && errors.number && (
+                <div className="text-red-500 text-xs ">{errors.number}</div>
               )}
               <Input
                 label="Experience"
@@ -103,20 +155,23 @@ export default function DialogWithForm() {
                 onBlur={handleBlur}
                 size="lg"
               />
-                 {touched.experience && errors.experience && (
+              {touched.experience && errors.experience && (
                 <div className="text-red-500 text-xs ">{errors.experience}</div>
               )}
               <div>
                 <Input
                   label="description"
                   name="description"
+                  style={{ Height: "40px" }}
                   value={values.description}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {touched.description && errors.description && (
-                <div className="text-red-500 text-xs ">{errors.description}</div>
-              )}
+                  <div className="text-red-500 text-xs ">
+                    {errors.description}
+                  </div>
+                )}
               </div>
             </CardBody>
             <CardFooter className="pt-0">

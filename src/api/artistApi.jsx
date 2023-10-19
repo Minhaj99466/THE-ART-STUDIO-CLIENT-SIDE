@@ -59,3 +59,15 @@ export async function CheckPassword(password){
         console.log(error);
     }
 }
+
+export async function addProfile(values){
+    try {
+        const data=await artistApi.post('/addProfile',values,{headers:{
+            "Content-Type":"multipart/form-data"
+          }})
+        
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
