@@ -1,5 +1,5 @@
-import Navbar from "../../../components/adminComponents/commonComponent/Navbar";
-import Sidebar from "../../../components/adminComponents/commonComponent/Sidebar";
+import Navbar from "../../../components/Common/AdmincommonComponent/Navbar";
+import Sidebar from "../../../components/Common/AdmincommonComponent/Sidebar";
 import { Outlet } from "react-router-dom";
 function Layout() {
   return (

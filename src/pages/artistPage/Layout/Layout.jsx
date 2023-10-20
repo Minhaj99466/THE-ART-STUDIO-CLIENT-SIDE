@@ -1,5 +1,5 @@
-import Navbar from '../../../components/artistComponents/commonComponents/header'
-import Sidebar from '../../../components/artistComponents/commonComponents/sidebar';
+import Navbar from '../../../components/Common/ArtistcommonComponents/header'
+import Sidebar from '../../../components/Common/ArtistcommonComponents/sidebar';
 import { Outlet } from "react-router-dom";
 function Layout() {
   return (

@@ -17,7 +17,8 @@ import {
 import { useQuery,useQueryClient} from "@tanstack/react-query";
 import AdminRequest from "../../utils/adminRequest";
 import { manageAction } from "../../api/adminApi";
-import Dialog from '../../components/adminComponents/commonComponent/Dialog'
+import Dialog from '../Common/AdmincommonComponent/Dialog'
+import { InfinitySpin } from  'react-loader-spinner'
 
 
 const TABLE_HEAD = [
@@ -39,7 +40,9 @@ export default function Table() {
   });
   const queryclient = useQueryClient()
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', }}>
+  <InfinitySpin width={200} color="#4fa94d" />
+</div>
 
   if (error) return "An error has occurred: " + error.message;
 

@@ -1,7 +1,7 @@
 import Fuana from "../../../HomeImg/FAÜNA.jpeg";
 // import Face from "../../../assets/userAssets/download (2).jpeg";
 import { Button } from "@material-tailwind/react";
-import Card from '../commonComponent/Card'
+import Card from '../../Common/UsercommonComponent/Card'
 import { useNavigate } from "react-router-dom";
 
 

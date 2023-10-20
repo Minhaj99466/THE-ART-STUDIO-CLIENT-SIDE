@@ -22,7 +22,7 @@ export const SignupSchema = Yup.object({
 export const ProfileUpdateSchema =Yup.object({
     category:Yup.string().min(3).max(30).required("please Enter your field Of Art"),
     place:Yup.string().min(4).required("enter your place"),
-    experience:Yup.string().required("enter years of experience"),
+    experience:Yup.number().required("enter years of experience"),
     number:Yup.string().min(10).required("enter valid number"),
     description:Yup.string().min(10).max(500).required("please provide a description"),
       image: Yup.mixed()

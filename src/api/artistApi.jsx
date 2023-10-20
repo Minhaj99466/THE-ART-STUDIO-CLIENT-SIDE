@@ -60,9 +60,10 @@ export async function CheckPassword(password){
     }
 }
 
-export async function addProfile(values){
+export async function addProfile(values,id){
     try {
-        const data=await artistApi.post('/addProfile',values,{headers:{
+        console.log(values,id);
+        const data=await artistApi.put(`/addProfile/${id}`,values,{headers:{
             "Content-Type":"multipart/form-data"
           }})
         

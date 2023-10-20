@@ -22,7 +22,8 @@ import {
   import { useQuery,useQueryClient} from "@tanstack/react-query";
   import AdminRequest from "../../utils/adminRequest";
   import { manageArtistAction } from "../../api/adminApi";
-  import Dialog from '../../components/adminComponents/commonComponent/Dialog'
+  import Dialog from '../Common/AdmincommonComponent/Dialog'
+  import { InfinitySpin } from  'react-loader-spinner'
   
   const TABS = [
     {
@@ -58,7 +59,10 @@ import {
     });
     const queryclient = useQueryClient()
   
-    if (isLoading) return "Loading...";
+    if (isLoading) return <InfinitySpin 
+    width='200'
+    color="#4fa94d"
+  />;
   
     if (error) return "An error has occurred: " + error.message;
   

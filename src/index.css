@@ -5,3 +5,19 @@
 .gradient_background {
     background: linear-gradient(90deg, #0d0f0f42,#6a6a107f);
   }
+
+  .description {
+    max-width: 400px; /* Adjust the value as needed */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds an ellipsis (...) if the text overflows */
+    white-space: nowrap; /* Prevents text from wrapping onto a new line */
+    border: 1px solid #ccc; /* Optional: Add a border for visual clarity */
+    padding: 10px; /* Optional: Add padding for spacing */
+  }
+
+  
+  
+  
+  
+  
+  

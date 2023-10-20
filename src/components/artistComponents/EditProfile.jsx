@@ -23,8 +23,9 @@ import { Badge, IconButton, Avatar } from "@material-tailwind/react";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { PencilSquareIcon } from "@heroicons/react/20/solid";
 
-export default function DialogWithForm() {
+export default function EditDialog() {
   const queryClient = useQueryClient()
   const { artistInfo } = useSelector((state) => state.artist);
   const id = artistInfo.email;
@@ -91,9 +92,7 @@ export default function DialogWithForm() {
 
   return (
     <>
-      <Button className="bg-[#4f614e]" onClick={handleOpen}>
-        Complete Now
-      </Button>
+      <PencilSquareIcon className="w-10 h-10 absolute top-0 right-0" onClick={handleOpen}/>
 
       <Dialog
         size="xs"
