@@ -11,36 +11,37 @@ import {
   Select,
   Checkbox,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Textarea } from "@material-tailwind/react";
 import { ToastContainer } from "react-toastify";
 import { useFormik } from "formik";
 import { GenerateError, GenerateSuccess } from "../../toast/toast";
-import { ProfileUpdateSchema } from "../../yup/validation";
-import { addProfile } from "../../api/artistApi";
-import CountriesSelect from "./Select Country";
+import { artistEditProfileSchema } from "../../yup/validation";
+import { editArtistProfile } from "../../api/artistApi";
 import { Badge, IconButton, Avatar } from "@material-tailwind/react";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { PencilSquareIcon } from "@heroicons/react/20/solid";
 
-export default function EditDialog() {
-  const queryClient = useQueryClient()
+export default function EditDialog({ artist }) {
+
+  const queryClient = useQueryClient();
   const { artistInfo } = useSelector((state) => state.artist);
   const id = artistInfo.email;
   const [open, setOpen] = React.useState(false);
-  const [dp, setDp] = useState('');
+  const [dp, setDp] = useState("");
   const handleOpen = () => setOpen((cur) => !cur);
 
   const initialValues = {
-    category: "",
-    experience: "",
-    place: "",
-    description: "",
-    number: "",
-    image: "",
+    name: artist ? artist.name : "",
+    category: artist ? artist.category : "",
+    experience: artist ? artist.experience : "",
+    number: artist ? artist.mobile : "",
+    description: artist ? artist.description : "",
+    image: artist ? artist.displaypicture : "",
   };
+
   const {
     values,
     errors,
@@ -52,32 +53,29 @@ export default function EditDialog() {
     setValues,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: ProfileUpdateSchema,
+    validationSchema: artistEditProfileSchema,
     onSubmit: async (values) => {
-      console.log(values.image);
       const formData = new FormData();
-    formData.append("category", values.category);
-    formData.append("experience", values.experience);
-    formData.append("place", values.place);
-    formData.append("description", values.description);
-    formData.append("number", values.number);
-    formData.append("dp", values.image); // Append the dp property
+      formData.append("category", values.category);
+      formData.append("name", values.name);
+      formData.append("experience", values.experience);
+      formData.append("description", values.description);
+      formData.append("number", values.number);   
 
-    const response = await addProfile(formData,id);
+      formData.append("dp", values.image); 
+
+      const response = await editArtistProfile(formData, id);
       if (response.data.created) {
-        
-       setOpen(!open)
-       queryClient.invalidateQueries(["artist"]);
+        setOpen(!open);
+        queryClient.invalidateQueries(["artist"]);
       } else {
-        setOpen(!open)
+        setOpen(!open);
         GenerateError(response.data.message);
       }
     },
   });
 
-  const handleCityClick = (selectedCity) => {
-    setFieldValue("place", selectedCity);
-  };
+ 
 
   const handleImageClick = () => {
     document.getElementById("imageInput").click();
@@ -86,13 +84,20 @@ export default function EditDialog() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
-      setDp(url)
+    setDp(url);
     setFieldValue("image", file);
   };
 
+  useEffect(()=>{
+    setDp(artist.displaypicture)
+  },[])
+
   return (
     <>
-      <PencilSquareIcon className="w-10 h-10 absolute top-0 right-0" onClick={handleOpen}/>
+      <PencilSquareIcon
+        className="w-10 h-10 absolute top-0 right-0"
+        onClick={handleOpen}
+      />
 
       <Dialog
         size="xs"
@@ -129,8 +134,20 @@ export default function EditDialog() {
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
-                {touched.image && errors.image && (
+              {touched.image && errors.image && (
                 <div className="text-red-500 text-xs ">{errors.image}</div>
+              )}
+
+              <Input
+                label="name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                size="lg"
+              />
+              {touched.name && errors.name && (
+                <div className="text-red-500 text-xs ">{errors.name}</div>
               )}
 
               <Input
@@ -144,12 +161,6 @@ export default function EditDialog() {
               {touched.category && errors.category && (
                 <div className="text-red-500 text-xs ">{errors.category}</div>
               )}
-              <div className=" flex items-center gap-4">
-                <CountriesSelect onCityClick={handleCityClick} />
-                {touched.place && errors.place && (
-                  <div className="text-red-500 text-xs ">{errors.place}</div>
-                )}
-              </div>
               <Input
                 label="Mobile"
                 size="lg"
@@ -165,7 +176,7 @@ export default function EditDialog() {
               <Input
                 label="Experience"
                 name="experience"
-                value={values.email}
+                value={values.experience}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 size="lg"

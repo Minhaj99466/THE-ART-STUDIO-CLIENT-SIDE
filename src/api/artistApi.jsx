@@ -72,3 +72,16 @@ export async function addProfile(values,id){
         console.log(error);
     }
 }
+
+export async function editArtistProfile(values,id){
+    try {
+        console.log(values,id,"jkhjkjk");
+        const data=await artistApi.put(`/editProfile/${id}`,values,{headers:{
+            "Content-Type":"multipart/form-data"
+          }})
+        
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

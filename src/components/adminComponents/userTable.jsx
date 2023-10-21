@@ -19,6 +19,8 @@ import AdminRequest from "../../utils/adminRequest";
 import { manageAction } from "../../api/adminApi";
 import Dialog from '../Common/AdmincommonComponent/Dialog'
 import { InfinitySpin } from  'react-loader-spinner'
+import { GenerateError } from "../../toast/toast";
+import { useNavigate } from "react-router-dom";
 
 
 const TABLE_HEAD = [
@@ -32,7 +34,7 @@ const TABLE_HEAD = [
 
 
 export default function Table() {
-
+const navigate=useNavigate()
   
   const { isLoading, error, data } = useQuery({
     queryKey: ["user"],
@@ -44,7 +46,20 @@ export default function Table() {
   <InfinitySpin width={200} color="#4fa94d" />
 </div>
 
-  if (error) return "An error has occurred: " + error.message;
+
+
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 403) {
+        GenerateError(error.response.data.data.message)
+        localStorage.removeItem("AdminToken")
+        navigate("/admin/login")
+      }
+    } else {
+      return <p>somthing went wrong</p>
+    }
+
+  }
 
  const handleAction=async(userId)=>{ 
         await manageAction({id:userId})

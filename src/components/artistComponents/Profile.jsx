@@ -16,16 +16,16 @@ import "react-toastify/dist/ReactToastify.css";
 import ArtistRequest from "../../utils/artistRequest";
 // import { useFormik } from "formik";
 // import { SignupSchema } from "../../yup/validation";
-import EditDialog from '../../components/artistComponents/EditProfile'
+import EditDialog from "../../components/artistComponents/EditProfile";
 import { useLocation } from "react-router-dom";
 import DialogWithForm from "./AddProfile";
-
-
-import { InfinitySpin } from  'react-loader-spinner'
-
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function ProfileCard() {
   // const navigate=useNavigate()
+
+
+
   const location = useLocation();
   const id = location.state.id;
 
@@ -35,30 +35,25 @@ export default function ProfileCard() {
       ArtistRequest.get(`/Profiledetails/${id}`).then((res) => res.data),
   });
 
-  if (isLoading) return <InfinitySpin 
-  width='200'
-  color="#4fa94d"
-/>;
+  if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <>
       <div className="relative bg-[#ccddd6] rounded-xl p-4">
-        {data.profileData.is_profile?( <EditDialog   /> ):(null)}
-     
-     
+        {data.profileData.is_profile ? <EditDialog artist={data.profileData} /> : null}
+
         <div>
-       
           <div className="flex justify-center  h-72">
-          
             <img
-              src=
-              {data.profileData.displaypicture && data.profileData.is_profile
-                ? data.profileData.displaypicture
-                : "https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"}
+              src={
+                data.profileData.displaypicture && data.profileData.is_profile
+                  ? data.profileData.displaypicture
+                  : "https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"
+              }
               alt="card-image"
-              className="rounded-full "
+              className="rounded-full w-72"
             />
           </div>
           <Card className=" grid  ">
