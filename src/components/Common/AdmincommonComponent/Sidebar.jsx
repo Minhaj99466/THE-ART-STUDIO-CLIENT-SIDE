@@ -33,7 +33,7 @@ import { useNavigate } from "react-router-dom";
             </ListItemPrefix>
             Dashboard
           </ListItem>
-          <ListItem>
+          <ListItem onClick={()=>navigate('/admin/notification')}>
             <ListItemPrefix>
               <ShoppingBagIcon className="h-7 w-5" />
             </ListItemPrefix>

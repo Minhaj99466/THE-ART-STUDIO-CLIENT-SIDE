@@ -31,7 +31,6 @@ export async function Login(LoginData){
 
 export async function Verify(id,token){
     try {
-        console.log("jhjkhjk");
         const data = await artistApi.get(`/artist/${id}/verify/${token}`)
     return data
     } catch (error) {
@@ -77,6 +76,20 @@ export async function editArtistProfile(values,id){
     try {
         console.log(values,id,"jkhjkjk");
         const data=await artistApi.put(`/editProfile/${id}`,values,{headers:{
+            "Content-Type":"multipart/form-data"
+          }})
+        
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export async function postImages(values,id){
+    try {
+        console.log(values,id);
+        const data=await artistApi.put(`/postImages/${id}`,values,{headers:{
             "Content-Type":"multipart/form-data"
           }})
         

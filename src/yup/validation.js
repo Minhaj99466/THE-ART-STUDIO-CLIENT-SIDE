@@ -61,3 +61,23 @@ export const artistEditProfileSchema = Yup.object({
       return true;
     })
 });
+
+
+
+export const multipleImageSchema = Yup.object({
+  images: Yup.mixed()
+    .test("is-image", "Only image files are allowed", (value) => {
+      if (value) {
+        for (let i = 0; i < value.length; i++) {
+          if (!imageFormats.includes(value[i].type)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    })
+    .test("max-images", "Maximum of 3 images allowed", (value) => {
+      return !value || value.length <= 3;
+    })
+    .required("Upload certificates"),
+});

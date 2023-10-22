@@ -11,6 +11,7 @@ import {
   MenuItem,
   Avatar,
   //   Card,
+  Badge,
   IconButton,
 } from "@material-tailwind/react";
 import {
@@ -19,6 +20,7 @@ import {
   // PowerIcon,
   ArrowLeftOnRectangleIcon,
   Bars3Icon,
+  BellIcon,
 } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { Logoutdetails } from "../../../redux/adminSlice/adminSlice";
@@ -66,6 +68,7 @@ function ProfileMenu() {
             }`}
           />
         </Button>
+        
       </MenuHandler>
       <MenuList className="p-1">
         return (
@@ -121,6 +124,7 @@ export default function ComplexNavbar() {
               <Typography variant="h5" color="white">
                 THE ART STUDIO
               </Typography>
+           
               <IconButton variant="text" color="white" onClick={closeDrawer}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -137,6 +141,7 @@ export default function ComplexNavbar() {
                   />
                 </svg>
               </IconButton>
+              
             </div>
             <Sidebar />
           </Drawer>
@@ -146,7 +151,7 @@ export default function ComplexNavbar() {
           />
           <img src={img} alt="" className="h-14 ps-7 py-1" />
           <h1>THE ART STUDIO</h1>
-
+    
           {/* <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
    
   </div> */}
@@ -158,6 +163,7 @@ export default function ComplexNavbar() {
             className="ml-auto mr-2 lg:hidden"
           ></IconButton>
           <ProfileMenu />
+          
         </div>
       </navbar>
     </>

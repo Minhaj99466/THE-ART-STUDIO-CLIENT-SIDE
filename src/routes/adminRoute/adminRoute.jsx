@@ -7,7 +7,7 @@ import HomePage from "../../pages/adminPage/Home/Dashboard";
 import UserList from "../../pages/adminPage/userList/userList";
 import ArtistList from "../../pages/adminPage/ArtistList/ArtistList";
 import AdmintProtect from "../../Protected/adminProtect";
-
+import Notification from "../../pages/adminPage/Notifications/Notifications";
 function AdminRoute() {
   return (
     <Routes>
@@ -21,6 +21,7 @@ function AdminRoute() {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/user" element={<UserList />} />
           <Route exact path="/artist" element={< ArtistList/>} />
+          <Route exact path="/notification" element={< Notification/>} />
         </Route>
       </Route>
     </Routes>
