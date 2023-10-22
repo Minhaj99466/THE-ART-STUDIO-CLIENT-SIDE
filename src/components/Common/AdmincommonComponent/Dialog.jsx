@@ -33,7 +33,7 @@ const CustomDialog = ({ buttonText, headerText, bodyText, onCancel, onConfirm })
         <DialogBody divider>{bodyText || "Default Body"}</DialogBody>
         <DialogFooter>
           <Button variant="text" color="red" onClick={handleCancel} className="mr-1">
-            <span>Cancel</span>
+            {<span>Cancel</span>}
           </Button>
           <Button variant="gradient" color="green" onClick={handleConfirm}>
             <span>Confirm</span>

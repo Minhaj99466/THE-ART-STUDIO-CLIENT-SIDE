@@ -8,6 +8,7 @@ import EmailVerify from "../../components/userComponents/emailVerify";
 import Forget from "../../components/userComponents/Forget";
 import PasswordConfirm from "../../components/userComponents/PasswordConfirm";
 import Layout from "../../pages/userPage/Layout/Layout"
+import ExplorePage from "../../pages/userPage/ExplorePage/ExplorePage";
 
 function userRoute() {
   return (
@@ -23,7 +24,7 @@ function userRoute() {
          <Route path="/"  element={<Layout></Layout>}>
         <Route path='/home' element={<Home/>} />
         <Route path='/' element={<Home/>} />
-        <Route path='/' element={<Home/>} />
+        <Route path='/explore' element={<ExplorePage/>} />
         </Route>
         <Route path="/users/:id/verify/:token" element={<EmailVerify/>}/>
         <Route path="/users/:id/password/:token" element={<PasswordConfirm/>}/>

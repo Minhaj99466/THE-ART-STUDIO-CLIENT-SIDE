@@ -31,3 +31,13 @@ export async function manageArtistAction(userId){
         console.log(error);
     }
 }
+
+
+  export async function verifyArtist(id){
+    try {
+       const data=adminApi.put(`/verify/${id}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

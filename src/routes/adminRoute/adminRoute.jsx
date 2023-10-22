@@ -8,6 +8,7 @@ import UserList from "../../pages/adminPage/userList/userList";
 import ArtistList from "../../pages/adminPage/ArtistList/ArtistList";
 import AdmintProtect from "../../Protected/adminProtect";
 import Notification from "../../pages/adminPage/Notifications/Notifications";
+import { Verification } from "../../components/adminComponents/Verification";
 function AdminRoute() {
   return (
     <Routes>
@@ -22,6 +23,7 @@ function AdminRoute() {
           <Route exact path="/user" element={<UserList />} />
           <Route exact path="/artist" element={< ArtistList/>} />
           <Route exact path="/notification" element={< Notification/>} />
+          <Route path="/verification/:id" element={<Verification />} />
         </Route>
       </Route>
     </Routes>

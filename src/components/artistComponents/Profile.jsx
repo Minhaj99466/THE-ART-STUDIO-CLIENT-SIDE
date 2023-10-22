@@ -81,7 +81,7 @@ export default function ProfileCard() {
                       <h1 className="font-bold text-blue-gray-400 ">
                         Category:
                         <span className="font-medium text-black">
-                          {data.profileData.category}
+                          {data.profileData.category.toUpperCase()}
                         </span>
                       </h1>
                       <h1 className="font-bold text-blue-gray-400">
