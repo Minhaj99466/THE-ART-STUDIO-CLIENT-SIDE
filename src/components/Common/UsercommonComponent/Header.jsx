@@ -42,7 +42,7 @@ export default function Header() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center font-semibold">
+        <a href="/" className="flex items-center font-semibold">
           Home
         </a>
       </Typography>
@@ -53,7 +53,7 @@ export default function Header() {
     <>
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-[#caa487] ">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
+          <Typography onClick={()=>navigate('/')}
             as="a"
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-extrabold"

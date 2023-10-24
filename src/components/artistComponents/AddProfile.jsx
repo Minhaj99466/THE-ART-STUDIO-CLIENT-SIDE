@@ -24,6 +24,7 @@ import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
+
 export default function DialogWithForm() {
   const queryClient = useQueryClient()
   const { artistInfo } = useSelector((state) => state.artist);
@@ -74,7 +75,10 @@ export default function DialogWithForm() {
     },
   });
 
+
+
   const handleCityClick = (selectedCity) => {
+   
     setFieldValue("place", selectedCity);
   };
 
@@ -116,7 +120,7 @@ export default function DialogWithForm() {
                     src={
                       dp
                         ? dp
-                        : "https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"
+                        : "https://i.pinimg.com/564x/b8/9f/51/b89f51fbde04ae076fc2d6350f60e891.jpg"
                     }
                     alt="nghhjgjh"
                   />

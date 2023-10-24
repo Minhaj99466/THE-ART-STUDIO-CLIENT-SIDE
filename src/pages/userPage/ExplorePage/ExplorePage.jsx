@@ -7,7 +7,7 @@ function ExplorePage() {
   return (
     <>
     <Banner/>
-    <Container className='pt-10 w-screen'>
+    <Container className='pt-10  '>
     <TabsDefault/>
     <ArtistCards/>
     </Container>

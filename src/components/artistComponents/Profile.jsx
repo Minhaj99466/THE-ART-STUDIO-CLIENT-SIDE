@@ -50,7 +50,7 @@ export default function ProfileCard() {
               src={
                 data.profileData.displaypicture && data.profileData.is_profile
                   ? data.profileData.displaypicture
-                  : "https://i.pinimg.com/564x/16/8a/20/168a209a4a487fd73e83c419f3ae3682.jpg"
+                  : "https://i.pinimg.com/564x/b8/9f/51/b89f51fbde04ae076fc2d6350f60e891.jpg"
               }
               alt="card-image"
               className="rounded-full w-72"

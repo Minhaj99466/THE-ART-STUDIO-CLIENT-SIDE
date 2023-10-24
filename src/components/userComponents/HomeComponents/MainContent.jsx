@@ -20,7 +20,7 @@ export default function MainContent() {
                 <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br /> Lorem Ipsum has been the Industrys  </p>
             </div>
             <div className="pt-5">
-            <Button className="mr-5 " variant="gradient">Hire Artist</Button>
+            <Button onClick={()=>navigate('/explore')} className="mr-5 " variant="gradient">Hire Artist</Button>
             <Button onClick={()=>navigate('/artist/')}  variant="outlined">Are you An ARTISt</Button>
             </div>
           </div>

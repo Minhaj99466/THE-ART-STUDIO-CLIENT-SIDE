@@ -9,6 +9,7 @@ import Forget from "../../components/userComponents/Forget";
 import PasswordConfirm from "../../components/userComponents/PasswordConfirm";
 import Layout from "../../pages/userPage/Layout/Layout"
 import ExplorePage from "../../pages/userPage/ExplorePage/ExplorePage";
+import SingleView from "../../pages/userPage/SingleView/SingleView";
 
 function userRoute() {
   return (
@@ -17,6 +18,8 @@ function userRoute() {
       <Route  path='/signup' element={<Signup/>} />
       <Route  path='/login' element={ <Login/>} />
       <Route path="/forget" element={<Forget/>}/>
+      <Route path="/users/:id/verify/:token" element={<EmailVerify/>}/>
+        <Route path="/users/:id/password/:token" element={<PasswordConfirm/>}/>
       </Route>
       {/* <Route element={<UserProtect/>}>
         
@@ -25,9 +28,9 @@ function userRoute() {
         <Route path='/home' element={<Home/>} />
         <Route path='/' element={<Home/>} />
         <Route path='/explore' element={<ExplorePage/>} />
+        <Route path='/singleView/:id' element={<SingleView/>} />
         </Route>
-        <Route path="/users/:id/verify/:token" element={<EmailVerify/>}/>
-        <Route path="/users/:id/password/:token" element={<PasswordConfirm/>}/>
+       
     </Routes>
   )
 }

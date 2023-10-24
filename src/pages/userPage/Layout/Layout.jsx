@@ -9,7 +9,7 @@ function Layout() {
           <Header />
         </div>
 
-        <div >
+        <div>
           <Outlet />
         </div>
 

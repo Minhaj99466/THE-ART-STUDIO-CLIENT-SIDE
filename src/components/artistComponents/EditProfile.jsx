@@ -90,7 +90,7 @@ export default function EditDialog({ artist }) {
 
   useEffect(()=>{
     setDp(artist.displaypicture)
-  },[])
+  },[dp])
 
   return (
     <>

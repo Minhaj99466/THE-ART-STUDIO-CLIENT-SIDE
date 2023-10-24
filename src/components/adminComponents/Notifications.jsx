@@ -59,10 +59,10 @@ export default function Notifications() {
                 <div className="flex w-full flex-col gap-2 p-3 " key={_id}>
                     <Alert
                         icon={<IconOutlined />}
-                        className="bg-[#CAF0F8] "
+                        className="bg-[#c5d3c8] "
                         action={
                             <Button variant="text"
-                                color="blue"
+                                color="blue-gray"
                                 size="md"
                                 className="!absolute top-6 right-3" onClick={() => navigate(`/admin/verification/${_id}`)}>view</Button>
 
