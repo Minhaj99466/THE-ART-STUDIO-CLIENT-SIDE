@@ -6,7 +6,9 @@ import TabsDefault from '../../../components/userComponents/Tabs';
 function SingleView() {
   return (
   <>
-  <ArtistProfile/>
+     <div className=" w-screen h-20 bg-black" />
+  <Container> <ArtistProfile/></Container>
+ 
     </>
   )
 }

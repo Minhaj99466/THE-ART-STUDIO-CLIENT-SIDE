@@ -28,8 +28,9 @@ console.log(data.profileData.posts);
 
   return (
     <Box>
-        <div className='flex justify-end' >
-            <AddPost/>:
+        <div className='flex justify-between py-5' >
+          <h1 className='font-sans text-2xl'>Gallery</h1>
+            <AddPost/>
         </div>
         {data.profileData.posts?(
       <ImageList variant="masonry" cols={3} gap={8}>
