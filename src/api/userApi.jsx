@@ -63,3 +63,12 @@ export async function CheckPassword(password){
         console.log(error);
     }
 }
+export async function getArtistDetails({id}){
+    try {
+        
+        const data=await userApi.get(`/artistDetails/${id}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

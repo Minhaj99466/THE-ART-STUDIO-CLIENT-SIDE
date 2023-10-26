@@ -46,7 +46,7 @@ export default function Helo() {
         <SwiperSlide><img  src="https://i.pinimg.com/474x/46/79/73/4679734adc0ba9025cd113b3e53709b9.jpg" alt="" /></SwiperSlide>
         <SwiperSlide><img  src="https://i.pinimg.com/474x/46/79/73/4679734adc0ba9025cd113b3e53709b9.jpg" alt="" /></SwiperSlide>
         <SwiperSlide><img  src="https://i.pinimg.com/474x/46/79/73/4679734adc0ba9025cd113b3e53709b9.jpg" alt="" /></SwiperSlide>
-        <SwiperSlide><img  src="https://i.pinimg.com/474x/46/79/73/4679734adc0ba9025cd113b3e53709b9.jpg" alt="" /></SwiperSlide>
+        
       
       </Swiper>
     </>

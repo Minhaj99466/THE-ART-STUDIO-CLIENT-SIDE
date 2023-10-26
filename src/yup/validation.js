@@ -26,6 +26,7 @@ export const ProfileUpdateSchema = Yup.object({
     .required("please Enter your field Of Art"),
   place: Yup.string().min(4).required("enter your place"),
   experience: Yup.number().required("enter years of experience"),
+  fees: Yup.number().min(750,"minimum fees is 750").max(10000,"enter a amount less than 10000").required("enter your Fees/Day"),
   number: Yup.string().min(10).required("enter valid number"),
   description: Yup.string()
     .min(10)

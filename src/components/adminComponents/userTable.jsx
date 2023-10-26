@@ -47,7 +47,6 @@ const navigate=useNavigate()
 </div>
 
 
-
   if (error) {
     if (error.response) {
       if (error.response.status === 403) {
@@ -69,7 +68,7 @@ const navigate=useNavigate()
 
   return (
     <>
-      <Card className="h-full w-full ">
+      <Card className="overflow-x-scroll">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
@@ -94,8 +93,8 @@ const navigate=useNavigate()
             </div>
           </div>
         </CardHeader>
-        <CardBody className="px-0">
-          <table className="w-full min-w-max table-auto text-left">
+        <CardBody className="px-0 ">
+          <table className="w-full  table-auto text-left ">
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (

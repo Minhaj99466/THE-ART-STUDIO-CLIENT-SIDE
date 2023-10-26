@@ -10,8 +10,9 @@ import {
   Input,
   Select,
   Checkbox,
+  Option,
 } from "@material-tailwind/react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Textarea } from "@material-tailwind/react";
 import { ToastContainer } from "react-toastify";
 import { useFormik } from "formik";
@@ -23,15 +24,21 @@ import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { PencilSquareIcon } from "@heroicons/react/20/solid";
+import CurrencyRupeeIcon  from '@mui/icons-material/CurrencyRupee';
+
 
 export default function EditDialog({ artist }) {
-
   const queryClient = useQueryClient();
   const { artistInfo } = useSelector((state) => state.artist);
   const id = artistInfo.email;
   const [open, setOpen] = React.useState(false);
   const [dp, setDp] = useState("");
   const handleOpen = () => setOpen((cur) => !cur);
+
+  const handleCategoryChange=(selectedCat)=>{
+    console.log(selectedCat);
+    setFieldValue("category",selectedCat);
+  }
 
   const initialValues = {
     name: artist ? artist.name : "",
@@ -40,6 +47,7 @@ export default function EditDialog({ artist }) {
     number: artist ? artist.mobile : "",
     description: artist ? artist.description : "",
     image: artist ? artist.displaypicture : "",
+    fees: artist ? artist.fees : "",
   };
 
   const {
@@ -60,9 +68,10 @@ export default function EditDialog({ artist }) {
       formData.append("name", values.name);
       formData.append("experience", values.experience);
       formData.append("description", values.description);
-      formData.append("number", values.number);   
+      formData.append("number", values.number);
+      formData.append("fees", values.fees);
 
-      formData.append("dp", values.image); 
+      formData.append("dp", values.image);
 
       const response = await editArtistProfile(formData, id);
       if (response.data.created) {
@@ -75,7 +84,17 @@ export default function EditDialog({ artist }) {
     },
   });
 
- 
+  const category = [
+    "Painters",
+    "Tattooists",
+    "Graphic designers",
+    "Illustrators",
+    "Textile artists",
+    "Cinematographers",
+    "Sculptors",
+    "Craft artists",
+    "Photographers",
+  ];
 
   const handleImageClick = () => {
     document.getElementById("imageInput").click();
@@ -88,9 +107,9 @@ export default function EditDialog({ artist }) {
     setFieldValue("image", file);
   };
 
-  useEffect(()=>{
-    setDp(artist.displaypicture)
-  },[dp])
+  useEffect(() => {
+    setDp(artist.displaypicture);
+  }, [dp]);
 
   return (
     <>
@@ -150,17 +169,26 @@ export default function EditDialog({ artist }) {
                 <div className="text-red-500 text-xs ">{errors.name}</div>
               )}
 
-              <Input
-                label="Category"
-                name="category"
-                value={values.category}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                size="lg"
-              />
-              {touched.category && errors.category && (
-                <div className="text-red-500 text-xs ">{errors.category}</div>
-              )}
+              <div className="w-72">
+                <Select
+
+                  onChange={handleCategoryChange}
+                  value={values.category}
+                  name="category"
+                  label="Catogery"
+                
+                  onBlur={handleBlur}
+                >
+                  {category.map((item) => (
+                    <Option  value={item} key={item}>
+                      {item}
+                    </Option>
+                  ))}
+                </Select>
+                {touched.category && errors.category && (
+                  <div className="text-red-500 text-xs ">{errors.category}</div>
+                )}
+              </div>
               <Input
                 label="Mobile"
                 size="lg"
@@ -199,6 +227,18 @@ export default function EditDialog({ artist }) {
                   </div>
                 )}
               </div>
+              <Input
+              icon={<CurrencyRupeeIcon/>}
+                label="Fees/Day"
+                name="fees"
+                value={values.fees}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                size="lg"
+              />
+              {touched.fees && errors.fees && (
+                <div className="text-red-500 text-xs ">{errors.fees}</div>
+              )}
             </CardBody>
             <CardFooter className="pt-0">
               <Button variant="gradient" type="submit" fullWidth>

@@ -10,6 +10,7 @@ import {
   Input,
   Select,
   Checkbox,
+  Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { Textarea } from "@material-tailwind/react";
@@ -24,14 +25,25 @@ import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-
 export default function DialogWithForm() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { artistInfo } = useSelector((state) => state.artist);
   const id = artistInfo.email;
   const [open, setOpen] = React.useState(false);
-  const [dp, setDp] = useState('');
+  const [dp, setDp] = useState("");
   const handleOpen = () => setOpen((cur) => !cur);
+
+  const category = [
+    "Painters",
+    "Tattooists",
+    "Graphic designers",
+    "Illustrators",
+    "Textile artists",
+    "Cinematographers",
+    "Sculptors",
+    "Craft artists",
+    "Photographers",
+  ];
 
   const initialValues = {
     category: "",
@@ -39,6 +51,7 @@ export default function DialogWithForm() {
     place: "",
     description: "",
     number: "",
+    fees: "",
     image: "",
   };
   const {
@@ -56,29 +69,31 @@ export default function DialogWithForm() {
     onSubmit: async (values) => {
       console.log(values.image);
       const formData = new FormData();
-    formData.append("category", values.category);
-    formData.append("experience", values.experience);
-    formData.append("place", values.place);
-    formData.append("description", values.description);
-    formData.append("number", values.number);
-    formData.append("dp", values.image); // Append the dp property
+      formData.append("category", values.category);
+      formData.append("experience", values.experience);
+      formData.append("place", values.place);
+      formData.append("description", values.description);
+      formData.append("number", values.number);
+      formData.append("fees", values.fees);
+      formData.append("dp", values.image); // Append the dp property
 
-    const response = await addProfile(formData,id);
+      const response = await addProfile(formData, id);
       if (response.data.created) {
-        
-       setOpen(!open)
-       queryClient.invalidateQueries(["artist"]);
+        setOpen(!open);
+        queryClient.invalidateQueries(["artist"]);
       } else {
-        setOpen(!open)
+        setOpen(!open);
         GenerateError(response.data.message);
       }
     },
   });
 
-
+  const handleCategoryChange=(selectedCat)=>{
+    console.log(selectedCat);
+    setFieldValue("category",selectedCat);
+  }
 
   const handleCityClick = (selectedCity) => {
-   
     setFieldValue("place", selectedCity);
   };
 
@@ -89,7 +104,7 @@ export default function DialogWithForm() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
-      setDp(url)
+    setDp(url);
     setFieldValue("image", file);
   };
 
@@ -134,21 +149,27 @@ export default function DialogWithForm() {
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
-                {touched.image && errors.image && (
+              {touched.image && errors.image && (
                 <div className="text-red-500 text-xs ">{errors.image}</div>
               )}
 
-              <Input
-                label="Category"
-                name="category"
-                value={values.category}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                size="lg"
-              />
-              {touched.category && errors.category && (
+              <div className="w-72">
+                <Select
+                  onChange={handleCategoryChange}
+                  value={values.category}
+                  name="category"
+                  label="Catogery"
+                  onBlur={handleBlur}
+                >
+                  {category.map((item) => (
+                    <Option value={item} key={item}>{item}</Option>
+                  ))}
+                </Select>
+                {touched.category && errors.category && (
                 <div className="text-red-500 text-xs ">{errors.category}</div>
               )}
+              </div>
+            
               <div className=" flex items-center gap-4">
                 <CountriesSelect onCityClick={handleCityClick} />
                 {touched.place && errors.place && (
@@ -193,6 +214,17 @@ export default function DialogWithForm() {
                   </div>
                 )}
               </div>
+              <Input
+                label="Fees/Day"
+                name="fees"
+                value={values.fees}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                size="lg"
+              />
+              {touched.fees && errors.fees && (
+                <div className="text-red-500 text-xs ">{errors.fees}</div>
+              )}
             </CardBody>
             <CardFooter className="pt-0">
               <Button variant="gradient" type="submit" fullWidth>

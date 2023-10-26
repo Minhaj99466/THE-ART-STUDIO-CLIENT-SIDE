@@ -10,6 +10,7 @@ import PasswordConfirm from "../../components/userComponents/PasswordConfirm";
 import Layout from "../../pages/userPage/Layout/Layout"
 import ExplorePage from "../../pages/userPage/ExplorePage/ExplorePage";
 import SingleView from "../../pages/userPage/SingleView/SingleView";
+import Dummy from '../../components/userComponents/SIngleProfileComponents/SinGleProfilePost'
 
 function userRoute() {
   return (
