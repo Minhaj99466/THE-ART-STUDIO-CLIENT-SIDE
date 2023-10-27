@@ -72,3 +72,12 @@ export async function getArtistDetails({id}){
         console.log(error);
     }
 }
+export async function getSuggestion({id}){
+    try {
+        
+        const data=await userApi.get(`/suggetionArtist/${id}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

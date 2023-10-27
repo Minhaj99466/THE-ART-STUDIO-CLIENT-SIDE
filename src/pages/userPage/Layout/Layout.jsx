@@ -4,25 +4,19 @@ import { Outlet } from "react-router-dom";
 function Layout() {
   return (
     <>
-      <div className="h-screen grid grid-rows-[4rem] ">
-        <div className="sticky top-0 z-50">
+      <div className="  grid grid-rows-[4rem] overflow-x-hidden">
+        <div className="sticky  top-0 z-50">
           <Header />
         </div>
 
-        <div>
+        <div className=" ">
           <Outlet />
         </div>
-
         <div>
-            <div className="h-28 bg-white">
-
-            </div>
-          <div className="">
-            <Footer />
-          </div>
+          <div className="h-28 w-screen bg-white"></div>
+          <Footer />
         </div>
       </div>
-      
     </>
   );
 }

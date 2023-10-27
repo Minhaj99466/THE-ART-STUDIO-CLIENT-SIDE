@@ -8,37 +8,54 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-import { useQuery } from "@tanstack/react-query";
-import UserRequest from "../../../utils/userRequest";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { InfinitySpin } from "react-loader-spinner";
 import {
   // UserCircleIcon,
   HeartIcon,
 } from "@heroicons/react/24/outline";
-
 import { useNavigate } from "react-router-dom";
+import { getSuggestion } from "../../../api/userApi";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function ProfileCard() {
-  const navigate=useNavigate()
+  const { id } = useParams();
+  const navigate = useNavigate();
 
+  const [data, setData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getSuggestion({ id });
+        if (res) {
+          setData(res.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [id]);
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["artist"],
-    queryFn: () => UserRequest.get("/allArtists").then((res) => res.data),
-  });
-  if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
-
-  if (error) return "An error has occurred: " + error.message;
+  const handleNavigate = async (item) => {
+    navigate(`/singleView/${item}`);
+  };
 
   return (
     <>
-      <div className="grid  gap-12 grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
-        {data.Artists ? (
-          data.Artists.map((item) => (
-            <Card className="w-full  mt-10 sm:grid justify-center" key={item._id} onClick={()=>navigate(`/singleView/${item._id}`)}>
+      <div className="grid  gap-12 grid-cols-1 md:grid-cols-3  ">
+        {data ? (
+          data.map((item) => (
+            <Card
+              className=" w-72  mt-10 md:grid justify-center bg-[#e8eddf]"
+              key={item._id}
+              onClick={() => handleNavigate(item._id)}
+            >
               <CardHeader floated={false}>
                 <img
-                  className="bg-cover"
+                  className="w-screen md:w-48 h-44 "
                   src={item.displaypicture}
                   alt="profile-picture"
                 />

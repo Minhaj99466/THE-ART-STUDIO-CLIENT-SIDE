@@ -8,41 +8,48 @@ import {
   Avatar,
 } from "@material-tailwind/react";
 
-// import {Formik} from 'formik'
+
 import Posts from "./SinGleProfilePost";
 import { useParams } from "react-router-dom";
-import { InfinitySpin } from "react-loader-spinner";
 
-import { useQuery } from "@tanstack/react-query";
 
 import { getArtistDetails } from "../../../api/userApi";
+import { useEffect, useState } from "react";
 
 export default function Signup() {
   const { id } = useParams();
+  const [data,setData]=useState()
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["artistData1"],
-    queryFn: () => getArtistDetails({ id }).then((res) => res.data),
-  });
 
-  if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getArtistDetails({id});
+        if (res) {
+          setData(res);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [id]);
 
-  if (error) return "An error has occurred: " + error.message;
 
 
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 ">
         <div className=" mt-8">
-          <Posts />
+          <Posts data={data}/>
         </div>
 
-        <div className=" h-screen grid  justify-center  ">
-          <div className=" grid justify-center items-center ">
-            {data._id ? (
+        <div className=" h-screen  grid  justify-center  ">
+          <div className=" grid justify-center items-center mb-12">
+             { data && data.data  ? (
               <Card
                 shadow={false}
-                className="relative grid h-[36rem] w-full max-w-[28rem] justify-center overflow-hidden text-center border shadow-xl "
+                className="relative grid h-[36rem] w-full max-w-[28rem] justify-center overflow-hidden text-center border shadow-xl md:mb-1"
               >
                 <CardHeader
                   floated={false}
@@ -59,10 +66,10 @@ export default function Signup() {
                       variant="rounded"
                       alt="tania andrew"
                       className="border-2 border-white"
-                      src={data.displaypicture}
+                      src={data.data.displaypicture}
                     />
                     <Typography variant="h4" className="mb-4 text-gray-700">
-                      {data.name}
+                      {data.data.name}
                     </Typography>
                     <Typography
                       variant="h6"
@@ -75,36 +82,36 @@ export default function Signup() {
                       color="black"
                       className=" font-light leading-[1.5] text-start mb-4"
                     >
-                      {data.description}
+                      {data.data.description}
                     </Typography>
                     <div className="grid justify-start">
                       <Typography
                         variant="h6"
                         className="mb-4 text-gray-700 text-start"
                       >
-                        Category:{data.category}
+                        Category:{data.data.category}
                       </Typography>
                       <Typography
                         variant="h6"
                         className="mb-4 text-gray-700 text-start"
                       >
-                        Year Of Experience:{data.experience}years
+                        Year Of Experience:{data.data.experience}years
                       </Typography>
                       <Typography
                         variant="h6"
                         className="mb-4 text-gray-700 text-start"
                       >
-                        Place:{data.place}
+                        Place:{data.data.place}
                       </Typography>
                       <Typography
                         variant="h6"
                         className="mb-4 text-gray-700 text-start"
                       >
-                        Mobile:{data.mobile}
+                        Mobile:{data.data.mobile}
                       </Typography>
                     </div>
                     <Typography variant="h6" className="mb-4 text-gray-700 ">
-                      ₹{data.fees}/day
+                      ₹{data.data.fees}/day
                     </Typography>
                     <Button>Book Now</Button>
                   </CardBody>

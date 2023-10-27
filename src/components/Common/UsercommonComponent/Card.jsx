@@ -100,7 +100,7 @@
     }]
 
     return (
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5  bg-[#F2EEE3]">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5  bg-[#ffffff]">
       {contents.map((data,index)=>(
           
           

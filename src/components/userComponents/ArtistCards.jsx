@@ -35,10 +35,10 @@ export default function ProfileCard() {
       <div className="grid  gap-12 grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
         {data.Artists ? (
           data.Artists.map((item) => (
-            <Card className="w-full  mt-10 sm:grid justify-center" key={item._id} onClick={()=>navigate(`/singleView/${item._id}`)}>
-              <CardHeader floated={false}>
+            <Card className=" w-72  mt-10 md:grid justify-center bg-[#e8eddf]" key={item._id} onClick={()=>navigate(`/singleView/${item._id}`)}>
+              <CardHeader floated={false} >
                 <img
-                  className="bg-cover"
+                  className="w-screen md:w-48 h-44 "
                   src={item.displaypicture}
                   alt="profile-picture"
                 />

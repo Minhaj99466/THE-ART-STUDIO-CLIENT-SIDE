@@ -11,8 +11,10 @@ function ExploreMainCard() {
           variant="h3"
         >
           Explore More
-        </Typography>
-        <ProfileCardSingle/>
+        </Typography >
+        <div className='flex justify-around'>
+        <ProfileCardSingle />
+        </div>
         <Typography
           className="flex justify-center font-semibold  text-xl text-black"
         >

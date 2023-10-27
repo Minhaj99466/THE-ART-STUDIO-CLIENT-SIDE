@@ -1,4 +1,5 @@
 import Fuana from "../../../HomeImg/FAÜNA.jpeg";
+import MainImg from "../../../assets/userAssets/mainImage2.jpeg";
 // import Face from "../../../assets/userAssets/download (2).jpeg";
 import { Button } from "@material-tailwind/react";
 import Card from '../../Common/UsercommonComponent/Card'
@@ -13,9 +14,9 @@ export default function MainContent() {
       <div >
         {/* main head*/}
 
-        <div className="bg-[#F2EEE3] grid grid-cols-2 h-screen place-items-center gap-4">
+        <div className="bg-[#F2EEE3] grid grid-cols-1 text-center h-screen place-items-center gap-4 md:grid-cols-2 md:text-left">
           <div>
-            <div><h1 className="text-4xl leading-relaxed tracking-wider font-serif">THE ART OF <br/> HIRING</h1></div>
+            <div><h1 className=" text-4xl leading-relaxed tracking-wider font-serif ">THE ART OF <br/> HIRING</h1></div>
             <div className="py-5">
                 <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br /> Lorem Ipsum has been the Industrys  </p>
             </div>
@@ -30,6 +31,7 @@ export default function MainContent() {
             </div>
           </div>
         </div>
+      
 
        
 
@@ -60,7 +62,7 @@ export default function MainContent() {
 
          {/* explore eith us starts*/}
 
-         <div className="w-screen bg-[#ffffff]">
+         <div className="w-screen bg-[#ffffff] my-10">
             <div className="flex justify-center py-7">
                     <h1 className="text-4xl   font-serif font-semibold ">Explore With Us</h1>
             </div>
@@ -70,6 +72,22 @@ export default function MainContent() {
             </div>
         </div> 
          </div>
+
+         <div className="bg-[#e5e5e5] grid grid-cols-1 text-center h-96 place-items-center gap-4 md:grid-cols-2 md:text-left">
+        <div className="hidden sm:block">
+            <div >
+              <img className="h-96" src={MainImg} alt="" />
+            </div>
+          </div>
+          <div>
+            <div><h1 className="text-4xl leading-relaxed tracking-wider font-serif">THE ART OF <br/> HIRING</h1></div>
+            <div className="py-5">
+                <p >Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br /> Lorem Ipsum has been the Industrys  </p>
+            </div>
+         
+          </div>
+          
+        </div>
 
       </div>
     </>
