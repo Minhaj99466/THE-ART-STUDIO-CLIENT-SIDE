@@ -81,3 +81,12 @@ export async function getSuggestion({id}){
         console.log(error);
     }
 }
+export async function getCategorisedArtists(category){
+    try {
+        
+        const data=await userApi.get(`/filteredArtist/${category}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
