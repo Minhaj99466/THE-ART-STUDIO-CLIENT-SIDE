@@ -81,10 +81,9 @@ export async function getSuggestion({id}){
         console.log(error);
     }
 }
-export async function getCategorisedArtists(category){
+export async function getCategorisedArtists(category,search,value){
     try {
-        
-        const data=await userApi.get(`/filteredArtist/${category}`)
+        const data=await userApi.get(`/filteredArtist/${category}/${search}/${value}`)
         return data
     } catch (error) {
         console.log(error);
