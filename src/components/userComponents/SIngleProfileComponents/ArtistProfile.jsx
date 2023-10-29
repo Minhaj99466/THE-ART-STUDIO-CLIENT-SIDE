@@ -10,16 +10,29 @@ import {
 
 
 import Posts from "./SinGleProfilePost";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 import { getArtistDetails } from "../../../api/userApi";
 import { useEffect, useState } from "react";
+import DialogWithForm from "./DateDialog";
+import { DatePicker, Space } from 'antd';
+import moment from 'moment'
+const { RangePicker } = DatePicker;
 
 export default function Signup() {
+  const navigate=useNavigate()
+  const [fromDate,setFromDate]=useState()
+  const [ToDate,setToDate]=useState()
   const { id } = useParams();
   const [data,setData]=useState()
 
+
+  function filterByDate(dates){
+    setFromDate(moment(dates[0]).format('DD-MM-YYYY'))
+    setToDate(moment(dates[0]).format('DD-MM-YYYY'))
+    
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +73,7 @@ export default function Signup() {
                   <div className="to-bg-black-10  inset-0 h-full w-full bg-gradient-to-r from-gray-50 to-orange-50 " />
                 </CardHeader>
             
-                  <CardBody  className="relative py-10  md:px-12">
+                  <CardBody  className="relative  md:px-10">
                     <Avatar
                       size="xxl"
                       variant="rounded"
@@ -113,7 +126,14 @@ export default function Signup() {
                     <Typography variant="h6" className="mb-4 text-gray-700 ">
                       ₹{data.data.fees}/day
                     </Typography>
-                    <Button>Book Now</Button>
+                    <Typography variant="h6" className="mb-4 text-gray-700 ">
+                    <RangePicker onChange={filterByDate} />
+                    </Typography>
+                    <Button onClick={()=>navigate('/booknow')} >Book Now</Button>
+                  
+           
+          
+                
                   </CardBody>
                 
               </Card>

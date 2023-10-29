@@ -21,6 +21,7 @@ import Dialog from '../Common/AdmincommonComponent/Dialog'
 import { InfinitySpin } from  'react-loader-spinner'
 import { GenerateError } from "../../toast/toast";
 import { useNavigate } from "react-router-dom";
+import { GetUsers } from "../../api/adminApi";
 
 
 const TABLE_HEAD = [
@@ -34,11 +35,11 @@ const TABLE_HEAD = [
 
 
 export default function Table() {
-const navigate=useNavigate()
+// const navigate=useNavigate()
   
   const { isLoading, error, data } = useQuery({
     queryKey: ["user"],
-    queryFn: () => AdminRequest.get("/admin/users").then((res) => res.data),
+    queryFn: () => GetUsers("/admin/users").then((res) => res.data),
   });
   const queryclient = useQueryClient()
 
@@ -48,17 +49,10 @@ const navigate=useNavigate()
 
 
   if (error) {
-    if (error.response) {
-      if (error.response.status === 403) {
-        GenerateError(error.response.data.data.message)
-        localStorage.removeItem("AdminToken")
-        navigate("/admin/login")
-      }
-    } else {
       return <p>somthing went wrong</p>
     }
 
-  }
+
 
  const handleAction=async(userId)=>{ 
         await manageAction({id:userId})

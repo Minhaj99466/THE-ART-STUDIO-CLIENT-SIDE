@@ -6,8 +6,8 @@ const artistRequest = axios.create({
     baseURL: baseUrl
 })
 artistRequest.interceptors.request.use((req)=> {
-    if(localStorage.getItem("artistToken")){
-        req.headers.Authorization = "Bearer " + localStorage.getItem("artistToken")
+    if(localStorage.getItem("ArtistToken")){
+        req.headers.Authorization = "Bearer " + localStorage.getItem("ArtistToken")
     }
     return req
 })

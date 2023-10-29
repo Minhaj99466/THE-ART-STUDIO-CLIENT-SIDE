@@ -9,9 +9,11 @@ import { useQuery } from "@tanstack/react-query";
 import ArtistRequest from "../../utils/artistRequest";
 import { useSelector } from 'react-redux';
 import { InfinitySpin } from "react-loader-spinner";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Gallery() {
+  const navigate=useNavigate()
     const { artistInfo } = useSelector((state) => state.artist);
     const id = artistInfo.email;
 
@@ -23,8 +25,16 @@ export default function Gallery() {
     
       if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
     
-      if (error) return "An error has occurred: " + error.message;
-console.log(data.profileData.posts);
+      if (error) {
+        if (error.response) {
+          if (error.response.status === 500) {
+            localStorage.removeItem("ArtistToken");
+            navigate("/artist/login");
+          }
+        } else {
+          return <p>somthing went wrong</p>;
+        }
+      }
 
   return (
     <Box>

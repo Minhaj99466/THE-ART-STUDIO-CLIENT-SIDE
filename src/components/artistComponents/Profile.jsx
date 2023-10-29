@@ -11,20 +11,19 @@ import {
 // import {Formik} from 'formik'
 // import Img from "../../assets/artistsAssets/artistSign.jpg";
 import { useQuery } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ArtistRequest from "../../utils/artistRequest";
 // import { useFormik } from "formik";
 // import { SignupSchema } from "../../yup/validation";
 import EditDialog from "../../components/artistComponents/EditProfile";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DialogWithForm from "./AddProfile";
 import { InfinitySpin } from "react-loader-spinner";
+import { GenerateError } from "../../toast/toast";
 
 export default function ProfileCard() {
-  // const navigate=useNavigate()
-
-
+  const navigate = useNavigate();
 
   const location = useLocation();
   const id = location.state.id;
@@ -37,12 +36,23 @@ export default function ProfileCard() {
 
   if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 500) {
+        localStorage.removeItem("ArtistToken");
+        navigate("/artist/login");
+      }
+    } else {
+      return <p>somthing went wrong</p>;
+    }
+  }
 
   return (
     <>
       <div className="relative bg-[#ccddd6] rounded-xl p-4">
-        {data.profileData.is_profile ? <EditDialog artist={data.profileData} /> : null}
+        {data.profileData.is_profile ? (
+          <EditDialog artist={data.profileData} />
+        ) : null}
 
         <div>
           <div className="flex justify-center  h-72">

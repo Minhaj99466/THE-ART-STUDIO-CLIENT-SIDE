@@ -94,6 +94,7 @@ export default function Signup() {
     validationSchema: SignupSchema,
     onSubmit: async (values) => {
       const response = await UserSignup(values);
+      
       console.log(response);
       if (response.data.created) {
         GenerateSuccess(response.data.message);
