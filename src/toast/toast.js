@@ -8,7 +8,7 @@ export const GenerateError = (err) => {
     });
   };
 
-export const GenerateSuccess = (success) => {
+export  const GenerateSuccess= (success) => {
     toast.success(success, {
       position: 'top-center',
       theme: 'colored',

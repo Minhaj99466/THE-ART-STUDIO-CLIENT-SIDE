@@ -6,8 +6,8 @@ const userRequest = axios.create({
     baseURL: baseUrl
 })
 userRequest.interceptors.request.use((req)=> {
-    if(localStorage.getItem("userToken")){
-        req.headers.Authorization = "Bearer " + localStorage.getItem("userToken")
+    if(localStorage.getItem("UserToken")){
+        req.headers.Authorization = "Bearer " + localStorage.getItem("UserToken")
     }
     return req
 })

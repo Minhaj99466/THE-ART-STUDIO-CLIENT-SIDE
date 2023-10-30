@@ -30,7 +30,7 @@ function userRoute() {
         <Route path='/home' element={<Home/>} />
         <Route path='/' element={<Home/>} />
         <Route path='/explore' element={<ExplorePage/>} />
-        <Route path='/booknow' element={<BookNow/>} />
+        <Route path='/booknow/:id/:from/:to' element={<BookNow/>} />
         <Route path='/singleView/:id' element={<SingleView/>} />
         </Route>
        

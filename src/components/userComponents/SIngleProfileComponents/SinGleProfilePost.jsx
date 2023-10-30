@@ -17,7 +17,6 @@ import { useEffect, useState } from "react";
 export default function App() {
   const { id } = useParams();
   const [data,setData]=useState()
-  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {

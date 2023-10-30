@@ -89,3 +89,20 @@ export async function getCategorisedArtists(category,search,value){
         console.log(error);
     }
 }
+export async function BookingSlot(bookingData){
+    try {
+        const data=await userApi.post('/bookartist/',bookingData)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function CheckDate(from,to,artistId){
+    try {
+        const data=await userApi.get(`/checkdate/${from}/${to}/${artistId}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
