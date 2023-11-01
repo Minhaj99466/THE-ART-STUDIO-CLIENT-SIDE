@@ -27,9 +27,9 @@ const Sidebar = () => {
     },
     {
       icon: <ShoppingBagIcon className="h-7 w-5" />,
-      text: "Clients",
+      text: "Notifications",
       suffix: <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />,
-      onClick: () => console.log("clients"),
+      onClick: () => (navigate('/artist/notifications')),
     },
     {
       icon: <InboxIcon className="h-7 w-5" />,

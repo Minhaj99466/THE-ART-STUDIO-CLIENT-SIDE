@@ -2,7 +2,7 @@ import { Routes,Route } from "react-router-dom"
 
 import LoginPage from "../../pages/artistPage/Login/LoginPage"
 import SignUpPage from "../../pages/artistPage/Signup/SignupPage"
-import ArtistHome  from '../../pages/artistPage/Home/Homepage'
+import Notification  from '../../pages/artistPage/Notification/Notifications'
 // import ArtistProtect from "../../Protected/artistProtect"
 import ArtistPublic from "../../Protected/artistPublic"
 import Layout from "../../pages/artistPage/Layout/Layout"
@@ -13,6 +13,8 @@ import Forget from '../../components/artistComponents/Forget'
 import PasswordConfirm from '../../components/artistComponents/PasswordConfirmation'
 import AddProfile from '../../components/artistComponents/AddProfile'
 import Gallery from "../../components/artistComponents/Gallery"
+import DashBoard from "../../pages/adminPage/Notifications/Notifications"
+
 
 function ArtistRoute() {
   return (
@@ -28,11 +30,12 @@ function ArtistRoute() {
 
         <Route element={<ArtistProtect/>}>
         <Route path="/"  element={<Layout></Layout>}>
-        <Route exact path='/' element={<ArtistHome/>}/> 
-        <Route exact path='/home' element={<ArtistHome/>}/> 
+        <Route exact path='/' element={<DashBoard/>}/> 
+        <Route exact path='/home' element={<DashBoard/>}/> 
         <Route exact path='/profile' element={<Profile/>}/> 
         <Route exact path='/addProfile' element={<AddProfile/>}/> 
         <Route exact path='/gallery' element={<Gallery/>}/> 
+        <Route exact path='/notifications' element={<Notification/>}/> 
         </Route>
         </Route>
        

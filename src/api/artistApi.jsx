@@ -98,3 +98,22 @@ export async function postImages(values,id){
         console.log(error);
     }
 }
+
+
+export async function DateVerify(){
+    try {
+        const data=await artistApi.get('/datenotification')
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function ApproveBooking(changeData){
+    try {
+        const data=await artistApi.put('/updatebooking',{changeData})
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

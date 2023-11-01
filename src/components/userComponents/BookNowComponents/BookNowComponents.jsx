@@ -10,9 +10,10 @@ import {
 import moment from "moment";
 import  {GenerateSuccess,GenerateError}  from "../../../toast/toast";
 import { json, useParams } from "react-router-dom";
-import { BookingSlot } from "../../../api/userApi";
+import { BookingSlot, getArtistDetails } from "../../../api/userApi";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
 
 
 function CheckIcon() {
@@ -35,6 +36,7 @@ function CheckIcon() {
 }
 
 export default function PricingCard() {
+  const [data,setData]=useState()
   const param = useParams();
   const id = param.id;
   const fromDate = moment(param.from, "DD-MM-YYYY");
@@ -43,6 +45,22 @@ export default function PricingCard() {
 
   const totalDays = moment.duration(toDate.diff(fromDate)).asDays() + 1;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res=await getArtistDetails({id})
+        if(res){
+          setData(res)
+        }
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   async function handleBooking() {
     const bookingDetails = {
       artistId: id,
@@ -50,7 +68,7 @@ export default function PricingCard() {
       toDate,
       totalDays,
     };
-    console.log(bookingDetails);
+    // console.log(bookingDetails);
 
     try {
       const res = await BookingSlot(bookingDetails);
@@ -64,6 +82,7 @@ export default function PricingCard() {
   return (
     <>
       <div className="grid justify-center   md:flex md:justify-around md:mt-10 ">
+      {data && data.data ? (
         <Card
           shadow={false}
           className="relative grid h-[36rem] w-full max-w-[28rem] justify-center overflow-hidden text-center border shadow-xl md:mb-1"
@@ -83,12 +102,12 @@ export default function PricingCard() {
               variant="rounded"
               alt="tania andrew"
               className="border-2 border-white"
-              // src={data.data.displaypicture}
+              src={data.data.displaypicture}
               // src={data.data.displaypicture}
             />
             <Typography variant="h4" className="mb-4 text-gray-700">
-              {/* {data.data.name} */}
-              {"ghhghjgj"}
+              {data.data.name}
+
             </Typography>
             <Typography
               variant="h6"
@@ -101,49 +120,47 @@ export default function PricingCard() {
               color="black"
               className=" font-light leading-[1.5] text-start mb-4"
             >
-              {/* {data.data.description} */}
-              {"jgvghhvgh"}
+              {data.data.description}
+        
             </Typography>
             <div className="grid justify-start">
               <Typography
                 variant="h6"
                 className="mb-4 text-gray-700 text-start"
               >
-                {/* Category:{data.data.category} */}
-                Category:{"ghvghvhjvj"}
+                Category:{data.data.category}
+         
               </Typography>
               <Typography
                 variant="h6"
                 className="mb-4 text-gray-700 text-start"
               >
-                {/* Year Of Experience:{data.data.experience}years */}
-                Year Of Experience:{"1000"}years
+                Year Of Experience:{data.data.experience}years
+               
               </Typography>
               <Typography
                 variant="h6"
                 className="mb-4 text-gray-700 text-start"
               >
-                {/* Place:{data.data.place} */}
-                Place:{"hekkekk"}
+                Place:{data.data.place}
+              
               </Typography>
               <Typography
                 variant="h6"
                 className="mb-4 text-gray-700 text-start"
               >
-                {/* Mobile:{data.data.mobile} */}
-                Mobile:{"9947746646"}
+                Mobile:{data.data.mobile}
+           
               </Typography>
             </div>
-            <Typography variant="h6" className="mb-4 text-gray-700 ">
-              {/* ₹{data.data.fees}/day */}₹{"1000"}/day
-            </Typography>
+            
             <Typography variant="h6" className="mb-4 text-gray-700 ">
               {/* <RangePicker onChange={filterByDate} /> */}
             </Typography>
             {/* <Button onClick={()=>navigate('/booknow')} >Book Now</Button> */}
           </CardBody>
-        </Card>
-
+        </Card>):(null)}
+        {data && toDate?(
         <Card
           color="gray"
           variant="gradient"
@@ -163,24 +180,17 @@ export default function PricingCard() {
               standard
             </Typography>
             <Typography
-              variant="h1"
+              variant="h3"
               color="white"
               className="mt-6 flex justify-center gap-1 text-7xl font-normal"
             >
-              <span className="mt-2 text-4xl">₹</span>2000{" "}
-              <span className="self-end text-xl">/Day</span>
+              <span className="mt-2 text-4xl">₹ {totalDays*data.data.fees}</span>
+              <span className="self-end text-lg">/Day</span>
             </Typography>
           </CardHeader>
           <CardBody className="p-0">
             <ul className="flex flex-col gap-4">
-              <li className="flex items-center gap-4">
-                <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                  <CheckIcon />
-                </span>
-                <Typography className="font-normal">
-                  NAME : {"MINHAJ"}
-                </Typography>
-              </li>
+            
               <li className="flex items-center gap-4">
                 <span className="rounded-full border border-white/20 bg-white/20 p-1">
                   <CheckIcon />
@@ -229,6 +239,7 @@ export default function PricingCard() {
             </Button>
           </CardFooter>
         </Card>
+        ):(null)}
       </div>
       <ToastContainer />
     </>

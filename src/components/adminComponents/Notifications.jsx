@@ -23,7 +23,6 @@ function IconOutlined() {
     );
 }
 
-
 export default function Notifications() {
     const navigate = useNavigate()
     const { isLoading, error, data } = useQuery({
@@ -69,11 +68,11 @@ export default function Notifications() {
                         }
                     >
                         <Typography className="font-medium text-blue-gray-900">
-                            Verification request.
+                           Request for Date Confirmation
                         </Typography>
 
                         <ul className="mt-2 ml-2 list-inside list-disc text-blue-gray-600">
-                            <li>{`Artist ${name.toUpperCase()} Requested for verification`}</li>
+                            <li>{`User ${name.toUpperCase()} Request for Date Confirmation`}</li>
                         </ul>
                     </Alert>
 

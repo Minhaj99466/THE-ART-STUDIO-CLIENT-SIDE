@@ -24,11 +24,12 @@ export default function Signup() {
   const [ToDate, setToDate] = useState();
   const { id } = useParams();
   const [data, setData] = useState();
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState(null);
   
   
 
   function filterByDate(dates) {
+    setMsg(null)
     setFromDate(dates[0].format("DD-MM-YYYY"));
     setToDate(dates[1].format("DD-MM-YYYY"));
   }
@@ -40,7 +41,7 @@ export default function Signup() {
       if(res.data.booked){
         navigate(`/booknow/${id}/${fromDate}/${ToDate}`)
       }else{
-        setMsg("Date Already taken")
+        setMsg("Date Already Taken Please Choose another ")
       }
     } catch (error) {
         console.log(error);      
@@ -139,12 +140,13 @@ export default function Signup() {
                     ₹{data.data.fees}/day
                   </Typography>
                   <Typography variant="h6" className="mb-4 text-gray-700 ">
-                    <RangePicker onChange={filterByDate}
+                    <RangePicker  onChange={filterByDate}
                      disabledDate={(current) => current && current < moment().startOf('day')} />
                   </Typography>
                   {msg?( <div className="text-deep-orange-900">{msg}</div> ):(null)}
                  
                   {fromDate && ToDate ? (
+                    msg==null?
                     <Button
                       onClick={handleBook
                         
@@ -152,6 +154,8 @@ export default function Signup() {
                     >
                       Book Now
                     </Button>
+                    :null
+                    
                   ) : null}
                 </CardBody>
               </Card>

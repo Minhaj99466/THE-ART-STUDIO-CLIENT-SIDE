@@ -1,10 +1,10 @@
-import TabsWithIcon from "../../../components/adminComponents/Notifications"
-function Notifications() {
+
+function DashBoard() {
   return (
     <div>
-      <TabsWithIcon/>
+      <h1>ghjyhjghjghj</h1>
     </div>
   )
 }
 
-export default Notifications
+export default DashBoard
