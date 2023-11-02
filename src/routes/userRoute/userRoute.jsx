@@ -13,6 +13,8 @@ import SingleView from "../../pages/userPage/SingleView/SingleView";
 // import Dummy from '../../components/userComponents/SIngleProfileComponents/SinGleProfilePost'
 import BookNow from "../../pages/userPage/BookNow/BookNowPage";
 import { Success } from "../../pages/userPage/Success/success";
+import ProfileCard from "../../pages/userPage/Profile/Profile";
+
 
 function userRoute() {
   return (
@@ -34,6 +36,7 @@ function userRoute() {
         <Route path='/booknow/:id/:from/:to' element={<BookNow/>} />
         <Route path='/singleView/:id' element={<SingleView/>} />
         <Route path='/success' element={<Success/>} />
+        <Route path='/profile' element={<ProfileCard/>} />
         </Route>
        
     </Routes>

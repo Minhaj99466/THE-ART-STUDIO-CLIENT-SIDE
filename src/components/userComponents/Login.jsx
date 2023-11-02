@@ -99,6 +99,7 @@ export default function Login() {
 
         const userDetails = {
           email: response.data.user.email,
+          name: response.data.user.name,
           password: response.data.user.password,
         };
         dispatch(

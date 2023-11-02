@@ -1,8 +1,8 @@
-
+import Notifications from "../../../components/adminComponents/Notifications"
 function DashBoard() {
   return (
     <div>
-      <h1>ghjyhjghjghj</h1>
+      <Notifications/>
     </div>
   )
 }

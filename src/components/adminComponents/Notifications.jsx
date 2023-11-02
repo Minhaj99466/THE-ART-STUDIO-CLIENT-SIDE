@@ -68,11 +68,11 @@ export default function Notifications() {
                         }
                     >
                         <Typography className="font-medium text-blue-gray-900">
-                           Request for Date Confirmation
+                           Request for  Confirmation
                         </Typography>
 
                         <ul className="mt-2 ml-2 list-inside list-disc text-blue-gray-600">
-                            <li>{`User ${name.toUpperCase()} Request for Date Confirmation`}</li>
+                            <li>{`Artist ${name.toUpperCase()} Request for Profile Confirmation`}</li>
                         </ul>
                     </Alert>
 

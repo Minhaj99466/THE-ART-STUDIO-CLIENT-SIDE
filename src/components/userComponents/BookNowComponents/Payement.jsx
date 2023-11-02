@@ -21,7 +21,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, LinkAuthenticationElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-import logo from '../../../assets/userAssets/Lock.jpg'
+import logo from '../../../assets/userAssets/cb85acb8638e40de38135d860b05adef.jpg'
 import userRequest from "../../../utils/userRequest";
 import { useNavigate } from "react-router-dom";
 import { BookingSlot } from "../../../api/userApi";
@@ -90,12 +90,12 @@ export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,total
                 handler={handleOpen}
                 className="bg-transparent shadow-none rounded-none"
             >
-                <Card className="w-full max-w-[24rem] rounded-none">
+                <Card className="w-full max-w-[24rem] rounded-md">
                     <CardHeader
 
                         floated={false}
                         shadow={false}
-                        className="m-0 grid place-items-center h-45 rounded-b-none py- px-4 text-center rounded-none bg-[#023E8A]"
+                        className="m-0 grid place-items-center h-full rounded-b-none py- px-4 text-center rounded-md bg-[#caa487ce]"
                     >
                         <div className="   p-6 text-white ">
                             <img src={logo} className="h-20 " />
@@ -132,7 +132,7 @@ export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,total
                                             <LinkAuthenticationElement
                                                 id="link-authentication-element"
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                class="w-full p-3 border rounded mb-4 focus:outline-none focus:ring focus:ring-blue-300"
+                                                class="w-full p-3 border rounded mb-4 focus:outline-none focus:ring focus:ring- -300"
                                             />
                                             <PaymentElement
                                                 id="payment-element"

@@ -127,7 +127,7 @@ export default function PricingCard() {
               color="transparent"
               className="absolute inset-0 m-0 h-full w-full rounded-none bg-[#fff] bg-cover bg-center"
             >
-              <div className="to-bg-black-10  inset-0 h-full w-full bg-gradient-to-r from-gray-50 to-orange-50 " />
+              <div className="to-bg-black-10  inset-0 h-full w-full bg-gradient-to-r from-[#cabdbd] to-[#cabdbd] " />
             </CardHeader>
 
             <CardBody className="relative  md:px-10">
