@@ -34,6 +34,7 @@ export default function Notifications() {
     const fetchPositions = async () => {
       const response = await DateVerify();
       setData(response.data);
+      setRefetch(false)
     };
     fetchPositions();
   }, [fetch]);

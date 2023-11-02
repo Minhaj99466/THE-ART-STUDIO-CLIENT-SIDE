@@ -90,6 +90,7 @@ export async function getCategorisedArtists(category,search,value){
     }
 }
 export async function BookingSlot(bookingData){
+    console.log(bookingData);
     try {
         const data=await userApi.post('/bookartist/',bookingData)
         return data
