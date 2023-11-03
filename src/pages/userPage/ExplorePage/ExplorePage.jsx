@@ -1,9 +1,9 @@
-import React from 'react'
+
 import ArtistCards from '../../../components/userComponents/ExploreComponents/ArtistCards';
 import Banner from '../../../components/userComponents/ExploreComponents/Banner';
 
 import { Container } from '@mui/material';
-import { Input } from '@material-tailwind/react';
+// import { Input } from '@material-tailwind/react';
 function ExplorePage() {
   return (
     <>

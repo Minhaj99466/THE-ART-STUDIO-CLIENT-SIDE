@@ -23,9 +23,10 @@ export async function GetUsers() {
     console.log(error);
   }
 }
-export async function GetArtists() {
+export async function GetArtists(search,value) {
   try {
-    const data = await adminApi.get("/admin/artist");
+    console.log("hjghjhjghj");
+    const data = await adminApi.get(`/admin/artist/${search}/${value}`);
     return data;
   } catch (error) {
     if (error.response.status === 500) {

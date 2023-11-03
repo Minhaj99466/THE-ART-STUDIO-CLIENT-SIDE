@@ -59,7 +59,6 @@ export default function ProfileCard() {
     fetchArtists();
   }, [value, search, active]);
 
-console.log(data.ArtistData?data.ArtistData.length:null);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -89,7 +88,7 @@ console.log(data.ArtistData?data.ArtistData.length:null);
 
     setActive(active - 1);
   };
-
+console.log(search);
   return (
     <>
       <div className="w-10 md:w-full">
@@ -118,7 +117,7 @@ console.log(data.ArtistData?data.ArtistData.length:null);
       </div>
 
       <div className="grid grid-cols-1  md:grid-cols-3 gap-12 ">
-        {data.ArtistData ? (
+        {data.ArtistData? (
           data.ArtistData.map((item) => (
             <Card
               className="w-72 grid justify-center mt-10 md:grid md:justify-center bg-[#e8eddf]"
@@ -155,7 +154,7 @@ console.log(data.ArtistData?data.ArtistData.length:null);
             </Card>
           ))
         ) : (
-          <h1>hello</h1>
+          <h1>THERE IS NO CONFIRMED ARTIST</h1>
         )}
       </div>
 
