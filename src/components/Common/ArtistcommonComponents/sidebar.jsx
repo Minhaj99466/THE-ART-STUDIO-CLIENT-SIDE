@@ -33,8 +33,8 @@ const Sidebar = () => {
     },
     {
       icon: <InboxIcon className="h-7 w-5" />,
-      text: "Messages",
-      onClick: () => console.log("clients"),
+      text: "Bookings",
+      onClick: () => navigate('/artist/bookings'),
     },
     {
       icon: <Cog6ToothIcon className="h-7 w-5" />,

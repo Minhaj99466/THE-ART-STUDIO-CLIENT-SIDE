@@ -107,5 +107,13 @@ export async function CheckDate(from,to,artistId){
         console.log(error);
     }
 }
+export async function GetOrderDetail(id){
+    try {
+        const data=await userApi.get(`/getOrderData/${id}`)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 

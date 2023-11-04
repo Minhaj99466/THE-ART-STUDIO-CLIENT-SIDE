@@ -12,9 +12,10 @@ export async function Login(loginData) {
   }
 }
 
-export async function GetUsers() {
+export async function GetUsers(search,active) {
   try {
-    const data = await adminApi.get("/admin/users");
+    console.log("aaaaaaaaaaaaaaaaaaaaa");
+    const data = await adminApi.get(`/admin/users/${search}/${active}`);
     return data;
   } catch (error) {
     if (error.response.status === 500) {

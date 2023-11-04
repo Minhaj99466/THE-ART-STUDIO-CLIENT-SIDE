@@ -36,6 +36,9 @@ function ArtistRoute() {
         <Route exact path='/addProfile' element={<AddProfile/>}/> 
         <Route exact path='/gallery' element={<Gallery/>}/> 
         <Route exact path='/notifications' element={<Notification/>}/> 
+        <Route exact path='/notifications' element={<Notification/>}/> 
+        <Route exact path='/bookings' element={<Notification/>}/> 
+        
         </Route>
         </Route>
        

@@ -47,7 +47,6 @@ export default function Table() {
   const [refetch, setRefetch] = useState(false);
   // const [value, setValue] = useState(1);
   const [data, setData] = useState([]);
-  console.log(refetch);
   // const[artistId,setArtistId]=useState('')
 
   // const { isLoading, error, data   } = useQuery({
@@ -227,7 +226,7 @@ export default function Table() {
                         ) : (
                           <Dialog
                             buttonText="Block"
-                            headerText="User Blocking Confirmation"
+                            headerText="Artist Blocking Confirmation"
                             bodyText={`Do You Need To Block ${name} ?`}
                             onConfirm={() => handleAction(_id)}
                           />
