@@ -117,3 +117,11 @@ export async function ApproveBooking(changeData){
         console.log(error);
     }
 }
+export async function GetAllOrders(){
+    try {
+        const data=await artistApi.get('/getAllOrders')
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -14,6 +14,7 @@ import PasswordConfirm from '../../components/artistComponents/PasswordConfirmat
 import AddProfile from '../../components/artistComponents/AddProfile'
 import Gallery from "../../components/artistComponents/Gallery"
 import DashBoard from "../../pages/adminPage/Notifications/Notifications"
+import BookingsPage from "../../pages/artistPage/Bookings/BookingsPage"
 
 
 function ArtistRoute() {
@@ -37,7 +38,7 @@ function ArtistRoute() {
         <Route exact path='/gallery' element={<Gallery/>}/> 
         <Route exact path='/notifications' element={<Notification/>}/> 
         <Route exact path='/notifications' element={<Notification/>}/> 
-        <Route exact path='/bookings' element={<Notification/>}/> 
+        <Route exact path='/bookings' element={<BookingsPage/>}/> 
         
         </Route>
         </Route>
