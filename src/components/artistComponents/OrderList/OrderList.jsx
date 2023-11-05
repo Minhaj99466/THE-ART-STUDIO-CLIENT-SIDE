@@ -16,6 +16,7 @@ export default function BasicDemo() {
        }
        fetchOrder()
     }, []);
+    console.log(data);
 
     // const getSeverity = (product) => {
     //     switch (product.inventoryStatus) {
@@ -34,7 +35,7 @@ export default function BasicDemo() {
     // };
 
         return (
-            <div className='grid grid-cols-2 gap-5'>
+            <div className='grid grid-cols-2 gap-5'>    
             {/* {data && data.AllOrders.map((id)=>( */}
             <div className="col-12 bg-gray-300 rounded-md" >
                 <div className="flex flex-col xl:flex-row xl:items-start p-4 gap-4">
