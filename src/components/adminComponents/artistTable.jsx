@@ -89,6 +89,7 @@ export default function Table() {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
+        setData([])
         const response = await GetArtists(search, active);
         const res = response.data;
           setData(res);
@@ -250,7 +251,7 @@ export default function Table() {
           <div className="flex items-center gap-2">
             {data.artist &&
               data.totalPages &&
-              Array.from({ length: data.totalPages }).map((_, index) => (
+              Array.from({ length: data.totalPages }).map((_id, index) => (
                 <IconButton key={index + 1} {...getItemProps(index + 1)}>
                   {index + 1}
                 </IconButton>
