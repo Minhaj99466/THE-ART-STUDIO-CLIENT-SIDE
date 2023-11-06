@@ -12,22 +12,24 @@ import {
   Cog6ToothIcon,
 } from "@heroicons/react/24/solid";
 import BookingCard from "../OrderComponents/OrderCard";
+import ProfileUser from "./Profile";
+
  
 export default function TabsWithIcon() {
   const data = [
+    {
+      label: "Profile",
+      value: "profile",
+      icon: UserCircleIcon,
+      desc: <ProfileUser/>,
+    },
     {
       label: "Orders",
       value: "Order",
       icon: Square3Stack3DIcon,
       desc: <BookingCard/> 
     },
-    {
-      label: "Profile",
-      value: "profile",
-      icon: UserCircleIcon,
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
+   
     {
       label: "Settings",
       value: "settings",
@@ -38,8 +40,8 @@ export default function TabsWithIcon() {
     },
   ];
   return (
-    <Tabs value="dashboard">
-      <TabsHeader>
+    <Tabs value="dashboard" >
+      <TabsHeader className="bg-[#caa487cc]">
         {data.map(({ label, value, icon }) => (
           <Tab key={value} value={value}>
             <div className="flex items-center gap-2">

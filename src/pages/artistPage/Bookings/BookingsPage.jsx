@@ -5,7 +5,6 @@ function BookingsPage() {
   return (
     <>
     <OrderList/>
-    
     </>
   )
 }

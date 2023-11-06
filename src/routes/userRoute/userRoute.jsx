@@ -14,7 +14,7 @@ import SingleView from "../../pages/userPage/SingleView/SingleView";
 import BookNow from "../../pages/userPage/BookNow/BookNowPage";
 import { Success } from "../../pages/userPage/Success/success";
 import ProfileCard from "../../pages/userPage/Profile/Profile";
-import OrderList from "../../pages/userPage/OrderList/OrderList";
+
 
 
 function userRoute() {
@@ -38,7 +38,7 @@ function userRoute() {
         <Route path='/singleView/:id' element={<SingleView/>} />
         <Route path='/success' element={<Success/>} />
         <Route path='/profile' element={<ProfileCard/>} />
-        <Route path="/order" element={<OrderList/>}/>
+        {/* <Route path="/order" element={<OrderList/>}/> */}
          </Route>
        
     </Routes>

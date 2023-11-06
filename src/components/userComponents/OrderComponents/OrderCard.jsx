@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { GetOrderDetail } from "../../../api/userApi";
 import { useSelector } from "react-redux";
+import CancelDialog from "./ReturnModel";
    
   export default function CardDefault() {
     const [data,setData]=useState()
@@ -32,9 +33,9 @@ fetchData()
 
 
     return (
-    <div className="grid grid-cols-3">   
-      {data && data.bookingData.map(({fromDate,toDate,totalAmount,status,artistId})=>(
-     <Card className="mt-6 w-72 bg" key={fromDate} >
+    <div className="grid grid-cols-1 md:grid-cols-3">   
+      {data && data.bookingData.map(({fromDate,toDate,totalAmount,status,artistId,_id})=>(
+     <Card className="mt-6 w-72 bg-gray-300" key={fromDate} >
         <CardHeader  className="flex justify-center h-52 ">
           <img
             src={artistId.displaypicture}
@@ -60,9 +61,8 @@ fetchData()
           
          
         </CardBody>
-        <CardFooter className="pt-0 flex justify-center">
-            {status=="Approved" || status=="Pending"?<Button className="bg-red-900">Cancel</Button>:null}
-          
+        <CardFooter className="pt-0 flex justify-end">
+            {status=="Approved" || status=="Pending"?<CancelDialog id={_id} totalAmount={totalAmount}  />:status=="Cancel"?<Button variant="text" className=" font-bold text-red-900">Booking Cancelled</Button>:null}
         </CardFooter>
       </Card>
       ))}

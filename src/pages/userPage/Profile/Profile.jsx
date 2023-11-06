@@ -1,12 +1,10 @@
 import { Container } from "@mui/material";
-import ProfileCard from "../../../components/userComponents/UserProfile/Profile";
 import TabsOrder from "../../../components/userComponents/UserProfile/TabsOrder";
 
 function Profile() {
   return (
     <>
-      <Container>
-        <ProfileCard />
+      <Container className="mt-10">
       <TabsOrder />
       </Container>
     </>

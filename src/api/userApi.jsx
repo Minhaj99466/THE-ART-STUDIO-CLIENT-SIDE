@@ -115,5 +115,13 @@ export async function GetOrderDetail(id){
         console.log(error);
     }
 }
+export async function CancelBooking(cancelData){
+    try {
+        const data=await userApi.post('/cancelBooking',cancelData)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
