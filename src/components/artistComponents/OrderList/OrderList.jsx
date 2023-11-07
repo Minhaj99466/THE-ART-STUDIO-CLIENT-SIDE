@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Typography } from "@material-tailwind/react";
 import { Rating } from "@material-tailwind/react";
 import { GetAllOrders } from "../../../api/artistApi";
+import DialogDefault from "./ReasonDialog";
 
 // import { Tag } from '@material-tailwind/react/Tag';
 // import { ToggleButton } from '@mui/material';
@@ -79,9 +80,9 @@ export default function BasicDemo() {
                     <Button  className="bg-[#1f442e]">{item.status}</Button>
                   ) : item.status === "Rejected" ? (
                     <Button className="bg-[#793333]">{item.status}</Button>
-                  ) : (
-                    <Button>{item.status}</Button>
-                  )}
+                  ) : item.status === "Cancel"? (
+                    <DialogDefault reason={item.reason}/>
+                  ):<Button>{item.status}</Button>}
                 </div>
               </div>
             </div>

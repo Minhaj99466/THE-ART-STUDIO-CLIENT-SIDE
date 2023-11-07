@@ -1,7 +1,7 @@
 
-import AdminRequest from "../utils/adminRequest";
+import axiosInterceptorInstance from "../utils/adminRequest";
 
-const adminApi = AdminRequest;
+const adminApi = axiosInterceptorInstance;
 
 export async function Login(loginData) {
   try {
@@ -14,25 +14,19 @@ export async function Login(loginData) {
 
 export async function GetUsers(search,active) {
   try {
-    console.log("aaaaaaaaaaaaaaaaaaaaa");
     const data = await adminApi.get(`/admin/users/${search}/${active}`);
     return data;
   } catch (error) {
-    if (error.response.status === 500) {
-      localStorage.removeItem("AdminToken");
-    }
+   
     console.log(error);
   }
 }
+
 export async function GetArtists(search,value) {
   try {
-    console.log("hjghjhjghj");
     const data = await adminApi.get(`/admin/artist/${search}/${value}`);
     return data;
   } catch (error) {
-    if (error.response.status === 500) {
-      localStorage.removeItem("AdminToken");
-    }
     console.log(error);
   }
 }

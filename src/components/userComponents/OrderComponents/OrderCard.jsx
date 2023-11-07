@@ -13,6 +13,7 @@ import CancelDialog from "./ReturnModel";
    
   export default function CardDefault() {
     const [data,setData]=useState()
+    const [fetch,setRefetch]=useState(false)
 
     const userInfo = useSelector((state) => state.user.userInfo);
     const id= userInfo.email
@@ -28,8 +29,12 @@ import CancelDialog from "./ReturnModel";
 
         }
 fetchData()
-    },[])
+    },[fetch])
     console.log(data);
+
+    const handleFetch=(data)=>{
+      setRefetch(data)
+    }
 
 
     return (
@@ -62,7 +67,7 @@ fetchData()
          
         </CardBody>
         <CardFooter className="pt-0 flex justify-end">
-            {status=="Approved" || status=="Pending"?<CancelDialog id={_id} totalAmount={totalAmount}  />:status=="Cancel"?<Button variant="text" className=" font-bold text-red-900">Booking Cancelled</Button>:null}
+            {status=="Approved" || status=="Pending"?<CancelDialog id={_id} totalAmount={totalAmount} handleFetch={handleFetch}  />:status=="Cancel"?<Button variant="text" className=" font-bold text-red-900">Booking Cancelled</Button>:null}
         </CardFooter>
       </Card>
       ))}

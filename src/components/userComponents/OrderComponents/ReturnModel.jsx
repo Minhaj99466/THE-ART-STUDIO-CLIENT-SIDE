@@ -11,10 +11,11 @@ import {
 import { Typography } from "antd";
 import { CancelBooking } from "../../../api/userApi";
  
-export default function CancelDialog(id,totalAmount) {
+export default function CancelDialog({id,totalAmount,handleFetch}) {
   const [reason,setReason]=useState('')
   const [open, setOpen] = React.useState(false);
-
+  console.log(id);
+  console.log(totalAmount);
   const handleOpen = () => setOpen(!open);
 
   const handleSubmit = async () => {
@@ -24,8 +25,10 @@ export default function CancelDialog(id,totalAmount) {
         } catch (error) {
           console.log(error);
         }
+        handleFetch(true)
      handleOpen()
   }
+
 
 
     

@@ -45,7 +45,7 @@ export default function EmailVerify() {
             <CardHeader
               shadow={false}
               floated={false}
-              className="m-0 w-2/5 shrink-0 rounded-r-none hidden sm:block"
+              className="m-0 w-3/5 shrink-0 rounded-r-none hidden sm:block "
             >
               <img
                 src={img}

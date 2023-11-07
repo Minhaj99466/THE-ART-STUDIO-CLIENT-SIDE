@@ -1,6 +1,6 @@
-import artistRequest from "../utils/artistRequest";
+import axiosInterceptorInstance from "../utils/artistRequest";
 
-const artistApi =artistRequest
+const artistApi =axiosInterceptorInstance
 
 export async function ArtistSignup(signupData){
 try {

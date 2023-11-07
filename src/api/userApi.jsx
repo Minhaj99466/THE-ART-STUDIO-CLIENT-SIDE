@@ -1,8 +1,8 @@
 
-import userRequest from '../utils/userRequest'
+import axiosInterceptorInstance from '../utils/userRequest'
 
 
-const userApi=userRequest
+const userApi=axiosInterceptorInstance
 
 
 export async function UserSignup(signupData){
@@ -117,7 +117,7 @@ export async function GetOrderDetail(id){
 }
 export async function CancelBooking(cancelData){
     try {
-        const data=await userApi.post('/cancelBooking',cancelData)
+        const data=await userApi.post('/cancelBooking',{cancelData})
         return data
     } catch (error) {
         console.log(error);
