@@ -4,9 +4,9 @@ import PricingCard from "../../../components/userComponents/BookNowComponents/Bo
 function BookNow() {
   return (
     <>
-      <Container >
+    <div className="container mx-auto">
           <PricingCard />
-      </Container>
+      </div>
     </>
   );
 }

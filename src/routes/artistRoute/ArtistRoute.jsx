@@ -15,7 +15,9 @@ import AddProfile from '../../components/artistComponents/AddProfile'
 import Gallery from "../../components/artistComponents/Gallery"
 import DashBoard from "../../pages/adminPage/Notifications/Notifications"
 import BookingsPage from "../../pages/artistPage/Bookings/BookingsPage"
-import Chat from "../../pages/artistPage/Chat/Chat"
+import ChatList from "../../components/artistComponents/Chat/ChatList"
+
+
 
 
 function ArtistRoute() {
@@ -40,7 +42,7 @@ function ArtistRoute() {
         <Route exact path='/notifications' element={<Notification/>}/> 
         <Route exact path='/notifications' element={<Notification/>}/> 
         <Route exact path='/bookings' element={<BookingsPage/>}/> 
-        <Route exact path='/chat' element={<Chat/>}/> 
+        <Route exact path='/chats' element={<ChatList/>} />
         
         </Route>
         </Route>

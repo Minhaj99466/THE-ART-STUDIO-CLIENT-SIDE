@@ -53,6 +53,7 @@ export default function Login() {
                 const userDetails = {
                   name: response.data.user.name,
                   email: response.data.user.email,
+                  id: response.data.user._id,
                 };
                 dispatch(
                   setuserdetails({
@@ -100,7 +101,7 @@ export default function Login() {
         const userDetails = {
           email: response.data.user.email,
           name: response.data.user.name,
-          password: response.data.user.password,
+          id:response.data.user._id
         };
         dispatch(
           setuserdetails({

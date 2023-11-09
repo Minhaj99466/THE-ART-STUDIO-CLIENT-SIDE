@@ -1,26 +1,19 @@
 import {
   Card,
-  //   CardHeader,
   CardBody,
   Typography,
-  Button,
-  Input,
-  Spinner,
 } from "@material-tailwind/react";
 
-// import {Formik} from 'formik'
-// import Img from "../../assets/artistsAssets/artistSign.jpg";
+
 import { useQuery } from "@tanstack/react-query";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ArtistRequest from "../../utils/artistRequest";
-// import { useFormik } from "formik";
-// import { SignupSchema } from "../../yup/validation";
+
 import EditDialog from "../../components/artistComponents/EditProfile";
 import { useLocation, useNavigate } from "react-router-dom";
 import DialogWithForm from "./AddProfile";
 import { InfinitySpin } from "react-loader-spinner";
-import { GenerateError } from "../../toast/toast";
+
 
 export default function ProfileCard() {
   const navigate = useNavigate();
@@ -118,7 +111,6 @@ export default function ProfileCard() {
           </Card>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

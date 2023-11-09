@@ -1,34 +1,32 @@
-import  { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ChatContext=createContext()
 
-function ChatUserProvider({children}) {
+function ChatProvider({children}) {
 
-    const [selectedChat, setSelectedChat] = useState();
+  const [selectedChat, setSelectedChat] = useState();
   const [user, setUser] = useState();
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState([]);
   const initialChatState = {
     _id: '', 
-    chatName: '',
+    chatName: '', 
     users: [], 
-    createdAt: '', 
+    createdAt: '',
     updatedAt: '', 
     // Add other properties as needed
   };
-  const userInfo = useSelector((state) => state.user.userInfo);
-
+  const artistInfo = useSelector((state) => state.user.artistInfo);
+  console.log(artistInfo);
+  const navigate=useNavigate()
   useEffect(() => {
-
-    // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(userInfo);
-    setUser(userInfo);
-    setUser(userInfo);
+    // const artistInfo = JSON.parse(localStorage.getItem("artistInfo"));
+    setUser(artistInfo);
     setSelectedChat(initialChatState);
 
-    // if (!userInfo) navigate("/");
+    if (!artistInfo) navigate("/artist");
   }, []);
 
   return (
@@ -53,4 +51,4 @@ export const ChatState=()=>{
     return useContext(ChatContext)
 }
 
-export default ChatUserProvider
+export default ChatProvider

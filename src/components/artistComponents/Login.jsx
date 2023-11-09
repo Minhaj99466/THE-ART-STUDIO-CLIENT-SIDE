@@ -9,7 +9,7 @@ import {
   // import {Formik} from 'formik'
   import Img from "../../assets/artistsAssets/artist.jpg";
   
-  import { Login } from "../../api/artistApi";
+  import { GLogin,Login } from "../../api/artistApi";
   import { ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
   import { useFormik } from "formik";
@@ -47,13 +47,13 @@ import {
             }
           )
           .then((res) => {
-              Login({email:res.data.email,password:res.data.id}).then((response) => {
+              GLogin({email:res.data.email,password:res.data.id}).then((response) => {
               if (response.data.loginSuccess) {
                 const artistDetails = {
                   name: response.data.user.name,
                   email: response.data.user.email,
+                  id: response.data.user._id,
                 };
-                console.log(artistDetails,"hhhhhhhhhhhh");
                 dispatch(
                   setartistdetails({
                       artistInfo:artistDetails
@@ -64,7 +64,7 @@ import {
               }
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log(err.response,"ghjfghfghh"));
       }
     }, [guser,dispatch,navigate]);
   
@@ -97,6 +97,7 @@ import {
           const artistDetails = {
             email: response.data.user.email,
             password: response.data.user.password,
+            id: response.data.user._id,
           };
           dispatch(
             setartistdetails({

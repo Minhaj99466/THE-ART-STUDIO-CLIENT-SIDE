@@ -1,36 +1,34 @@
 // import { AddIcon } from "@chakra-ui/icons";
-import { Stack, Text } from "@chakra-ui/layout";
-import dp from "../../../../assets/userAssets/Envelope-cuate.png"
+// import { Card, Stack, Text } from "@chakra-ui/layout";
+// import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
+import dp from "../../../../assets/userAssets/userLogin2.jpg"
 import { useEffect, useState } from "react";
 // import ChatLoading from "./ChatLoading";
 // import { Button } from "@chakra-ui/react";
-import userRequest from "../../../../utils/userRequest";
+// import { axiosUserInstance } from "../../../../Constants/axios";
 import { ChatState } from "./Context/ChatProvider";
 // import { getSender } from "../Config/ChatLogistics";
-import { Spinner } from "@material-tailwind/react";
-import { Box } from "@chakra-ui/react";
+import { Card, Spinner, Typography } from "@material-tailwind/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import ArtistRequest from "../../../../utils/artistRequest";
 import SideDrawer from "./SideDrawer";
 
 const MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState();
 
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-    console.log(user,"hjghj");
 
     //   const toast = useToast();
 
     const fetchChats = async () => {
+        // console.log(user._id);
         try {
-            const config = {
-                headers: {
-                    Authorization:`Bearer ${user.token}`,
-                },
-            };
-            console.log(config, selectedChat, "selected chat");
-            const userId = user.userInfo.id
-            const { data } = await userRequest.get(`/fetchchat/${userId}`, config);
+           
+            console.log(selectedChat);
+            const userId = user.artistInfo.id
+            const { data } = await ArtistRequest.get(`/fetchchat/${userId}`);
             console.log(data);
             setChats(data);
         } catch (error) {
@@ -46,12 +44,13 @@ const MyChats = ({ fetchAgain }) => {
         }
     };
 
-    const  userInfo  = useSelector((state) => state.user.userInfo)
+    const artistInfo = useSelector((state) => state.user.artistInfo);
+    console.log(artistInfo);
     useEffect(() => {
-        setLoggedUser(userInfo);
+        setLoggedUser(artistInfo);
         fetchChats();
         // eslint-disable-next-line
-    }, [fetchAgain]);
+    }, [artistInfo,fetchAgain]);
 
     return (
         <Box
@@ -59,18 +58,17 @@ const MyChats = ({ fetchAgain }) => {
             flexDir="column"
             alignItems="center"
             p={3}
-
+            bg="white"
             w={{ base: "100%", md: "31%" }}
             borderRadius="lg"
             borderWidth="1px"
-            bg="#fff"
         >
             <Box
                 display="flex"
                 w="100%"
                 alignItems="center"
                 justifyContent="space-around"
-            >
+                >
                 <Box
                     pb={3}
                     px={3}
@@ -91,56 +89,53 @@ const MyChats = ({ fetchAgain }) => {
                 display="flex"
                 flexDir="column"
                 p={3}
-                bg="#F2EEE3"
+                bg="#F8F8F8"
                 w="100%"
                 h="100%"
                 borderRadius="lg"
                 overflowY="hidden"
-
             >
+                
                 {chats ? (
                     <Stack overflowY="scroll">
                         {chats.map((chat) => (
                             <Box
                                 onClick={() => setSelectedChat(chat)}
-                                cursor="pointer"
-                                bg={selectedChat === chat ? "#b5b1a6" : "white"}
-                                color={selectedChat === chat ? "white" : "black"}
-                                px={3}
-                                py={2}
-                                borderRadius="lg"
+                                className={`cursor-pointer px-3 py-2 rounded-lg flex
+                                    ${selectedChat === chat
+                                        ? 'bg-teal-500 text-white'
+                                        : 'bg-gray-200 text-black'
+                                    }`}
                                 key={chat._id}
-                                display="flex"
                             >
-                                <Box>
+                                 <Box>
                                     
-                                    <img src={chat.users.artist ? chat.users.artist.displaypicture : dp} className="h-10 w-10 me-3 rounded-full"/>
+                                    <img src={chat.users.user ? chat.users.user.displaypicture : dp } className="h-10 w-10 me-3 rounded-full"/>
                                 </Box>
                                 <Box>
-                                    <Text>
-                                        {chat.users.artist.name}
+                                <Text>
+                                    {chat.users.user.name}
+                                </Text>
+                                {chat.latestMessage && (
+                                    <Text fontSize="xs">
+                                        <b>
+                                            {chat.latestMessage.sender.artist
+                                                ? chat.latestMessage.sender.artist.name
+                                                : chat.latestMessage.sender.user.name}
+                                            :
+                                        </b>
+                                        {chat.latestMessage.content.length > 50
+                                            ? chat.latestMessage.content.substring(0, 51) + "..."
+                                            : chat.latestMessage.content}
                                     </Text>
-                                    {chat.latestMessage && (
-                                        <Text fontSize="xs">
-                                            <b>
-                                                {chat.latestMessage.sender.artist
-                                                    ? chat.latestMessage.sender.artist.name
-                                                    : chat.latestMessage.sender.user.name}
-                                                :
-                                            </b>
-                                            {chat.latestMessage.content.length > 50
-                                                ? chat.latestMessage.content.substring(0, 51) + "..."
-                                                : chat.latestMessage.content}
-                                        </Text>
-                                    )}
-                                </Box>
+                                )}
+                            </Box>
                             </Box>
                         ))}
                     </Stack>
                 ) : (
                     //   <ChatLoading />
                     <Spinner />
-
                 )}
             </Box>
         </Box>

@@ -38,15 +38,16 @@ export default function ProfileCard() {
     "Sculptors",
     "Craft artists",
   ];
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
   const [search, setSearch] = useState(0);
   const [data, setData] = useState([]);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const fetchArtists = async () => {
       try {
         const response = await getCategorisedArtists(
-          category[value],
+          category[activeTab],
           search,
           active
         );
@@ -57,7 +58,7 @@ export default function ProfileCard() {
       }
     };
     fetchArtists();
-  }, [value, search, active]);
+  }, [activeTab, search, active]);
 
 
   const handleSearch = (e) => {
@@ -67,8 +68,9 @@ export default function ProfileCard() {
     }
   };
 
-  const handleChange = (event, item) => {
-    setValue(item);
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+    // Your additional logic or actions on tab click can go here
   };
 
   const getItemProps = (index) => ({
@@ -91,7 +93,10 @@ export default function ProfileCard() {
 console.log(search);
   return (
     <>
-      <div className="w-10 md:w-full">
+     
+
+      <div className="grid justify-center items-center">
+      <div className=" w-10 my-5 md:w-full ">
         <Input
           onChange={handleSearch}
           className="text-[#956262] font-sans"
@@ -101,22 +106,24 @@ console.log(search);
           }}
         />
       </div>
-
-      <div className="grid justify-center items-center ">
-        <Tabs
-          className=" bg-[#caa487] rounded-2xl "
-          value={value}
-          onChange={handleChange}
-          variant="scrollable"
-          scrollButtons="auto"
-        >
-          {category.map((item) => (
-            <Tab key={item} label={item} />
-          ))}
-        </Tabs>
+      <div className="flex mx-5 bg-[#caa487] rounded-xl  overflow-x-auto md:mx-0">
+        { category.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => handleTabClick(index,item)}
+            className={` px-4 py-2 ${
+              index === activeTab
+                ? 'bg-brown-100 text-gray-800'
+                : 'bg-[#caa487] text-white'
+            }`}
+          >
+            {item}
+          </button>
+        ))}
       </div>
+    </div>
 
-      <div className="grid grid-cols-1  md:grid-cols-3 gap-12 ">
+      <div className="grid grid-cols-1 ml-16  md:grid-cols-3 gap-12 md:ml-0">
         {data.ArtistData? (
           data.ArtistData.map((item) => (
             <Card

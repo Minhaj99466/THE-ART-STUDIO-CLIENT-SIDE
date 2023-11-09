@@ -6,9 +6,9 @@ function SingleView() {
   return (
     <>
       {/* <div className=" w-screen h-20 bg-black" /> */}
-      <Container>
+      <div className="container mx-auto">
         <ArtistProfile />
-      </Container>
+      </div>
 
       <ExploreMainCard />
     </>

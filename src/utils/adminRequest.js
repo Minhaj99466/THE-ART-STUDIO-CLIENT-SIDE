@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { GenerateError } from '../toast/Toast'
+import { GenerateError } from '../toast/toast'
+
 
 const baseUrl = import.meta.env.VITE_ADMIN_URL
 
@@ -19,11 +20,7 @@ axiosInterceptorInstance.interceptors.response.use(
       if (error.response && error.response.status === 400) {
         GenerateError(error.response.data.message);
       }
-      if (error.response && error.response.status === 500) {
-        GenerateError(error.response.data.message);
-        localStorage.removeItem('ArtistToken')
-        window.location = '/artist/login'
-      }
+     
       return Promise.reject(error);
     }
   );

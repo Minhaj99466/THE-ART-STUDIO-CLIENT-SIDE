@@ -28,6 +28,14 @@ export async function Login(LoginData){
         console.log(error);
     }
 }
+export async function GLogin(LoginData){
+    try {
+        const data=artistApi.post('/artist/Glogin',LoginData)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export async function Verify(id,token){
     try {
@@ -120,6 +128,22 @@ export async function ApproveBooking(changeData){
 export async function GetAllOrders(){
     try {
         const data=await artistApi.get('/getAllOrders')
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+export async function DoctorMessage(messageContent){
+    try {
+        const data=await artistApi.post('/message',messageContent)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
+export async function FetchChat(userId){
+    try {
+        const data=await artistApi.get(`/fetchchat/${userId}`)
         return data
     } catch (error) {
         console.log(error);

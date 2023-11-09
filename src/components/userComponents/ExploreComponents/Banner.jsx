@@ -1,4 +1,4 @@
-import React from 'react'
+
 import img from '../../../assets/userAssets/disover-main-banner-korshenboym-noresize-1.jpg'
 function Banner() {
   return (

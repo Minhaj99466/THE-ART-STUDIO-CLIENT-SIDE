@@ -133,7 +133,7 @@
   
   #other .message-content {
     justify-content: flex-end;
-    background-color: cornflowerblue;
+    background-color: rgb(44, 58, 85);
   }
   
   #other .message-meta {

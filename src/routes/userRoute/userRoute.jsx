@@ -14,7 +14,8 @@ import SingleView from "../../pages/userPage/SingleView/SingleView";
 import BookNow from "../../pages/userPage/BookNow/BookNowPage";
 import { Success } from "../../pages/userPage/Success/success";
 import ProfileCard from "../../pages/userPage/Profile/Profile";
-
+import ChatList from "../../components/userComponents/ChatComponents/ChatList";
+// import ChatList from '../components/user/Chat/ChatList'
 
 
 function userRoute() {
@@ -40,6 +41,7 @@ function userRoute() {
         <Route path='/success' element={<Success/>} />
         <Route path='/profile' element={<ProfileCard/>} />
         {/* <Route path="/order" element={<OrderList/>}/> */}
+        <Route path='/chats' element={<ChatList/>} />    
         
          </Route>
             </Route> 

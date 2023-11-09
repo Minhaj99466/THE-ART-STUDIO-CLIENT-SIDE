@@ -20,11 +20,11 @@
 // import { Tooltip } from "@chakra-ui/tooltip";
 // import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 // import { Avatar } from "@chakra-ui/avatar";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {MagnifyingGlassIcon} from '@heroicons/react/24/outline'
+
 // import { useToast } from "@chakra-ui/toast";
 
 // import ChatLoading from "../ChatLoading";
@@ -38,13 +38,16 @@ import {
     Input,
     Textarea,
     Tooltip,
-    Card
+    Card,
+    List,
+    ListItem
 } from '@material-tailwind/react';
 
 import { ChatState } from "./Context/ChatProvider";
-// import { ChatState } from "../Context/ChatProvider";
+
 // import UserList from "../Users/UserList";
 import userRequest from "../../../../utils/userRequest";
+import ArtistRequest from "../../../../utils/artistRequest";
 
 function SideDrawer() {
     const [open, setOpen] = useState(false);
@@ -64,7 +67,6 @@ function SideDrawer() {
         chats,
         setChats,
     } = ChatState();
-    // console.log(user, "ddddddddddd");
 
     // const toast = useToast();
     // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -99,8 +101,8 @@ function SideDrawer() {
                 },
             };
 
-            const { data } = await userRequest.get(`/usersearch?search=${search}`, config);
-
+            const { data } = await ArtistRequest.get(`/usersearch?search=${search}`,config);
+            console.log(data);
             setLoading(false);
             setSearchResult(data);
         } catch (error) {
@@ -116,20 +118,11 @@ function SideDrawer() {
         }
     };
 
-    const accessChat = async (artistId) => {
-        // console.log(artistId);
-
-        console.log(user.id,artistId,"the id");
+    const accessChat = async (userId) => {
         try {
             setLoadingChat(true);
-            // const config = {
-            //     headers: {
-            //         "Content-type": "application/json",
-            //         Authorization: `Bearer ${user.user.token}`,
-            //     },
-            // };
-            // console.log(config);
-            const userId = user.id
+          
+                    const artistId = user.id
             const { data } = await userRequest.post(`/accesschat`, { artistId, userId });
             console.log(data);
 
@@ -160,7 +153,7 @@ function SideDrawer() {
         <>
 
             <>
-            <div onClick={openDrawer} className="flex bg-[#d6cbcb] p-1 rounded-3xl cursor-pointer" >
+            <div onClick={openDrawer} className="flex bg-blue-gray-400 p-1 rounded-3xl cursor-pointer" >
                 <Typography className="mx-3 ">search</Typography>
                 <MagnifyingGlassIcon className="h-6 w-6 me-3"/>
             </div>
@@ -182,15 +175,13 @@ function SideDrawer() {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        <div>
+                        <List>
                             {searchResult?.map((user) => (
-                                <Card key={user._id} className="bg-[#a49d9d] h-9 rounded-sm text-black">
-                                    <button onClick={() => accessChat(user._id)}>
+                                <ListItem  onClick={() => accessChat(user._id)} key={user._id} >
                                         {user.name}
-                                    </button>
-                                </Card>
+                                </ListItem>
                             ))}
-                        </div>
+                        </List>
                     )}
                     {loadingChat && <div>Loading chat...</div>}
                 </Drawer>

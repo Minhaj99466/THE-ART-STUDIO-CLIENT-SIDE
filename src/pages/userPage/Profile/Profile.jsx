@@ -1,12 +1,13 @@
-import { Container } from "@mui/material";
+
+
 import TabsOrder from "../../../components/userComponents/UserProfile/TabsOrder";
 
 function Profile() {
   return (
     <>
-      <Container className="mt-10">
+    <div className="container mx-auto mt-10">
       <TabsOrder />
-      </Container>
+      </div>
     </>
   );
 }

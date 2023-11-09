@@ -1,19 +1,19 @@
-import React from 'react'
+
 import { ChatState } from "./components/Context/ChatProvider";
 import { Box, Button, FormControl, IconButton, Spinner, Text } from '@chakra-ui/react';
 import { Input } from "@chakra-ui/input";
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import io from "socket.io-client";
-import Lottie from 'lottie-react';
+// import Lottie from 'lottie-react';
 import userRequest from '../../../utils/userRequest';
-import doctorRequest from '../../../utils/doctorRequest';
+// import doctorRequest from '../../../utils/doctorRequest';
 import animationData from './typing.json'
 import { useEffect } from 'react';
 import ScrollableChat from './components/ScrollableChat';
 var socket, selectedChatCompare;
 // const ENDPOINT = "http://localhost:8801";
-const ENDPOINT = import.meta.env.VITE_BACKENDURL;
+const ENDPOINT = import.meta.env.VITE_USERURL;
 
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -190,27 +190,28 @@ selectedChat ? (
             pb={3}
             px={2}
             w="100%"
-            fontFamily="Work sans"
+            fontFamily="adobe garamond"
             display="flex"
             justifyContent={{ base: "start" }}
             alignItems="center"
-            bg="#CAF0F8"
+            borderRadius={5}
+            bg="#b5b1a6"
           >
             <IconButton
               display={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
-            <img src={selectedChat.users.doctor && selectedChat.users.doctor.displaypicture} className='h-10 w-10 rounded-full me-2' />
+            <img src={selectedChat.users.artist && selectedChat.users.artist.displaypicture} className='h-10 w-10 rounded-full me-2' />
             
-            {selectedChat.users.doctor && selectedChat.users.doctor.name}
+            {selectedChat.users.artist && selectedChat.users.artist.name}
           </Text>
           <Box
             display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#E8E8E8"
+            bg="#F2EEE3"
             w="100%"
             h="90%"
             borderRadius="lg"
@@ -237,10 +238,10 @@ selectedChat ? (
               <div className="relative flex w-full">
                 <Input
                   className="w-full"
-                  borderRadius={10}
+                  borderRadius={5}
                   variant="filled"
-               
-                  bg="#E0E0E0"
+                  pl={5}
+                  bg="#fff"
                   placeholder="Enter a message..."
                   value={newMessage}
                   onChange={typingHandler}
