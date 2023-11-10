@@ -7,9 +7,7 @@ function ExplorePage() {
     <>
       <Banner />
       <div className="container mx-auto">
-     
           <ProfileCard />
-    
       </div>
     </>
   );

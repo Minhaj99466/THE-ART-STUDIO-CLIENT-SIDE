@@ -143,7 +143,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   }, [selectedChatCompare, notification, fetchAgain,messages]);
   
   
-  
+  console.log(selectedChat,"selectedChaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat");
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -191,7 +191,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
-             <img src={selectedChat.users.user && selectedChat.users.user.displaypicture} className='h-10 w-10 rounded-full me-2' />
+             <img src={selectedChat.users.user && selectedChat.users.artist.displaypicture} className='h-10 w-10 rounded-full me-2' />
             {selectedChat.users.user && selectedChat.users.user.name}
           </Text>
           <Box
@@ -233,12 +233,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   className="w-full"
                   borderRadius={15}
                   bg="#E0E0E0"
+                  pl={5}
                   placeholder="Enter a message..."
                   value={newMessage}
                   onChange={typingHandler}
                   onKeyDown={sendMessage}
                 />
-                <Button onClick={sendMessage}>Send</Button>
+             
               </div>
             </FormControl>
           </Box>

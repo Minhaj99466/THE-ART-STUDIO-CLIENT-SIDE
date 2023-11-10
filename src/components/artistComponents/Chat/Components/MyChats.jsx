@@ -27,7 +27,7 @@ const MyChats = ({ fetchAgain }) => {
         try {
            
             console.log(selectedChat);
-            const userId = user.artistInfo.id
+            const userId = user.id
             const { data } = await ArtistRequest.get(`/fetchchat/${userId}`);
             console.log(data);
             setChats(data);
@@ -110,7 +110,7 @@ const MyChats = ({ fetchAgain }) => {
                             >
                                  <Box>
                                     
-                                    <img src={chat.users.user ? chat.users.user.displaypicture : dp } className="h-10 w-10 me-3 rounded-full"/>
+                                    <img src={chat.users.user ? dp : null } className="h-10 w-10 me-3 rounded-full"/>
                                 </Box>
                                 <Box>
                                 <Text>
@@ -125,7 +125,7 @@ const MyChats = ({ fetchAgain }) => {
                                             :
                                         </b>
                                         {chat.latestMessage.content.length > 50
-                                            ? chat.latestMessage.content.substring(0, 51) + "..."
+                                            ? chat.latestMessage.content.substring(0, 20) + "..."
                                             : chat.latestMessage.content}
                                     </Text>
                                 )}

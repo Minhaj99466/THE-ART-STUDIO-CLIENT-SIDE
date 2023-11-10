@@ -172,12 +172,12 @@ function SideDrawer() {
                             className=""
                             label="Search by name or email:"
                             type="text"
-                            variant="standard"
+                            variant="outlined"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
 
-                        <button onClick={handleSearch}>Go</button>
+                        <Button  variant="text" onClick={handleSearch}>search</Button>
                     </div>
                     {loading ? (
                         <div>Loading...</div>
@@ -185,9 +185,9 @@ function SideDrawer() {
                         <div>
                             {searchResult?.map((user) => (
                                 <Card key={user._id} className="bg-[#a49d9d] h-9 rounded-sm text-black">
-                                    <button onClick={() => accessChat(user._id)}>
+                                    <Button variant="text" onClick={() => accessChat(user._id)}>
                                         {user.name}
-                                    </button>
+                                    </Button>
                                 </Card>
                             ))}
                         </div>

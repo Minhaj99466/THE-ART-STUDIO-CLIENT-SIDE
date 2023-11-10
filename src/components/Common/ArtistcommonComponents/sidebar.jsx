@@ -38,8 +38,8 @@ const Sidebar = () => {
     },
     {
       icon: <Cog6ToothIcon className="h-7 w-5" />,
-      text: "Posts",
-      onClick: () => console.log("clients"),
+      text: "Chats",
+      onClick: () => navigate('/artist/chats'),
     },
   ];
   

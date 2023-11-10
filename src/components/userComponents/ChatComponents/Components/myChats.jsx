@@ -23,14 +23,11 @@ const MyChats = ({ fetchAgain }) => {
 
     const fetchChats = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization:`Bearer ${user.token}`,
-                },
-            };
-            console.log(config, selectedChat, "selected chat");
-            const userId = user.userInfo.id
-            const { data } = await userRequest.get(`/fetchchat/${userId}`, config);
+           
+            console.log( selectedChat, "selected chat");
+            const userId = user.id
+            console.log(userId,"userrrrrrrrrrrrrrrrrrrrrId");
+            const { data } = await userRequest.get(`/fetchchat/${userId}`);
             console.log(data);
             setChats(data);
         } catch (error) {
@@ -63,7 +60,7 @@ const MyChats = ({ fetchAgain }) => {
             w={{ base: "100%", md: "31%" }}
             borderRadius="lg"
             borderWidth="1px"
-            bg="#fff"
+            bg="#EDE9E3"
         >
             <Box
                 display="flex"
@@ -96,10 +93,10 @@ const MyChats = ({ fetchAgain }) => {
                 h="100%"
                 borderRadius="lg"
                 overflowY="hidden"
-
+        
             >
                 {chats ? (
-                    <Stack overflowY="scroll">
+                    <Stack >
                         {chats.map((chat) => (
                             <Box
                                 onClick={() => setSelectedChat(chat)}

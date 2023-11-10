@@ -43,7 +43,6 @@ function ArtistRoute() {
         <Route exact path='/notifications' element={<Notification/>}/> 
         <Route exact path='/bookings' element={<BookingsPage/>}/> 
         <Route exact path='/chats' element={<ChatList/>} />
-        
         </Route>
         </Route>
        

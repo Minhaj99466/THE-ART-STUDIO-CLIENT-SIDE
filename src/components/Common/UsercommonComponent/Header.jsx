@@ -10,6 +10,7 @@ import {
 import { Logoutdetails } from "../../../redux/userSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { ChatBubbleOvalLeftIcon, ChatBubbleBottomCenterIcon } from "@heroicons/react/24/solid";
 
 export default function Header() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -56,6 +57,12 @@ export default function Header() {
           Profile
         </a>
       </Typography>
+      
+        <IconButton onClick={()=>navigate('/chats')} size="lg" className=" bg-transparent">
+              <ChatBubbleOvalLeftIcon className="hidden h-5 w-5 group-hover:block" />
+              <ChatBubbleBottomCenterIcon className="block h-5 w-5 group-hover:hidden" />
+            </IconButton>
+      
     </ul>
   );
 

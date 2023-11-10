@@ -8,6 +8,8 @@ import {
     isSameSenderMargin,
     isSameUser, 
 } from "./Config/ChatLogics";
+import dp from "../../../../assets/userAssets/userLogin2.jpg"
+
 
 const ScrollableChat = ({ messages }) => {
   console.log(messages,"Messages In Scrollable");
@@ -54,7 +56,7 @@ const ScrollableChat = ({ messages }) => {
                     size="2px"
                     cursor="pointer"
                     name={m.sender.name}
-                    src='https://www.clipartmax.com/png/small/54-546487_a-little-over-a-month-ago-i-had-lasik-surgery-user-profile.png'
+                    src={dp}
                   />
                 )}
               </Tooltip>

@@ -78,7 +78,16 @@ const ScrollableChat = ({ messages }) => {
                       : "#7C7D80"
                     : m.sender.artist._id === user.id
                     ? "#BEE3F8"
-                    : "#FFFF"
+                    : "#FFF"
+                }`,
+                color: `${
+                  m.sender.user
+                    ? m.sender.user.id === user.id
+                      ? "#ffff"
+                      : "#ffff"
+                    : m.sender.artist._id === user.id
+                    ? "#000"
+                    : "#000"
                 }`,
                 marginLeft: isSameSenderMargin(messages, m, i, user.id),
                 marginTop: isSameUser(messages, m, i, user.id) ? 3 : 10,

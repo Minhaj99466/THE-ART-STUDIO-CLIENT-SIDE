@@ -123,7 +123,7 @@ console.log(search);
       </div>
     </div>
 
-      <div className="grid grid-cols-1 ml-16  md:grid-cols-3 gap-12 md:ml-0">
+      <div className="grid  grid-cols-1 ml-10  md:grid-cols-3  gap-12 md:ml-24">
         {data.ArtistData? (
           data.ArtistData.map((item) => (
             <Card
