@@ -14,6 +14,8 @@ axiosInterceptorInstance.interceptors.request.use((req)=> {
     return req
 })
 
+
+
 axiosInterceptorInstance.interceptors.response.use(
     (response) => response,
     (error) => {
@@ -24,6 +26,8 @@ axiosInterceptorInstance.interceptors.response.use(
       return Promise.reject(error);
     }
   );
+
+
 
 
 export default axiosInterceptorInstance
