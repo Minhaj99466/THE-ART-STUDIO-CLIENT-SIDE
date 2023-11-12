@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 import { BookingSlot } from "../../../api/userApi";
 
 
-export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,totalDays}) {
+export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,totalDays,wallet}) {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
@@ -109,7 +109,7 @@ export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,total
                     <CardBody>
                         <div className="flex justify-between">
                             <Typography> Fees For Artist</Typography>
-                            <Typography>₹ {fee*totalDays}</Typography>
+                            <Typography>₹ {(fee*totalDays)-wallet}</Typography>
                         </div>
                         <Tabs value="card" className="overflow-visible">
                             <TabsHeader className="relative z-0 ">
@@ -120,9 +120,6 @@ export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,total
 
                             >
                                 <TabPanel value="card" className="p-0">
-
-                                   
-
                                     <main className="flex-grow flex items-center justify-center shadow-none">
                                         <form
                                             id="payment-form"

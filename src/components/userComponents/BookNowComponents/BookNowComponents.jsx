@@ -6,11 +6,16 @@ import {
   Typography,
   Button,
   Avatar,
+  Checkbox,
 } from "@material-tailwind/react";
 import moment from "moment";
 import { GenerateSuccess, GenerateError } from "../../../toast/toast";
 import { json, useParams } from "react-router-dom";
-import { BookingSlot, getArtistDetails } from "../../../api/userApi";
+import {
+  BookingSlot,
+  GetuserDetails,
+  getArtistDetails,
+} from "../../../api/userApi";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
@@ -18,9 +23,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Payment } from "./Payement";
 import userRequest from "../../../utils/userRequest";
-const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHER_KEY
-
-
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHER_KEY;
 
 const stripePromise = loadStripe(stripeKey);
 
@@ -46,17 +49,27 @@ function CheckIcon() {
 export default function PricingCard() {
   const [clientSecret, setClientSecret] = useState();
   const [data, setData] = useState();
+  const [user, setUser] = useState();
+  const [wallet, setWallet] = useState(0);
   // const [did,setDid]=useState(false)
   const param = useParams();
   const id = param.id;
   const fromDate = moment(param.from, "DD-MM-YYYY");
   const toDate = moment(param.to, "DD-MM-YYYY");
 
-  
-
   const totalDays = moment.duration(toDate.diff(fromDate)).asDays() + 1;
 
-  
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const res = await GetuserDetails();
+        setUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +90,8 @@ export default function PricingCard() {
     if (id) {
       const makeRequest = async () => {
         try {
-          const res = await userRequest.post(`/payment/${id}/${totalDays}`,);
+          console.log(wallet,"wwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+          const res = await userRequest.post(`/payment/${id}/${totalDays}/${wallet}`);
           setClientSecret(res.data.clientSecret);
         } catch (error) {
           console.error("Error while making the request:", error);
@@ -213,9 +227,7 @@ export default function PricingCard() {
                 color="white"
                 className="mt-6 flex justify-center gap-1 text-7xl font-normal"
               >
-                <span className="mt-2 text-4xl">
-                  ₹ { data.data.fees}
-                </span>
+                <span className="mt-2 text-4xl">₹ {data.data.fees}</span>
                 <span className="self-end text-lg">/Day</span>
               </Typography>
             </CardHeader>
@@ -258,25 +270,44 @@ export default function PricingCard() {
                     <CheckIcon />
                   </span>
                   <Typography className="font-normal">
-                    TOTAL AMOUNT : {totalDays * data.data.fees}
+                    TOTAL AMOUNT : {totalDays * data.data.fees - wallet}
                   </Typography>
                 </li>
               </ul>
             </CardBody>
             <CardFooter className="mt-12 p-0">
-              {clientSecret?(
-              <Elements options={options} stripe={stripePromise}>
-                <Payment
-                  Secret={clientSecret}
-                  artistId={id}
-                  slotfromDate={fromDate}
-                  slotToDate={toDate}
-                  fee={data.data.fees}
-                  totalDays={totalDays}
-                />
-              </Elements>
-              ):(null)}
+              {clientSecret ? (
+                <Elements options={options} stripe={stripePromise}>
+                  <Payment
+                    Secret={clientSecret}
+                    artistId={id}
+                    slotfromDate={fromDate}
+                    slotToDate={toDate}
+                    fee={data.data.fees}
+                    totalDays={totalDays}
+                    wallet={wallet}
+                  />
+                </Elements>
+              ) : null}
             </CardFooter>
+            <h1 className="flex justify-center font-extrabold mt-5">+</h1>
+            <div className="flex justify-center">
+              {user && user.user.wallet ? (
+                <h1 className="font-bold">
+                  Wallet
+                  <Checkbox
+                    color="red"
+                    onClick={() =>
+                      setWallet((prevWallet) =>
+                        prevWallet === user.user.wallet ? 0 : user.user.wallet
+                      )
+                    }
+                  />
+                </h1>
+              ) : (
+                <h1>hai</h1>
+              )}
+            </div>
           </Card>
         ) : null}
       </div>

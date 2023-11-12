@@ -123,5 +123,13 @@ export async function CancelBooking(cancelData){
         console.log(error);
     }
 }
+export async function GetuserDetails(){
+    try {
+        const data=await userApi.get('/userwallet')
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
