@@ -20,10 +20,6 @@ export default function EmailVerify() {
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
-        // const url= `http://localhost:3002/${params.id}/verify/${params.token}`
-        // console.log(url);
-        // const {data}=await axios.get(url)
-        // console.log(data);
         const res = await Verify(params.id, params.token);
         if (res) {
           console.log(res);
@@ -35,7 +31,7 @@ export default function EmailVerify() {
       }
     };
     verifyEmailUrl();
-  }, [params]);
+  },[params]);
 
   return (
     <>

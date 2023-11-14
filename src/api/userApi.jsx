@@ -131,5 +131,14 @@ export async function GetuserDetails(){
         console.log(error);
     }
 }
+export async function WalletPay(bookingData){
+    try {
+        console.log(bookingData);
+        const data=await userApi.post('/payWallet',bookingData)
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 

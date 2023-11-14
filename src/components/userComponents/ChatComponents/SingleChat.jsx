@@ -68,6 +68,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         }
       };
 
+      setTimeout(() => {
+        setLoading(false)
+      }, 5000);
+
       const sendMessage = async (event) => {
         if (event.key === "Enter" && newMessage) {
          

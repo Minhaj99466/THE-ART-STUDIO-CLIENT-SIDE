@@ -6,14 +6,16 @@ import {
   Typography,
   Button,
   Avatar,
-  Checkbox,
+  Checkbox
 } from "@material-tailwind/react";
+import { Spinner } from "@material-tailwind/react";
 import moment from "moment";
 import { GenerateSuccess, GenerateError } from "../../../toast/toast";
-import { json, useParams } from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 import {
   BookingSlot,
   GetuserDetails,
+  WalletPay,
   getArtistDetails,
 } from "../../../api/userApi";
 import { useSelector } from "react-redux";
@@ -50,7 +52,9 @@ export default function PricingCard() {
   const [clientSecret, setClientSecret] = useState();
   const [data, setData] = useState();
   const [user, setUser] = useState();
-  const [wallet, setWallet] = useState(0);
+  const [load, setLoading] = useState(false);
+  const navigate=useNavigate()
+
   // const [did,setDid]=useState(false)
   const param = useParams();
   const id = param.id;
@@ -90,8 +94,7 @@ export default function PricingCard() {
     if (id) {
       const makeRequest = async () => {
         try {
-          console.log(wallet,"wwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-          const res = await userRequest.post(`/payment/${id}/${totalDays}/${wallet}`);
+          const res = await userRequest.post(`/payment/${id}/${totalDays}/`);
           setClientSecret(res.data.clientSecret);
         } catch (error) {
           console.error("Error while making the request:", error);
@@ -109,6 +112,19 @@ export default function PricingCard() {
     clientSecret,
     appearance,
   };
+
+
+  const handleWalletPay=async ()=>{
+    const fees=data.data.fees
+    setLoading(true)
+    const res=await WalletPay({id,totalDays,fees})
+    if (res.data.payment) {
+      setTimeout(()=>{
+        navigate("/success")
+      },5000)
+
+  }
+  }
 
   // async function handleBooking() {
   //   const bookingDetails = {
@@ -270,7 +286,7 @@ export default function PricingCard() {
                     <CheckIcon />
                   </span>
                   <Typography className="font-normal">
-                    TOTAL AMOUNT : {totalDays * data.data.fees - wallet}
+                    TOTAL AMOUNT : {totalDays * data.data.fees }
                   </Typography>
                 </li>
               </ul>
@@ -285,27 +301,24 @@ export default function PricingCard() {
                     slotToDate={toDate}
                     fee={data.data.fees}
                     totalDays={totalDays}
-                    wallet={wallet}
                   />
                 </Elements>
               ) : null}
             </CardFooter>
-            <h1 className="flex justify-center font-extrabold mt-5">+</h1>
-            <div className="flex justify-center">
-              {user && user.user.wallet ? (
+              
+            <div className="flex justify-center mt-5">
+              {user && (user.user.wallet === totalDays*data.data.fees) ? (
                 <h1 className="font-bold">
-                  Wallet
-                  <Checkbox
-                    color="red"
-                    onClick={() =>
-                      setWallet((prevWallet) =>
-                        prevWallet === user.user.wallet ? 0 : user.user.wallet
-                      )
-                    }
-                  />
-                </h1>
+                {load? (
+                  <Spinner/> 
+                ) : (
+                  <Button onClick={handleWalletPay}>
+                    Pay Using Wallet
+                  </Button>
+                )}
+              </h1>
               ) : (
-                <h1>hai</h1>
+                null
               )}
             </div>
           </Card>

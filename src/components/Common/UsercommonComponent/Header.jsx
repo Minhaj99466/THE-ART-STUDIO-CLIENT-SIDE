@@ -5,15 +5,25 @@ import {
   Typography,
   Button,
   IconButton,
+  Badge,
 } from "@material-tailwind/react";
 
 import { Logoutdetails } from "../../../redux/userSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ChatBubbleOvalLeftIcon, ChatBubbleBottomCenterIcon } from "@heroicons/react/24/solid";
+import {
+  ChatBubbleOvalLeftIcon,
+  ChatBubbleBottomCenterIcon,
+} from "@heroicons/react/24/solid";
+
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { BellIcon } from "@chakra-ui/icons";
+import { getSender } from "../../userComponents/ChatComponents/components/Config/ChatLogics";
+import { ChatState } from "../../userComponents/ChatComponents/components/Context/ChatProvider";
 
 export default function Header() {
   const [openNav, setOpenNav] = React.useState(false);
+  const { notification, setNotification } = ChatState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,12 +67,28 @@ export default function Header() {
           Profile
         </a>
       </Typography>
-      
-        <IconButton onClick={()=>navigate('/chats')} size="lg" className=" bg-transparent">
+
+      <Menu>
+        <MenuButton onClick={() => navigate("/chats")}>
+          <IconButton size="lg" className=" bg-transparent">
+            <Badge content={notification.length}>
               <ChatBubbleOvalLeftIcon className="hidden h-5 w-5 group-hover:block" />
               <ChatBubbleBottomCenterIcon className="block h-5 w-5 group-hover:hidden" />
-            </IconButton>
-      
+            </Badge>
+          </IconButton>
+        </MenuButton>
+
+        <MenuList>
+          {!notification.length && "NO New Messages"}
+          {/* {notification.map((notif) => (
+            <MenuItem key={notif._id}>
+              {notif.chat
+                ? `New Message In ${notif.chat.chatName.users.artist.name}`
+                : `New Message from ${getSender}`}
+            </MenuItem>
+          ))} */}
+        </MenuList>
+      </Menu>
     </ul>
   );
 
@@ -70,7 +96,8 @@ export default function Header() {
     <>
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-[#caa487] ">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography onClick={()=>navigate('/')}
+          <Typography
+            onClick={() => navigate("/")}
             as="a"
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-extrabold"
@@ -90,7 +117,7 @@ export default function Header() {
               </Button>
             ) : (
               <Button
-                onClick={(()=>navigate('/login'))}
+                onClick={() => navigate("/login")}
                 variant="outlined"
                 size="sm"
                 className="hidden lg:inline-block hover:bg-black hover:text-white "

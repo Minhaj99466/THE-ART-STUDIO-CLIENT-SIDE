@@ -21,7 +21,7 @@ const MyChats = ({ fetchAgain }) => {
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
     //   const toast = useToast();
-
+    
     const fetchChats = async () => {
         // console.log(user._id);
         try {
@@ -29,8 +29,14 @@ const MyChats = ({ fetchAgain }) => {
             console.log(selectedChat);
             const userId = user.id
             const { data } = await ArtistRequest.get(`/fetchchat/${userId}`);
-            console.log(data);
-            setChats(data);
+            
+            const sortedChats = data.sort((chatA, chatB) => {
+                const latestMessageTimeA = new Date(chatA.latestMessage.createdAt);
+                const latestMessageTimeB = new Date(chatB.latestMessage.createdAt);
+    
+                return latestMessageTimeB - latestMessageTimeA;
+            });
+            setChats(sortedChats);
         } catch (error) {
             //   toast({
             //     title: "Error Occured!",
@@ -52,6 +58,8 @@ const MyChats = ({ fetchAgain }) => {
         // eslint-disable-next-line
     }, [artistInfo,fetchAgain]);
 
+
+    
     return (
         <Box
             display={{ base: selectedChat ? "none" : "flex", md: "flex" }}

@@ -19,7 +19,6 @@ import {
 
 const ScrollableChat = ({ messages }) => {
   const { user } = ChatState();
-  console.log(user);
   const chatContainerRef = useRef(null);
 
 
@@ -39,7 +38,8 @@ const ScrollableChat = ({ messages }) => {
     >
       {messages &&
         messages.map((m, i) => (
-          <div style={{ display: "flex" }} key={i}>
+          <div style={{ display: "flex", flexDirection: "column" }} key={i}>
+          <div style={{ display: "flex" }}>
             {(isSameSender(messages, m, i, user.id) ||
               isLastMessage(messages, i, user.id)) && (
               <Tooltip label={m.sender.artist.name} placement="bottom-start" hasArrow>
@@ -70,6 +70,7 @@ const ScrollableChat = ({ messages }) => {
               </Tooltip>
             )}
             <span
+           
               style={{
                 backgroundColor: `${
                   m.sender.user
@@ -98,6 +99,20 @@ const ScrollableChat = ({ messages }) => {
             >
               {m.content}
             </span>
+              </div>
+              <span
+  style={{
+    marginLeft: m.sender.user
+      ? m.sender.user.id === user.id
+        ? "auto"
+        : "0" // Align time to right if the sender is a user
+      : "auto", // Align time to left if the sender is an artist
+    alignSelf: "flex-end",
+    fontSize:"10px"
+  }}
+>
+{new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+</span>
           </div>
         ))}
     </div>

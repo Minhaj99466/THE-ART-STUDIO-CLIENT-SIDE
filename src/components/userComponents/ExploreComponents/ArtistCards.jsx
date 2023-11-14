@@ -124,7 +124,7 @@ console.log(search);
     </div>
 
       <div className="grid  grid-cols-1 ml-10  md:grid-cols-3  gap-12 md:ml-24">
-        {data.ArtistData? (
+        {data && data.ArtistData? (
           data.ArtistData.map((item) => (
             <Card
               className="w-72 grid justify-center mt-10 md:grid md:justify-center bg-[#e8eddf]"

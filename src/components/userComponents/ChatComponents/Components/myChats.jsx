@@ -17,19 +17,24 @@ const MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState();
 
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-    console.log(user,"hjghj");
 
     //   const toast = useToast();
 
     const fetchChats = async () => {
         try {
            
-            console.log( selectedChat, "selected chat");
             const userId = user.id
-            console.log(userId,"userrrrrrrrrrrrrrrrrrrrrId");
+
             const { data } = await userRequest.get(`/fetchchat/${userId}`);
-            console.log(data);
-            setChats(data);
+
+            const sortedChats = data.sort((chatA, chatB) => {
+                const latestMessageTimeA = new Date(chatA.latestMessage.createdAt);
+                const latestMessageTimeB = new Date(chatB.latestMessage.createdAt);
+    
+                // Sort in descending order (newest message first)
+                return latestMessageTimeB - latestMessageTimeA;
+            });
+            setChats(sortedChats);
         } catch (error) {
             //   toast({
             //     title: "Error Occured!",
@@ -110,7 +115,6 @@ const MyChats = ({ fetchAgain }) => {
                                 display="flex"
                             >
                                 <Box>
-                                    
                                     <img src={chat.users.artist ? chat.users.artist.displaypicture : dp} className="h-10 w-10 me-3 rounded-full"/>
                                 </Box>
                                 <Box>
