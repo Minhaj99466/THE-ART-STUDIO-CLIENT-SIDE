@@ -22,6 +22,11 @@ const Sidebar = () => {
   const menuItems = [
     {
       icon: <PresentationChartBarIcon className="h-7 w-5" />,
+      text: "DashBoard",
+      onClick: () => (navigate('/artist/dashboard')),
+    },
+    {
+      icon: <PresentationChartBarIcon className="h-7 w-5" />,
       text: "Gallery",
       onClick: () => (navigate('/artist/gallery')),
     },

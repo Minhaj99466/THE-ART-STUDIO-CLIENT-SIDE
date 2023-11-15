@@ -10,7 +10,7 @@ import {
 import Img from "../../assets/userAssets/download (3).jpg";
 
 import { UserLogin } from "../../api/userApi";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import { LoginSchema } from "../../yup/validation";
@@ -225,7 +225,7 @@ export default function Login() {
           </CardBody>
         </Card>
       </div>
-      <ToastContainer />
+
     </>
   );
 }

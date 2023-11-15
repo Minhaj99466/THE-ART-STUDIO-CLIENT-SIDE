@@ -9,7 +9,7 @@ import {
 // import {Formik} from 'formik'
 import Img from "../../assets/userAssets/download (3).jpg";
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import  {sendMail}  from "../../api/userApi";
 import { GenerateError, GenerateSuccess } from "../../toast/toast";
@@ -69,7 +69,7 @@ export default function Forget() {
           </CardBody>
         </Card>
       </div>
-      <ToastContainer />
+
     </>
   );
 }

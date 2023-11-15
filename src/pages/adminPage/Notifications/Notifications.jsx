@@ -2,7 +2,7 @@ import Notifications from "../../../components/adminComponents/Notifications"
 function DashBoard() {
   return (
     <div>
-      <Notifications/>
+     <h1>ujhghj</h1>
     </div>
   )
 }

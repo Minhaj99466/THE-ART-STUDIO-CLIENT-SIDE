@@ -34,7 +34,7 @@ export default function Notifications() {
     const fetchPositions = async () => {
       const response = await DateVerify();
       setData(response.data);
-      setRefetch(false)
+      setRefetch(false);
     };
     fetchPositions();
   }, [fetch]);
@@ -52,52 +52,55 @@ export default function Notifications() {
 
   return (
     <>
-      {data &&
-        data.artist[0].bookingsPending.map(
-          ({ fromDate, toDate, totalDays, _id, userId }) => (
-            <div className="flex w-full flex-col gap-2 p-3 " key={_id}>
-              <Alert
-                icon={<IconOutlined />}
-                className="bg-[#c5d3c8] "
-                action={
-                  <>
-                    <Button
-                      variant="text"
-                      color="red"
-                      size="lg"
-                      className="!absolute top-6 right-1"
-                      onClick={() => handleApprove(_id, "Rejected")}
-                    >
-                      Reject
-                    </Button>
-                    <Button
-                      variant="text"
-                      color="green"
-                      size="lg"
-                      className="!absolute top-6 right-20"
-                      onClick={() => handleApprove(_id, "Approved")}
-                    >
-                      Approve
-                    </Button>
-                  </>
-                }
-              >
-                <Typography className="font-medium text-blue-gray-900">
-                  Date Verification request.
-                </Typography>
+      {data && data.artist[0].bookingsPending.length > 0 ? (
+        data.artist[0].bookingsPending.map(({ fromDate, toDate, totalDays, _id, userId }) => (
+          <div className="flex w-full flex-col gap-2 p-3" key={_id}>
+            <Alert
+              icon={<IconOutlined />}
+              className="bg-[#c5d3c8] "
+              action={
+                <>
+                  <Button
+                    variant="text"
+                    color="red"
+                    size="lg"
+                    className="!absolute top-6 right-1"
+                    onClick={() => handleApprove(_id, "Rejected")}
+                  >
+                    Reject
+                  </Button>
+                  <Button
+                    variant="text"
+                    color="green"
+                    size="lg"
+                    className="!absolute top-6 right-20"
+                    onClick={() => handleApprove(_id, "Approved")}
+                  >
+                    Approve
+                  </Button>
+                </>
+              }
+            >
+              <Typography className="font-medium text-blue-gray-900">
+                Date Verification request.
+              </Typography>
 
-                <ul className="mt-2 ml-2 list-inside list-disc text-blue-gray-600">
-                  <li>
-                    {" "}
-                    From {fromDate} to {toDate}{" "}
-                  </li>
-                  <li> {totalDays} days </li>
-                  <li>Request From {userId.name} </li>
-                </ul>
-              </Alert>
-            </div>
-          )
-        )}
+              <ul className="mt-2 ml-2 list-inside list-disc text-blue-gray-600">
+                <li>
+                  {" "}
+                  From {fromDate} to {toDate}{" "}
+                </li>
+                <li> {totalDays} days </li>
+                <li>Request From {userId.name} </li>
+              </ul>
+            </Alert>
+          </div>
+        ))
+      ) : (
+        <Typography className="text-blue-gray-900 text-center mt-4">
+          No notifications
+        </Typography>
+      )}
     </>
   );
 }

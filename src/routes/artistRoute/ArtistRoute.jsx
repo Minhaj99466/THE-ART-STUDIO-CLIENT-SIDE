@@ -16,6 +16,7 @@ import Gallery from "../../components/artistComponents/Gallery"
 import DashBoard from "../../pages/adminPage/Notifications/Notifications"
 import BookingsPage from "../../pages/artistPage/Bookings/BookingsPage"
 import ChatList from "../../components/artistComponents/Chat/ChatList"
+import Notfound from "../../components/artistComponents/ErrorPage/404"
 
 
 
@@ -30,12 +31,13 @@ function ArtistRoute() {
         <Route path="/:id/password/:token" element={<PasswordConfirm/>}/>
         <Route path="/:id/verify/:token" element={<EmailVerify/>}/>
         </Route>
+     
 
 
         <Route element={<ArtistProtect/>}>
         <Route path="/"  element={<Layout></Layout>}>
         <Route exact path='/' element={<DashBoard/>}/> 
-        <Route exact path='/home' element={<DashBoard/>}/> 
+        <Route exact path='/dashboard' element={<DashBoard/>}/> 
         <Route exact path='/profile' element={<Profile/>}/> 
         <Route exact path='/addProfile' element={<AddProfile/>}/> 
         <Route exact path='/gallery' element={<Gallery/>}/> 
@@ -45,6 +47,7 @@ function ArtistRoute() {
         <Route exact path='/chats' element={<ChatList/>} />
         </Route>
         </Route>
+        <Route path='*' element={<Notfound/>} />  
        
     </Routes>
   )
