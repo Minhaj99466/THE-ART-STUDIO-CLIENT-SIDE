@@ -21,7 +21,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setuserdetails } from "../../redux/userSlice/userSlice";
+import { setuserdetails } from "../../Redux/userSlice/userSlice";
 import { ToastContainer } from "react-toastify";
 
 export default function Login() {
