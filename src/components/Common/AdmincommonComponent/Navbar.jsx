@@ -23,7 +23,7 @@ import {
   BellIcon,
 } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { Logoutdetails } from "../../../redux/adminSlice/adminSlice";
+import { Logoutdetails } from "../../../Redux/adminSlice/adminSlice";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../components/Common/AdmincommonComponent/Sidebar";
 import img from "../../../HomeImg/FAÜNA.jpeg";

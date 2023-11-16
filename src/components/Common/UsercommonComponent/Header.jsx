@@ -8,7 +8,7 @@ import {
   Badge,
 } from "@material-tailwind/react";
 
-import { Logoutdetails } from "../../../redux/userSlice/userSlice";
+import { Logoutdetails } from "../../../Redux/userSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
