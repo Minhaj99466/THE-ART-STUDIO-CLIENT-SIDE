@@ -1,6 +1,6 @@
 import { useState } from "react";
 import  ChatState  from "./Components/Context/ChatProvider";
-import MyChats from "./components/MyChats";
+import MyChats from "./Components/MyChats";
 import Chatbox from "./components/Chatbox";
 import { Box } from "@chakra-ui/react";
 import './ChatList.css'
