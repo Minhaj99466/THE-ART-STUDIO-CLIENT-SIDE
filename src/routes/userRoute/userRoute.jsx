@@ -4,7 +4,7 @@ import Home from "../../pages/userPage/Home/Home";
 import Login from "../../pages/userPage/Login/LoginPage";
 import UserPublic from "../../Protected/userPublic";
 import UserProtect from "../../Protected/userProtected";
-import EmailVerify from "../../components/userComponents/emailVerify";
+import EmailVerify from "../../components/userComponents/EmailVerify";
 import Forget from "../../components/userComponents/Forget";
 import PasswordConfirm from "../../components/userComponents/PasswordConfirm";
 import Layout from "../../pages/userPage/Layout/Layout";
