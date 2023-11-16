@@ -18,7 +18,7 @@ import {
   import { useState, useEffect } from "react";
   import { useGoogleLogin } from "@react-oauth/google";
   import { useDispatch } from "react-redux";
-  import { setartistdetails } from "../../redux/artistSlice/artistSlice";
+  import { setartistdetails } from "../../Redux/artistSlice/artistSlice";
   import axios from "axios";
  
   import { useNavigate } from "react-router-dom";
