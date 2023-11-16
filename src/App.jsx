@@ -3,6 +3,7 @@ import UserRoute from "./routes/userRoute/userRoute"
 import ArtistRoute from "./routes/artistRoute/ArtistRoute"
 import AdminRoute from "./routes/adminRoute/adminRoute"
 import './App.css'
+
 import ChatUserProvider from "./components/userComponents/ChatComponents/components/Context/ChatProvider"
 import ChatProvider from "./components/artistComponents/Chat/Components/Context/ChatProvider"
 function App() {
