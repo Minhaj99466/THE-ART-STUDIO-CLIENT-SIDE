@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChatState } from "./components/Context/ChatProvider";
+import  ChatState  from "./components/Context/ChatProvider";
 import SideDrawer from "./components/SideDrawer";
 import MyChats from "./components/MyChats";
 import Chatbox from "./components/Chatbox";
