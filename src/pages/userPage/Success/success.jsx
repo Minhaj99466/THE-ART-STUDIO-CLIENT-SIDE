@@ -2,7 +2,7 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
-export function Success() {
+export default function Success() {
   const navigate = useNavigate()
   return (
     <>

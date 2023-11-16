@@ -12,7 +12,7 @@ import ExplorePage from "../../pages/userPage/ExplorePage/ExplorePage";
 import SingleView from "../../pages/userPage/SingleView/SingleView";
 // import Dummy from '../../components/userComponents/SIngleProfileComponents/SinGleProfilePost'
 import BookNow from "../../pages/userPage/BookNow/BookNowPage";
-import  Success  from "../../pages/userPage/Success/Success";
+import Success  from "../../pages/userPage/Success/Success";
 import ProfileCard from "../../pages/userPage/Profile/Profile";
 import ChatList from "../../components/userComponents/ChatComponents/ChatList";
 import Notfound from "../../components/userComponents/Notfound";
