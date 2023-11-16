@@ -53,7 +53,7 @@ export default function Notifications() {
     return (
 
         <>
-            {data.data.map(({ name, _id }) => (
+            {data.length>0?(data.data.map(({ name, _id }) => (
 
                 <div className="flex w-full flex-col gap-2 p-3 " key={_id}>
                     <Alert
@@ -77,7 +77,7 @@ export default function Notifications() {
                     </Alert>
 
                 </div>
-            ))}
+            ))):( <div className="flex items-center justify-center h-full"> No Notification</div> )}
         </>
 
 

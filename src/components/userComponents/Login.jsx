@@ -22,6 +22,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setuserdetails } from "../../redux/userSlice/userSlice";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -225,6 +226,7 @@ export default function Login() {
           </CardBody>
         </Card>
       </div>
+      <ToastContainer/>
 
     </>
   );

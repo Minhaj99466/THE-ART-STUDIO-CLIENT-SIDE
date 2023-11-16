@@ -149,3 +149,11 @@ export async function FetchChat(userId){
         console.log(error);
     }
 }
+export const DashBoard = async () =>{
+    try {
+      const data =await artistApi.get('/dashboard')
+      return data
+    } catch (error) {
+      console.log(error.message);
+    }
+  }

@@ -54,18 +54,6 @@ import { useNavigate } from "react-router-dom";
             </ListItemPrefix>
             UserList
           </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <Cog6ToothIcon className="h-7 w-5" />
-            </ListItemPrefix>
-            Settings
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <PowerIcon className="h-7 w-5" />
-            </ListItemPrefix>
-            Log Out
-          </ListItem>
         </List>
       </Card>
       </>

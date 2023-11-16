@@ -135,7 +135,7 @@ export default function ComplexNavbar() {
           <Drawer
             open={open}
             onClose={closeDrawer}
-            className="bg-[#5d7582] md:invisible"
+            className="bg-[#536F57] md:invisible"
           >
             <div className="mb-2 flex items-center justify-between p-4 md:h-full">
               <Typography variant="h5" color="white">

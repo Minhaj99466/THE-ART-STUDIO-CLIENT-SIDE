@@ -58,3 +58,11 @@ export async function verifyArtist(id) {
     console.log(error);
   }
 }
+export const DashBoard = async () =>{
+  try {
+    const data =await adminApi.get('/dashboard')
+    return data
+  } catch (error) {
+    console.log(error.message);
+  }
+}

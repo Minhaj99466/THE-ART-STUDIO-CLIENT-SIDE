@@ -13,10 +13,11 @@ import Forget from '../../components/artistComponents/Forget'
 import PasswordConfirm from '../../components/artistComponents/PasswordConfirmation'
 import AddProfile from '../../components/artistComponents/AddProfile'
 import Gallery from "../../components/artistComponents/Gallery"
-import DashBoard from "../../pages/adminPage/Notifications/Notifications"
+
 import BookingsPage from "../../pages/artistPage/Bookings/BookingsPage"
 import ChatList from "../../components/artistComponents/Chat/ChatList"
 import Notfound from "../../components/artistComponents/ErrorPage/404"
+import Dashboard from "../../pages/artistPage/Dashboard/Dashborad"
 
 
 
@@ -36,8 +37,8 @@ function ArtistRoute() {
 
         <Route element={<ArtistProtect/>}>
         <Route path="/"  element={<Layout></Layout>}>
-        <Route exact path='/' element={<DashBoard/>}/> 
-        <Route exact path='/dashboard' element={<DashBoard/>}/> 
+        <Route exact path='/' element={<Dashboard/>}/> 
+        <Route exact path='/dashboard' element={<Dashboard/>}/> 
         <Route exact path='/profile' element={<Profile/>}/> 
         <Route exact path='/addProfile' element={<AddProfile/>}/> 
         <Route exact path='/gallery' element={<Gallery/>}/> 
