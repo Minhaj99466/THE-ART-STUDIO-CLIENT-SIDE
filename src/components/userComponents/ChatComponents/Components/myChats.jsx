@@ -13,7 +13,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import SideDrawer from "./SideDrawer";
 
-const MyChats = ({ fetchAgain }) => {
+ export default function MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState();
 
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
@@ -148,4 +148,4 @@ const MyChats = ({ fetchAgain }) => {
     );
 };
 
-export default MyChats;
+
