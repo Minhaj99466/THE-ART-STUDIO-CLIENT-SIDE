@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // import ChatLoading from "./ChatLoading";
 // import { Button } from "@chakra-ui/react";
 import userRequest from "../../../../utils/userRequest";
-import { ChatState } from "./Context/ChatProvider";
+import  ChatState from "./Context/ChatProvider";
 // import { getSender } from "../Config/ChatLogistics";
 import { Spinner } from "@material-tailwind/react";
 import { Box } from "@chakra-ui/react";

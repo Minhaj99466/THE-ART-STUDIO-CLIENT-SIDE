@@ -3,7 +3,7 @@ import  ChatState  from "./Components/Context/ChatProvider";
 
 import { Box } from "@chakra-ui/react";
 import './ChatList.css'
-import MyChats from './Components/MyChats';
+import MyChats from './Components/MyChat';
 import Chatbox from './Components/ChatBox'
 const ChatList = () => {
     const [fetchAgain, setFetchAgain] = useState(false);
