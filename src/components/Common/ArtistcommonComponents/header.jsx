@@ -22,7 +22,7 @@ import {
   UserCircleIcon
 } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { Logoutdetails } from "../../../redux/artistSlice/artistSlice";
+import { Logoutdetails } from "../../../Redux/artistSlice/artistSlice";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../Common/ArtistcommonComponents/sidebar";
 import img from "../../../HomeImg/FAÜNA.jpeg";
