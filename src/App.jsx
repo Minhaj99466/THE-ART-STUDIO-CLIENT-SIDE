@@ -5,7 +5,8 @@ import AdminRoute from "./routes/adminRoute/adminRoute"
 import './App.css'
 
 import ChatProvider from "./components/artistComponents/Chat/Components/Context/ChatProvider"
-import ChatUserProvider from "./components/userComponents/ChatComponents/components/Context/ChatProvider"
+import ChatUserProvider from "./components/userComponents/ChatComponents/Components/Context/ChatProvider"
+
 function App() {
   return (
     <Router>
