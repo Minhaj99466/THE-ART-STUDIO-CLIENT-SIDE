@@ -18,7 +18,7 @@ import { GenerateError, GenerateSuccess } from "../../toast/toast";
 import { useState, useEffect } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
-import { setuserdetails } from '../../Redux/userSlice/UserSlice';
+import { setuserdetails } from '../../Redux/userSlice/userSlice';
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
