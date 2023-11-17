@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GenerateError } from "../toast/Toast";
+import { GenerateError } from "../toast/toast";
 
 
 const baseUrl = import.meta.env.VITE_USERURL
