@@ -19,7 +19,7 @@ import {
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BellIcon } from "@chakra-ui/icons";
 import { getSender } from "../../userComponents/ChatComponents/Components/Config/ChatLogics";
-import { ChatState } from "../../userComponents/ChatComponents/components/Context/ChatProvider";
+import { ChatState } from "../../userComponents/ChatComponents/Components/Context/ChatProvider";
 
 export default function Header() {
   const [openNav, setOpenNav] = React.useState(false);
