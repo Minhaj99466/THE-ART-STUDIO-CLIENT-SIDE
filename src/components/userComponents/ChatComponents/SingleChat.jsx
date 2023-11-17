@@ -1,5 +1,5 @@
 
-import { ChatState } from "./components/Context/ChatProvider";
+import { ChatState } from "./Components/Context/ChatProvider";
 import { Box, Button, FormControl, IconButton, Spinner, Text } from '@chakra-ui/react';
 import { Input } from "@chakra-ui/input";
 import { ArrowBackIcon } from '@chakra-ui/icons';
