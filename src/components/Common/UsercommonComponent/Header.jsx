@@ -18,7 +18,7 @@ import {
 
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BellIcon } from "@chakra-ui/icons";
-import { getSender } from "../../userComponents/ChatComponents/components/Config/ChatLogics";
+import { getSender } from "../../userComponents/ChatComponents/Components/Config/ChatLogics";
 import { ChatState } from "../../userComponents/ChatComponents/components/Context/ChatProvider";
 
 export default function Header() {

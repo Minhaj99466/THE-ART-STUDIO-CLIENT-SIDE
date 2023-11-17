@@ -21,7 +21,8 @@ import {
   import axios from "axios";
   import { useDispatch } from "react-redux";
   import { useNavigate } from "react-router-dom";
- import { setartistdetails } from "../../Redux/artistSlice/artistSlice";
+ import { setartistdetails } from "../../R
+ edux/artistSlice/artistSlice";
   
   export default function Artistlogin() {
     const dispatch = useDispatch();
