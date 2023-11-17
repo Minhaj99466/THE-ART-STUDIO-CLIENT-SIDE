@@ -12,7 +12,6 @@ import animationData from './typing.json'
 import { useEffect } from 'react';
 import ScrollableChat from './Components/ScrollableChat';
 var socket, selectedChatCompare;
-// const ENDPOINT = "http://localhost:8801";
 const ENDPOINT = import.meta.env.VITE_USERURL;
 
 
