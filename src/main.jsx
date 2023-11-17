@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={Store}>
     <PersistGate loading={null} persistor={Persistor}>
     <ChakraBaseProvider>
-      <GoogleOAuthProvider clientId={GoogleClientId}>
+      <GoogleOAuthProvider clientId="637015115194-e6r8t8dcach1s8u3bcfski5oh87vg29q.apps.googleusercontent.com">
         <QueryClientProvider client={queryClient}>
           <React.StrictMode>
             <App />

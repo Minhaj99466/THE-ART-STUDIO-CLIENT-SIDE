@@ -68,7 +68,7 @@ export default function MainContent() {
             </div>
         <div>
             <div className="flex justify-around">
-                <Card />
+                <Card  />
             </div>
         </div> 
          </div>

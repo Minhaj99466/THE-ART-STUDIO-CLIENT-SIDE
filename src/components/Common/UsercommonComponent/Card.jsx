@@ -81,7 +81,7 @@
     // Button,
   } from "@material-tailwind/react";
    
-  export default function CardDefault() {
+  export default function   CardDefault() {
         const contents=[{
       artistName:"MInhaj",
       Job:"RETRO INVITAIONS",
