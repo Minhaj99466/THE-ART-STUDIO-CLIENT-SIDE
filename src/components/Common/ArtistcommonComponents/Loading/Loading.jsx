@@ -1,5 +1,4 @@
 import icon from '../../../../assets/userAssets/Critical thinking-cuate.svg'
-import './loading.css'
 export const Loading = () => {
     return (
         <>
