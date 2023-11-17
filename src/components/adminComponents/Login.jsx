@@ -18,7 +18,7 @@ import {
 
   import { useDispatch } from "react-redux";
   import { useNavigate } from "react-router-dom";
-import { setadmindetails } from "../../redux/adminSlice/adminSlice";
+import { setadmindetails } from "../../Redux/adminSlice/adminSlice";
   
   export default function AdminLogin() {
     const dispatch = useDispatch();
