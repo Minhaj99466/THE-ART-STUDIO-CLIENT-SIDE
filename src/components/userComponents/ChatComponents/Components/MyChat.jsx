@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // import ChatLoading from "./ChatLoading";
 // import { Button } from "@chakra-ui/react";
 import userRequest from "../../../../utils/userRequest";
-import  ChatState from "./Context/ChatProvider";
+import  {ChatState} from "./Context/ChatProvider";
 // import { getSender } from "../Config/ChatLogistics";
 import { Spinner } from "@material-tailwind/react";
 import { Box } from "@chakra-ui/react";
@@ -18,13 +18,13 @@ const MyChats = ({ fetchAgain }) => {
 
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
-    console.log(user,"fetchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    console.log(user,"fetchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzh");
     //   const toast = useToast();
 
 
     const fetchChats = async () => {
         try {
-            const userId = user.userInfo.id
+            const userId = user.id
             console.log(userId,"ughjghjgjdcccccccccsssssssssss");
 
             const { data } = await userRequest.get(`/fetchchat/${userId}`);
@@ -58,7 +58,7 @@ const MyChats = ({ fetchAgain }) => {
         setLoggedUser(userInfo);
         fetchChats();
         // eslint-disable-next-line
-    }, [userInfo,fetchAgain]);
+    }, [fetchAgain]);
     
 
     return (

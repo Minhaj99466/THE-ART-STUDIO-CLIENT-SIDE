@@ -1,6 +1,6 @@
 import  { createContext, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 // import { useNavigate } from 'react-router-dom';
 
 const ChatContext=createContext()
@@ -17,7 +17,7 @@ function ChatUserProvider({children}) {
     users: [], 
     createdAt: '', 
     updatedAt: '', 
-    // Add other properties as needed
+    // Add other propertxies as needed
   };
   const userInfo = useSelector((state) => state.user.userInfo);
   // const navigate =useNavigate()
