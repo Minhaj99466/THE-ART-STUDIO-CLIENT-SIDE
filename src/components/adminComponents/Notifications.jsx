@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import adminRequest from "../../utils/adminRequest";
 import { useNavigate } from "react-router-dom";
 import { GenerateError } from "../../toast/toast";
-import Loading from '../Common/ArtistcommonComponents/Loading/Loading'
+import {Loading} from '../Common/ArtistcommonComponents/Loading/Loading'
 
 function IconOutlined() {
     return (
