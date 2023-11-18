@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import adminRequest from "../../utils/adminRequest";
 import { useNavigate } from "react-router-dom";
 import { GenerateError } from "../../toast/toast";
+import Loading from '../Common/ArtistcommonComponents/Loading/Loading'
 
 function IconOutlined() {
     return (
@@ -28,12 +29,11 @@ export default function Notifications() {
     const { isLoading, error, data } = useQuery({
         queryKey: ["notVerified"],
         queryFn: () => adminRequest.get("/notVerified").then((res) => res.data)
+        
     })
     if (isLoading) {
         return (
-            <div className="h-screen w-[75rem] flex justify-center items-center">
-                <Spinner color="blue" className="h-10 w-10 " />
-            </div>
+            <Loading/>
         );
     }
     if (error) {
