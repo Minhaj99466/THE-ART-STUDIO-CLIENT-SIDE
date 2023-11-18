@@ -38,11 +38,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         if (!selectedChat) return;
     
         try {
-          const config = {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          };
+          // const config = {
+          //   headers: {
+          //     Authorization: `Bearer ${user.token}`,
+          //   },
+          // };
     
           setLoading(true);
           console.log(selectedChat);

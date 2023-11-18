@@ -1,6 +1,5 @@
 import { useState } from "react";
 import  ChatState  from "./Components/Context/ChatProvider";
-
 import { Box } from "@chakra-ui/react";
 import './ChatList.css'
 import MyChats from './Components/MyChat';
@@ -8,6 +7,9 @@ import Chatbox from './Components/ChatBox'
 const ChatList = () => {
     const [fetchAgain, setFetchAgain] = useState(false);
     const { user } = ChatState();
+    
+    console.log(user,"userrrrrrrrrrrrrrrrrrrrrrrrrrr");
+console.log(user?user:"undefined");
 
     return (
         <div className="container mx-auto">

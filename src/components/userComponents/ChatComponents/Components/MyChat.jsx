@@ -18,12 +18,14 @@ const MyChats = ({ fetchAgain }) => {
 
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
+    console.log(user,"fetchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     //   const toast = useToast();
+
 
     const fetchChats = async () => {
         try {
-           
-            const userId = user.id
+            const userId = user.userInfo.id
+            console.log(userId,"ughjghjgjdcccccccccsssssssssss");
 
             const { data } = await userRequest.get(`/fetchchat/${userId}`);
 
@@ -48,12 +50,16 @@ const MyChats = ({ fetchAgain }) => {
         }
     };
 
+
+    
     const  userInfo  = useSelector((state) => state.user.userInfo)
     useEffect(() => {
+        console.log("ggggggggggggggggggggggggggggggggggggggggg");
         setLoggedUser(userInfo);
         fetchChats();
         // eslint-disable-next-line
-    }, [fetchAgain]);
+    }, [userInfo,fetchAgain]);
+    
 
     return (
         <Box

@@ -72,6 +72,8 @@ function SideDrawer() {
     // const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
 
+
+    console.log(searchResult,"searchchchchc");
     // const logoutHandler = () => {
     //     localStorage.removeItem("userInfo");
     //     navigate('/');
@@ -121,9 +123,9 @@ function SideDrawer() {
     const accessChat = async (userId) => {
         try {
             setLoadingChat(true);
-          
                     const artistId = user.id
-            const { data } = await userRequest.post(`/accesschat`, { artistId, userId });
+                    console.log(artistId,"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+            const { data } = await userRequest.post(`/accesschat`, { artistId,userId });
             console.log(data);
 
             if (!chats.find((c) => c._id === data._id)) {
@@ -176,7 +178,7 @@ function SideDrawer() {
                         <div>Loading...</div>
                     ) : (
                         <List>
-                            {searchResult?.map((user) => (
+                            {searchResult.map((user) => (
                                 <ListItem  onClick={() => accessChat(user._id)} key={user._id} >
                                         {user.name}
                                 </ListItem>

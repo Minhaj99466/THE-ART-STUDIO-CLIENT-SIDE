@@ -21,13 +21,19 @@ const MyChats = ({ fetchAgain }) => {
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
     //   const toast = useToast();
+
+     const artistInfo = useSelector((state) => state.user.artistInfo);
+    console.log(artistInfo);
+    useEffect(() => {
+        setLoggedUser(artistInfo);
+        fetchChats();
+        // eslint-disable-next-line
+    }, [artistInfo,fetchAgain]);
     
     const fetchChats = async () => {
-        // console.log(user._id);
         try {
-           
-            console.log(selectedChat);
             const userId = user.id
+            console.log(userId,"hkkkkkkkkkkkkkkkkkkkkkkkllllllllllllllllllllllll");
             const { data } = await ArtistRequest.get(`/fetchchat/${userId}`);
             
             const sortedChats = data.sort((chatA, chatB) => {
@@ -50,13 +56,7 @@ const MyChats = ({ fetchAgain }) => {
         }
     };
 
-    const artistInfo = useSelector((state) => state.user.artistInfo);
-    console.log(artistInfo);
-    useEffect(() => {
-        setLoggedUser(artistInfo);
-        fetchChats();
-        // eslint-disable-next-line
-    }, [artistInfo,fetchAgain]);
+   
 
 
     

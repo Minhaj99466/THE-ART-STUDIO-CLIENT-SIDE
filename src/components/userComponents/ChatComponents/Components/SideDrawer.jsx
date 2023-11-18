@@ -65,10 +65,11 @@ function SideDrawer() {
         setChats,
     } = ChatState();
     // console.log(user, "ddddddddddd");
+    console.log(user,"siderbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
     // const toast = useToast();
     // const { isOpen, onOpen, onClose } = useDisclosure();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // const logoutHandler = () => {
     //     localStorage.removeItem("userInfo");
@@ -93,13 +94,13 @@ function SideDrawer() {
         try {
             setLoading(true);
 
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            };
+            // const config = {
+            //     headers: {
+            //         Authorization: `Bearer ${user.token}`,
+            //     },
+            // };
 
-            const { data } = await userRequest.get(`/usersearch?search=${search}`, config);
+            const { data } = await userRequest.get(`/usersearch?search=${search}`);
 
             setLoading(false);
             setSearchResult(data);
@@ -117,19 +118,20 @@ function SideDrawer() {
     };
 
     const accessChat = async (artistId) => {
-        // console.log(artistId);
+        console.log(artistId);
 
-        console.log(user.id,artistId,"the id");
+        console.log(user.id,artistId,"the idddddddddddddddddddddddddddddddddddd");
         try {
             setLoadingChat(true);
             // const config = {
-            //     headers: {
+            //     headers: {   
             //         "Content-type": "application/json",
             //         Authorization: `Bearer ${user.user.token}`,
             //     },
             // };
             // console.log(config);
             const userId = user.id
+            console.log(userId,"Usgfghhkjkjhgsjsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             const { data } = await userRequest.post(`/accesschat`, { artistId, userId });
             console.log(data);
 

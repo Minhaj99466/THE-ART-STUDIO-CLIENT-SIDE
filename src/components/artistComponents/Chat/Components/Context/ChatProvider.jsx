@@ -19,7 +19,7 @@ function ChatProvider({children}) {
     // Add other properties as needed
   };
   const artistInfo = useSelector((state) => state.user.artistInfo);
-  console.log(artistInfo);
+  console.log(artistInfo,"qqqqqqqqqqqqqqqqqqqqqqqq");
   const navigate=useNavigate()
   useEffect(() => {
     // const artistInfo = JSON.parse(localStorage.getItem("artistInfo"));
