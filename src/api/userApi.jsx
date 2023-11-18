@@ -16,7 +16,6 @@ export async function UserSignup(signupData){
     }
 
 }
-
 export async function  UserSignupWithGoogle(gUserData){
     try {
         const gdata = await userApi.post('/gsignup',gUserData)

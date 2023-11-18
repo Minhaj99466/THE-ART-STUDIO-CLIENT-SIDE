@@ -173,12 +173,12 @@ export default function Login() {
               </div>
               <div className="pl-60">
                 
-                  <button
+                  <Button 
                     onClick={() => navigate("/forget")}
                     className="text-gray-500"
                   >
                     <span>Forgot Password ?</span>
-                  </button>
+                  </Button>
                
               </div>
 
