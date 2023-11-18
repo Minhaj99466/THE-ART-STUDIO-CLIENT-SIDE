@@ -48,9 +48,8 @@ import {
             <div className="flex justify-center  h-72">
               <img
                 src={
-                  data && data.profileData.displaypicture && data.profileData.is_profile
-                    ? "https://i.pinimg.com/564x/b8/9f/51/b89f51fbde04ae076fc2d6350f60e891.jpg"
-                    : "https://i.pinimg.com/564x/b8/9f/51/b89f51fbde04ae076fc2d6350f60e891.jpg"
+                 
+                    "https://i.pinimg.com/564x/b8/9f/51/b89f51fbde04ae076fc2d6350f60e891.jpg"
                 }
                 alt="card-image"
                 className="rounded-full w-72"
