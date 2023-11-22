@@ -31,10 +31,8 @@ export function Payment({ Secret, artistId, slotfromDate, slotToDate , fee,total
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
-    const [clientSecret, setClientSecret] = useState(Secret);
     const stripe = useStripe()
     const elements = useElements()
-    const [email, setEmail] = useState("");
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();

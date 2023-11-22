@@ -6,7 +6,7 @@
 //     Typography,
 //     // Button,
 //   } from "@material-tailwind/react";
-   
+
 //   export default function EcommerceCard() {
 
 //     const contents=[{
@@ -25,8 +25,6 @@
 //       Image:"https://i.pinimg.com/564x/cd/ed/d7/cdedd7bc7ae6e91fb04121e37c307a2b.jpg",
 //       price:434
 //     }]
-    
-
 
 //     return (
 //       contents.map((data)=>{
@@ -68,68 +66,47 @@
 //         </CardFooter> */}
 //       </Card>
 //       </>
-          
+
 //       )})
 //     )
 //   }
-  import {
-    Card,
-    CardHeader,
-    CardBody,
-    // CardFooter,
-    Typography,
-    // Button,
-  } from "@material-tailwind/react";
-   
-  export default function   CardDefault() {
-        const contents=[{
-      artistName:"MInhaj",
-      Job:"RETRO INVITAIONS",
-      Image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      price:434
-    },{
-      artistName:"aaa",
-      Job:"PAINTER",
-      Image:"https://i.pinimg.com/564x/8f/f3/4c/8ff34c7cc25f1425ec6b8d3c1ce673ed.jpg",
-      price:434
-    },{
-      artistName:"MIncccchaj",
-      Job:"WALL ART",
-      Image:"https://i.pinimg.com/564x/cd/ed/d7/cdedd7bc7ae6e91fb04121e37c307a2b.jpg",
-      price:434
-    }]
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  // CardFooter,
+  Typography,
+  // Button,
+} from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 
-    return (
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5  bg-[#ffffff]">
-      {contents.map((data,index)=>(
-          
-          
-      <Card key={index} className="sm:m-6 w-96 ">
-        <CardHeader color="blue-gray" className="relative h-56">
-          <img
-          className="w-screen h-fit"
-            src={data.Image}
-            
-            alt="card-image"
-          />
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            {data.Job}
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            {data.artistName}
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            BY {data.artistName}
-          </Typography>
-         
-        </CardBody>
-        
-      </Card>
-
+export default function CardDefault() {
+  const navigate=useNavigate()
+  const contents = [
+    {
+      Image:
+       "https://i.pinimg.com/236x/68/82/68/688268778b98ea4c55bdec46bbe3ca42.jpg"
+    },
+    {
+      Image:
+        "https://i.pinimg.com/564x/86/81/8f/86818f2dcf2ffe79337ede9bc4abeb75.jpg",
+    },
+    {
+      Image:
+        "https://i.pinimg.com/564x/cd/ed/d7/cdedd7bc7ae6e91fb04121e37c307a2b.jpg",
+    },
     
+  ];
+
+  return (
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5 md:gap-10 md:mb-20    bg-[#ffffff]">
+      {contents.map((data, index) => (
+        <Card onClick={()=>navigate('/explore')} className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300" key={index}>
+          <CardBody >
+            <img  className="w-72 h-72" src={data.Image} alt="card-image" />
+          </CardBody>
+        </Card>
       ))}
-        </div>
-    )
-  }
+    </div>
+  );
+}
