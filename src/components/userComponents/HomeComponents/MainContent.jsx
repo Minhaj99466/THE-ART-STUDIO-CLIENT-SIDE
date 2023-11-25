@@ -20,9 +20,10 @@ export default function MainContent() {
               </h1>
             </div>
             <div className="py-5">
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. <br /> Lorem Ipsum has been the Industrys{" "}
+              <p className="font-serif ">
+                Discover creativity Here. Our talented artists bring your ideas
+                to life.
+                <br /> Join us in shaping the industry.
               </p>
             </div>
             <div className="pt-5">
@@ -67,13 +68,14 @@ export default function MainContent() {
           <div>
             <div>
               <h1 className="text-4xl leading-relaxed tracking-wider font-serif">
-                THE ART OF <br /> HIRING
+                ART IS FUTURE <br /> OF (kriːeɪˈtɪvɪti)
               </h1>
             </div>
             <div className="py-5">
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. <br /> Lorem Ipsum has been the Industrys{" "}
+              <p className="font-serif ">
+                {/* Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. <br /> Lorem Ipsum has been the Industrys{" "} */}
+                Art goes beyond limits and opens up new worlds of imagination.<br/> In the world of creativity, art is the guiding force,<br/> paving the way for new ideas and endless possibilities.
               </p>
             </div>
           </div>

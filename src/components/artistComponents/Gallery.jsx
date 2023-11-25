@@ -10,6 +10,8 @@ import ArtistRequest from "../../utils/artistRequest";
 import { useSelector } from 'react-redux';
 import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from 'react-router-dom';
+import { Loading } from "../../components/Common/ArtistcommonComponents/Loading/Loading";
+
 
 
 export default function Gallery() {
@@ -23,7 +25,7 @@ export default function Gallery() {
           ArtistRequest.get(`/Profiledetails/${id}`).then((res) => res.data),
       });
     
-      if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
+      if (isLoading) return <Loading/>;
     
       if (error) {
         if (error.response) {
