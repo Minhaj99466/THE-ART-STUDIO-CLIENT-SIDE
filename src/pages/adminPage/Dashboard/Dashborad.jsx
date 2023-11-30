@@ -9,7 +9,6 @@ import { Card, CardBody, Typography } from "@material-tailwind/react";
 import { DashBoard } from "../../../api/adminApi";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { GenerateError } from "../../../toast/toast";
 
 function Dashboard() {
   const { isLoading, error, data } = useQuery({
@@ -80,7 +79,7 @@ function Dashboard() {
     return <Loading />;
   }
   if (error) {
-    GenerateError(error.response.data.data.message)
+    return <div>No Dashboard Data</div>;
   }
 
   return (
