@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tab, Tabs } from "@mui/material";
 import { getCategorisedArtists } from "../../../api/userApi";
+import { Loading } from "../../Common/ArtistcommonComponents/Loading/Loading";
 
 export default function ProfileCard() {
   const [active, setActive] = useState(1);
@@ -42,10 +43,12 @@ export default function ProfileCard() {
   const [search, setSearch] = useState(0);
   const [data, setData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchArtists = async () => {
       try {
+        setLoading(true)
         const response = await getCategorisedArtists(
           category[activeTab],
           search,
@@ -56,6 +59,7 @@ export default function ProfileCard() {
       } catch (error) {
         console.error("An error occurred while fetching data:", error.message);
       }
+      setLoading(false)
     };
     fetchArtists();
   }, [activeTab, search, active]);
@@ -93,8 +97,6 @@ export default function ProfileCard() {
 console.log(search);
   return (
     <>
-     
-
       <div className="grid justify-center items-center">
       <div className=" w-10 my-5 md:w-full ">
         <Input
@@ -123,9 +125,11 @@ console.log(search);
       </div>
     </div>
 
+    {loading ?<Loading/>:null}
       <div className="grid  grid-cols-1 ml-10  md:grid-cols-3  gap-12 md:ml-24">
-        {data && data.ArtistData? (
+        {!loading && data && data.ArtistData? (
           data.ArtistData.map((item) => (
+            
             <Card
               className="w-72 grid justify-center mt-10 md:grid md:justify-center bg-[#e8eddf]"
               key={item._id}
