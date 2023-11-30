@@ -78,9 +78,7 @@ function Dashboard() {
   if (isLoading) {
     return <Loading />;
   }
-  if (error) {
-    return <div>dfgdfg</div>;
-  }
+  
 
   return (
   
