@@ -13,14 +13,18 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import { useEffect, useState } from "react";
+import { Loading } from "../../Common/ArtistcommonComponents/Loading/Loading";
 
 export default function App() {
   const { id } = useParams();
   const [data,setData]=useState()
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         const res = await getArtistDetails({id});
         if (res) {
           setData(res.data);
@@ -28,6 +32,7 @@ export default function App() {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+      setLoading(false)
     };
     fetchData();
   }, [id]);
@@ -49,6 +54,7 @@ export default function App() {
 
   return (
     <>
+    {loading?<Loading/>:null}
       <Swiper
         pagination={true}
         modules={[Pagination]}
@@ -60,7 +66,7 @@ export default function App() {
             <img className="object-cover h-full w-full" src={item} alt="" />
           </SwiperSlide>
         ))
-        : <h1>hello</h1> }
+        : null }
       </Swiper>
     </>
   );

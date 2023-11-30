@@ -160,9 +160,7 @@ export default function Signup() {
                 </CardBody>
               </Card>
             ) : (
-              <div>
-                <h1>hello</h1>
-              </div>
+              null
             )}
             
           </div>

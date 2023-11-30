@@ -19,14 +19,20 @@ import { useNavigate } from "react-router-dom";
 import { getSuggestion } from "../../../api/userApi";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Loading } from "../../Common/ArtistcommonComponents/Loading/Loading";
+// import { Loading } from "../../Common/ArtistcommonComponents/Loading/Loading";
+
 
 export default function ProfileCard() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const res = await getSuggestion({ id });
         if (res) {
@@ -35,6 +41,7 @@ export default function ProfileCard() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      setLoading(false)
     };
     fetchData();
   }, [id]);
@@ -45,6 +52,7 @@ export default function ProfileCard() {
 
   return (
     <>
+        {loading?<Loading/>:null}
       <div className="grid  gap-12 grid-cols-1 md:grid-cols-3  ">
         {data ? (
           data.map((item) => (
@@ -80,7 +88,7 @@ export default function ProfileCard() {
             </Card>
           ))
         ) : (
-          <h1>hello</h1>
+          null
         )}
       </div>
     </>

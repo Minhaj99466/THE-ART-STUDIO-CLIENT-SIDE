@@ -43,7 +43,7 @@ export default function ProfileCard() {
   const [search, setSearch] = useState(0);
   const [data, setData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);  
 
   useEffect(() => {
     const fetchArtists = async () => {
