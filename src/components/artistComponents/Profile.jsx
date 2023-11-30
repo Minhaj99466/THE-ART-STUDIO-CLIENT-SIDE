@@ -13,6 +13,8 @@ import EditDialog from "../../components/artistComponents/EditProfile";
 import { useLocation, useNavigate } from "react-router-dom";
 import DialogWithForm from "./AddProfile";
 import { InfinitySpin } from "react-loader-spinner";
+import { Loading } from "../../components/Common/ArtistcommonComponents/Loading/Loading";
+
 
 
 export default function ProfileCard() {
@@ -27,7 +29,7 @@ export default function ProfileCard() {
       ArtistRequest.get(`/Profiledetails/${id}`).then((res) => res.data),
   });
 
-  if (isLoading) return <InfinitySpin width="200" color="#4fa94d" />;
+  if (isLoading) return <Loading/>;
 
   if (error) {
     if (error.response) {

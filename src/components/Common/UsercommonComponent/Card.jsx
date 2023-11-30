@@ -101,7 +101,7 @@ export default function CardDefault() {
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 mb-5 md:gap-10 md:mb-20    bg-[#ffffff]">
       {contents.map((data, index) => (
-        <Card onClick={()=>navigate('/explore')} className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300" key={index}>
+        <Card onClick={()=>navigate('/explore')} className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300 hover:shadow-2xl " key={index}>
           <CardBody >
             <img  className="w-72 h-72" src={data.Image} alt="card-image" />
           </CardBody>
