@@ -117,7 +117,7 @@ export default function Table() {
   
   return (
     <>
-    {loading?<Loading/>:null}
+    {loading?<Loading/>:
       <Card className="h-full w-full ">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
@@ -274,6 +274,7 @@ export default function Table() {
           </Button>
         </CardFooter>
       </Card>
+}
     </>
   );
 }
