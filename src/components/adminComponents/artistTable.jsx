@@ -27,6 +27,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { GenerateError } from "../../toast/toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Loading } from "../Common/ArtistcommonComponents/Loading/Loading";
 
 const TABS = [
   {
@@ -47,6 +48,7 @@ export default function Table() {
   const [refetch, setRefetch] = useState(false);
   // const [value, setValue] = useState(1);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const[artistId,setArtistId]=useState('')
 
   // const { isLoading, error, data   } = useQuery({
@@ -90,6 +92,7 @@ export default function Table() {
     const fetchArtists = async () => {
       try {
         setData([])
+        setLoading(true)
         const response = await GetArtists(search, active);
         const res = response.data;
           setData(res);
@@ -97,6 +100,8 @@ export default function Table() {
       } catch (error) {
         console.error("An error occurred while fetching data:", error.message);
       }
+      setLoading(false)
+
     };
     fetchArtists();
 
@@ -112,6 +117,7 @@ export default function Table() {
   
   return (
     <>
+    {loading?<Loading/>:null}
       <Card className="h-full w-full ">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">

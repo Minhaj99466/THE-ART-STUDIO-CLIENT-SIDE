@@ -25,6 +25,7 @@ import { GenerateError } from "../../toast/toast";
 import { useNavigate } from "react-router-dom";
 import { GetUsers } from "../../api/adminApi";
 import { useEffect, useState } from "react";
+import { Loading } from "../Common/ArtistcommonComponents/Loading/Loading";
 
 
 const TABLE_HEAD = [
@@ -45,6 +46,8 @@ export default function Table() {
   const [refetch, setRefetch] = useState(false);
   // const [value, setValue] = useState(1);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 // const navigate=useNavigate()
   
 //   const { isLoading, error, data } = useQuery({
@@ -90,7 +93,7 @@ const getItemProps = (index) => ({
 useEffect(() => {
   const fetchArtists = async () => {
     try {
-      console.log("heloo");
+      setLoading(true)
       const response = await GetUsers(search, active);
       const res = response.data;
         setData(res);
@@ -98,6 +101,7 @@ useEffect(() => {
     } catch (error) {
       console.error("An error occurred while fetching data:", error.message);
     }
+    setLoading(false)
   };
   fetchArtists();
 
@@ -115,6 +119,7 @@ const handleAction = async (artistId) => {
 
   return (
     <>
+    {loading?<Loading/>:null}
       <Card className="overflow-x-scroll">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
