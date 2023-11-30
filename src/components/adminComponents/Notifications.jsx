@@ -31,6 +31,7 @@ export default function Notifications() {
         queryFn: () => adminRequest.get("/notVerified").then((res) => res.data)
         
     })
+    console.log(data);
     if (isLoading) {
         return (
             <Loading/>
@@ -53,7 +54,7 @@ export default function Notifications() {
     return (
 
         <>
-            {data && data.length>0?(data.data.map(({ name, _id }) => (
+            {data ?(data.data.map(({ name, _id }) => (
 
                 <div className="flex w-full flex-col gap-2 p-3 " key={_id}>
                     <Alert
