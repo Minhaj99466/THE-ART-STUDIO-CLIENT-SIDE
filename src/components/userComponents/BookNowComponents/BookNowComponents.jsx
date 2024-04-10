@@ -219,7 +219,7 @@ export default function PricingCard() {
             </CardBody>
           </Card>
         ) : null}
-        {fromDate && toDate ? (
+        {data && toDate ? (
           <Card
             color="gray"
             variant="gradient"
