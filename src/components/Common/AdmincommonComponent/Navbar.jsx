@@ -147,7 +147,7 @@ export default function ComplexNavbar() {
           </Drawer>
           <Bars3Icon
             onClick={openDrawer}
-            className="h-8 w-8 ms-5 cursor-pointer text-white"
+            className="h-8 w-8 ms-5 cursor-pointer text-white md:hidden"
           />
           <img src={img} alt="" className="h-14 ps-7 py-1" />
           <h1>THE ART STUDIO</h1>

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import { Navigate } from "react-router-dom";
 
 function UserPublic() {
-    if (localStorage.getItem('UserToken')) {
+    if (localStorage.getItem('userToken')) {
         return <Navigate to="/"/>
         }
         

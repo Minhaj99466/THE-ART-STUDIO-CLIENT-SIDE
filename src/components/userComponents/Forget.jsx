@@ -13,6 +13,7 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import  {sendMail}  from "../../api/userApi";
 import { GenerateError, GenerateSuccess } from "../../toast/toast";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -69,6 +70,8 @@ export default function Forget() {
           </CardBody>
         </Card>
       </div>
+      <ToastContainer/>
+
 
     </>
   );
